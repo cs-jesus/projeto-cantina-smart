@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTipoInstituicaoDto } from './dto/create-tipo-instituicao.dto';
 import { UpdateTipoInstituicaoDto } from './dto/update-tipo-instituicao.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class TipoInstituicaoService {
+
+  constructor(private readonly prisma: PrismaService) {}
+
   create(createTipoInstituicaoDto: CreateTipoInstituicaoDto) {
     return 'This action adds a new tipoInstituicao';
   }

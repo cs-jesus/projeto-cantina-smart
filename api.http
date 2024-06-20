@@ -9,12 +9,17 @@ GET http://localhost:3000/tipo-instituicao/1
 POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
-{
-    "descricao": "Xablau"
-}
+[
+    {
+        "descricao": "Universidade"
+    }
+    {
+        "descricao": "Xablau"
+    }
 
+]
 ###
-PATCH http://localhost:3000/tipo-instituicao/3
+PATCH http://localhost:3000/tipo-instituicao/2
 Content-Type: application/json
 
 {

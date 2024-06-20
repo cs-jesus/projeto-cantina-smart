@@ -8,12 +8,12 @@ export class TipoInstituicaoService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createTipoInstituicaoDto: CreateTipoInstituicaoDto) {
-    return 'This action adds a new tipoInstituicao';
+  create(data: CreateTipoInstituicaoDto) {
+    return this.prisma.tipoInstituicao.create({ data });
   }
 
   findAll() {
-    return `This action returns all tipoInstituicao`;
+    return this.prisma.tipoInstituicao.findMany(); 
   }
 
   findOne(id: number) {

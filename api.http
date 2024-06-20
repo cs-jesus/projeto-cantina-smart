@@ -14,7 +14,11 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/tipo-instituicao/1
+PATCH http://localhost:3000/tipo-instituicao/3
+Content-Type: application/json
 
+{
+    "descricao": "Xablau-editado"
+}
 ###
 DELETE http://localhost:3000/tipo-instituicao/2

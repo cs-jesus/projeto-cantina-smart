@@ -22,8 +22,11 @@ export class TipoInstituicaoService {
     });
   }
 
-  update(id: number, updateTipoInstituicaoDto: UpdateTipoInstituicaoDto) {
-    return `This action updates a #${id} tipoInstituicao`;
+  update(id: number, data: UpdateTipoInstituicaoDto) {
+    return this.prisma.tipoInstituicao.update({
+      where: { id },
+      data,
+    });
   }
 
   remove(id: number) {

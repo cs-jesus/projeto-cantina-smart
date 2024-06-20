@@ -27,6 +27,8 @@ export class TipoInstituicaoService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} tipoInstituicao`;
+    return this.prisma.tipoInstituicao.delete({
+      where: { id },
+    });
   }
 }

@@ -10,11 +10,11 @@ POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-    "descricao": "Universidade"
+    "descricao": "Xablau"
 }
 
 ###
 PATCH http://localhost:3000/tipo-instituicao/1
 
 ###
-DELETE http://localhost:3000/tipo-instituicao/1
+DELETE http://localhost:3000/tipo-instituicao/2

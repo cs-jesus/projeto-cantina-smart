@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,229 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model TipoInstituicao {
+  id            Int     @id @default(autoincrement()) @map("id_tipo_instituicao")
+  descricao     String  @unique @map("descricao_tipo_instituicao")
+  associacoes   TipoInstituicaoAssociativa[]
+
+  @@map("tipo_instituicao")
+}
+
+model Instituicao {
+  id            Int     @id @default(autoincrement()) @map("id_instituicao")
+  nome          String  @unique @map("nome_instituicao")
+  sigla         String? @map("sigla_instituicao")
+  associacoes   TipoInstituicaoAssociativa[]
+  polos         Polo[]
+
+  @@map("instituicao")
+}
+
+model TipoInstituicaoAssociativa {
+  fk_tipo_instituicao Int
+  fk_instituicao      Int
+
+  tipoInstituicao TipoInstituicao @relation(fields: [fk_tipo_instituicao], references: [id])
+  instituicao Instituicao @relation(fields: [fk_instituicao], references: [id])
+
+  @@id( [fk_tipo_instituicao, fk_instituicao] )
+  @@map("tipo_instituicao_associativa")
+}
+
+model Bairro {
+  id          Int       @id @default(autoincrement()) @map("id_bairro")
+  nome        String    @unique @map("nome_bairro")
+  enderecos   Endereco[]
+
+  @@map("bairro")
+}
+
+model Cidade {
+  id      Int     @id @default(autoincrement()) @map("id_cidade")
+  nome    String  @unique @map("nome_cidade")
+  enderecos   Endereco[]
+
+  @@map("cidade")
+}
+
+model Estado {
+  id      Int     @id @default(autoincrement()) @map("id_estado")
+  uf      String  @unique @map("uf_estado")
+  enderecos   Endereco[]
+
+  @@map("estado")
+}
+
+model Endereco {
+  id          Int     @id @default(autoincrement()) @map("id_endereco")
+  fk_bairro   Int     @map("fk_bairro")
+  fk_cidade   Int     @map("fk_cidade")
+  fk_estado   Int     @map("fk_estado")
+  cep         String  @map("cep_endereco")
+  numero      String  @map("numero_endereco")
+  polos       Polo[]
+  filiais     Filial[]
+
+  bairro    Bairro    @relation(fields: [fk_bairro], references: [id])
+  cidade    Cidade    @relation(fields: [fk_cidade], references: [id])
+  estado    Estado    @relation(fields: [fk_estado], references: [id])
+
+  @@map("endereco")
+}
+
+model Polo {
+  id                Int       @id @default(autoincrement()) @map("id_polo")
+  fk_instituicao    Int       @map("fk_instituicao")
+  fk_endereco       Int       @map("fk_endereco")
+  complemento       String?   @map("complemento_end_polo")
+  nome              String    @map("nome_polo")
+  filiais           Filial[]
+
+  instituicao Instituicao   @relation(fields: [fk_instituicao], references: [id])
+  endereco    Endereco      @relation(fields: [fk_endereco], references: [id])
+
+  @@map("polo")
+}
+
+model TipoEstabelecimento {
+  id                Int         @id @default(autoincrement()) @map("id_tipo_estabelecimento")
+  descricao         String      @unique @map("descricao_tipo_estabelecimento")
+  estabelecimentos  Estabelecimento[]
+
+  @@map("tipo_estabelecimento")
+}
+
+model Juridica {
+  id        Int         @id @default(autoincrement()) @map("id_juridica")
+  cnpj      String      @unique @map("cnpj_juridica")
+  social    String      @map("social_juridica")
+  fantasia  String      @map("fantasia_juridica")
+  email     String      @map("email_juridica")
+  estabelecimentos  Estabelecimento[]
+
+  @@map("juridica")
+}
+
+model Fisica {
+  id        Int         @id @default(autoincrement()) @map("id_fisica")
+  cpf       String      @unique @map("cpf_fisica")
+  nome      String      @map("nome_fisica")
+  email     String      @map("email_fisica")
+  senha     String      @map("senha_fisica")
+  estabelecimentos  Estabelecimento[]
+  telefonesP  TelefoneFisica[]
+  colaboradores Colaborador[]
+
+  @@map("fisica")
+}
+
+model Estabelecimento {
+  id            Int       @id @default(autoincrement()) @map("id_estabelecimento")
+  fk_fisica     Int?      @map("fk_fisica")
+  fk_juridica   Int?      @map("fk_juridica")
+  fk_tipo       Int       @map("fk_tipo_estabelecimento")
+  registro      DateTime  @map("registro_estabelecimento")
+  limite        Int       @default(3) @map("limite_estabelecimento")
+  filiais       Filial[]
+  assocProprietario ProprietarioEstabelecimento[]
+
+  fisica              Fisica?               @relation(fields: [fk_fisica], references: [id])
+  juridica            Juridica?             @relation(fields: [fk_juridica], references: [id])
+  tipoEstabelecimento TipoEstabelecimento   @relation(fields: [fk_tipo], references: [id])
+
+  @@map("estabelecimento")
+}
+
+model Filial {
+  id                  Int       @id @default(autoincrement()) @map("id_filial")
+  fk_estabelecimento  Int       @map("fk_estabelecimento")
+  fk_polo             Int       @map("fk_polo")
+  fk_endereco         Int?      @map("fk_endereco")
+  complemento         String?   @map("complemento_end_filial")
+  nome                String    @map("nome_filial")
+  registro            DateTime  @map("registro_filial")
+  assocFuncionario  FuncionarioFilial[]
+
+  estabelecimento   Estabelecimento @relation(fields: [fk_estabelecimento], references: [id])
+  polo              Polo            @relation(fields: [fk_polo], references: [id])
+  endereco          Endereco?       @relation(fields: [fk_endereco], references: [id])
+
+  @@map("filial")
+}
+
+model TipoTelefone {
+  id        Int     @id @default(autoincrement()) @map("id_tipo_telefone")
+  descricao String  @unique @map("descricao_tipo_telefone")
+  telefones Telefone[]
+
+  @@map("tipo_telefone")
+}
+
+model Telefone {
+  id      Int @id @default(autoincrement()) @map("id_telefone")
+  fk_tipo Int @map("fk_tipo_telefone")
+  numero  String  @unique @map("numero_telefone")
+  ramal   String  @map("ramal_telefone")
+  telefonesP  TelefoneFisica[]
+
+  tipoTelefone  TipoTelefone @relation(fields: [fk_tipo], references: [id])
+
+  @@map("telefone")
+}
+
+model TelefoneFisica {
+  fk_telefone   Int
+  fk_fisica     Int
+
+  telefone  Telefone  @relation(fields: [fk_telefone], references: [id])
+  fisica    Fisica    @relation(fields: [fk_fisica], references: [id])
+
+  @@id( [fk_telefone, fk_fisica] )
+
+  @@map("telefone_fisica")
+}
+
+model Funcao {
+  id            Int     @id @default(autoincrement()) @map("id_funcao")
+  descricao     String  @unique @map("descricao_funcao")
+  colaboradores Colaborador[]
+
+  @@map("funcao")
+}
+
+model Colaborador {
+  id        Int     @id @default(autoincrement()) @map("id_colaborador")
+  fk_fisica Int     @map("fk_fisica")
+  fk_funcao Int     @map("fk_funcao")
+  assocProprietario ProprietarioEstabelecimento[]
+  assocFuncionario  FuncionarioFilial[]
+
+  fisica  Fisica  @relation(fields: [fk_fisica], references: [id])
+  funcao  Funcao  @relation(fields: [fk_funcao], references: [id])
+
+  @@map("colaborador")
+}
+
+model ProprietarioEstabelecimento {
+  fk_colaborador      Int   @map("fk_colaborador")
+  fk_estabelecimento  Int   @map("fk_estabelecimento")
+
+  colaborador       Colaborador       @relation(fields: [fk_colaborador], references: [id])
+  estabelecimento   Estabelecimento   @relation(fields: [fk_estabelecimento], references: [id])
+
+  @@id([fk_colaborador, fk_estabelecimento])
+  @@map("proprietario_estabelecimento")
+}
+
+model FuncionarioFilial {
+  fk_colaborador      Int   @map("fk_colaborador")
+  fk_filial  Int   @map("fk_filial")
+
+  colaborador   Colaborador   @relation(fields: [fk_colaborador], references: [id])
+  filial        Filial        @relation(fields: [fk_filial], references: [id])
+
+  @@id([fk_colaborador, fk_filial])
+  @@map("funcionario_filial")
 }

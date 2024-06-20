@@ -4,8 +4,14 @@ GET http://localhost:3000/tipo-instituicao
 ###
 GET http://localhost:3000/tipo-instituicao/1
 
+
 ###
 POST http://localhost:3000/tipo-instituicao
+Content-Type: application/json
+
+{
+    "descricao": "Universidade"
+}
 
 ###
 PATCH http://localhost:3000/tipo-instituicao/1

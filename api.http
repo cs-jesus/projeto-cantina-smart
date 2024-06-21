@@ -10,7 +10,7 @@ POST http://localhost:3000/instituicao
 Content-Type: application/json
 
 {
-   "nome": "USCS2",
+   "nome": 12,
     "sigla": "USCS"
 }
 

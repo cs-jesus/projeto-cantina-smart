@@ -6,9 +6,10 @@ import { InstituicaoModule } from './module/instituicao/instituicao.module';
 import { TipoInstituicaoAssociativaModule } from './module/tipo-instituicao-associativa/tipo-instituicao-associativa.module';
 import { TipoEstabelecimentoModule } from './module/tipo-estabelecimento/tipo-estabelecimento.module';
 import { BairroModule } from './module/bairro/bairro.module';
+import { CidadeModule } from './module/cidade/cidade.module';
 
 @Module({
-  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule],
+  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule, CidadeModule],
   controllers: [AppController],
   providers: [AppService],
 })

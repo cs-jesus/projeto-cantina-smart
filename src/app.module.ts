@@ -10,9 +10,10 @@ import { CidadeModule } from './module/cidade/cidade.module';
 import { EstadoModule } from './module/estado/estado.module';
 import { EndrecoModule } from './module/endreco/endreco.module';
 import { PoloModule } from './module/polo/polo.module';
+import { JuridicaModule } from './module/juridica/juridica.module';
 
 @Module({
-  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule, PoloModule],
+  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule, PoloModule, JuridicaModule],
   controllers: [AppController],
   providers: [AppService],
 })

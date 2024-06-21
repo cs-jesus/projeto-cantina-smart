@@ -14,7 +14,6 @@ Content-Type: application/json
     "sigla": "USCS"
 }
 
-
 ###
 PATCH http://localhost:3000/instituicao/6
 Content-Type: application/json

@@ -10,20 +10,7 @@ export class InstituicaoService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(data: CreateInstituicaoDto): Promise<Instituicao> {
-
-    try {
-
-      if (typeof data.nome !== 'string') {
-        throw new Error('O campo deve receber uma string');
-      }
-
-      return await this.prisma.instituicao.create({ data });
-
-
-    } catch (error) {
-      console.error("Erro na criação:", error);
-      throw new InternalServerErrorException("Erro na criação de uma instituição");
-    }
+    return await this.prisma.instituicao.create({ data });
   }
 
   async findAll(): Promise<Instituicao[]> {

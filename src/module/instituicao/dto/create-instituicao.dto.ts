@@ -7,5 +7,5 @@ export class CreateInstituicaoDto extends Instituicao{
 
     @IsOptional()
     @IsString()
-    sigla: string;
+    sigla?: string;
 }

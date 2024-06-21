@@ -2,7 +2,7 @@
 GET http://localhost:3000/instituicao
 
 ###
-GET http://localhost:3000/instituicao/2
+GET http://localhost:3000/instituicao/6
 
 
 ###
@@ -10,18 +10,18 @@ POST http://localhost:3000/instituicao
 Content-Type: application/json
 
 {
-   "nome": "USCS",
+   "nome": "USCS2",
     "sigla": "USCS"
 }
 
 
 ###
-PATCH http://localhost:3000/instituicao/2
+PATCH http://localhost:3000/instituicao/6
 Content-Type: application/json
 
 {
-   "nome": "USCS-EDITADO",
-   "sigla": "USCS2"
+   "nome": "USCS1-EDITADO",
+   "sigla": "USCS1"
 }
 ###
-DELETE http://localhost:3000/instituicao/1
+DELETE http://localhost:3000/instituicao/7

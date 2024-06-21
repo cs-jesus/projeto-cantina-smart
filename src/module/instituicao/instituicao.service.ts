@@ -8,29 +8,29 @@ export class InstituicaoService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: CreateInstituicaoDto) {
-    return this.prisma.instituicao.create({ data });
+  async create(data: CreateInstituicaoDto) {
+    return await this.prisma.instituicao.create({ data });
   }
 
-  findAll() {
-    return this.prisma.instituicao.findMany();
+  async findAll() {
+    return await this.prisma.instituicao.findMany();
   }
 
-  findOne(id: number) {
-    return this.prisma.instituicao.findUnique({
+  async findOne(id: number) {
+    return await this.prisma.instituicao.findUnique({
       where: { id },
     });
   }
 
-  update(id: number, data: UpdateInstituicaoDto) {
-    return this.prisma.instituicao.update({
+  async update(id: number, data: UpdateInstituicaoDto) {
+    return await this.prisma.instituicao.update({
       where: { id },
       data,
     });
   }
 
-  remove(id: number) {
-    return this.prisma.instituicao.delete({
+  async remove(id: number) {
+    return await this.prisma.instituicao.delete({
       where: { id },
     });
   }

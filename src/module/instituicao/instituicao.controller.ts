@@ -8,27 +8,27 @@ export class InstituicaoController {
   constructor(private readonly instituicaoService: InstituicaoService) {}
 
   @Post()
-  create(@Body() createInstituicaoDto: CreateInstituicaoDto) {
-    return this.instituicaoService.create(createInstituicaoDto);
+  async create(@Body() createInstituicaoDto: CreateInstituicaoDto) {
+    return await this.instituicaoService.create(createInstituicaoDto);
   }
 
   @Get()
-  findAll() {
-    return this.instituicaoService.findAll();
+  async findAll() {
+    return await this.instituicaoService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.instituicaoService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.instituicaoService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInstituicaoDto: UpdateInstituicaoDto) {
-    return this.instituicaoService.update(+id, updateInstituicaoDto);
+  async update(@Param('id') id: string, @Body() updateInstituicaoDto: UpdateInstituicaoDto) {
+    return await this.instituicaoService.update(+id, updateInstituicaoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.instituicaoService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.instituicaoService.remove(+id);
   }
 }

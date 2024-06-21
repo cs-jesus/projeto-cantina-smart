@@ -11,9 +11,10 @@ import { EstadoModule } from './module/estado/estado.module';
 import { EndrecoModule } from './module/endreco/endreco.module';
 import { PoloModule } from './module/polo/polo.module';
 import { JuridicaModule } from './module/juridica/juridica.module';
+import { FisicaModule } from './module/fisica/fisica.module';
 
 @Module({
-  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule, PoloModule, JuridicaModule],
+  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule, PoloModule, JuridicaModule, FisicaModule],
   controllers: [AppController],
   providers: [AppService],
 })

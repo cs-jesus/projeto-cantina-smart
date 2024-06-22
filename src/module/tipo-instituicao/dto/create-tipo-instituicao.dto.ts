@@ -1,7 +1,8 @@
+import { IsInt, IsNotEmpty, IsString } from "class-validator";
 import { TipoInstituicao } from "../entities/tipo-instituicao.entity";
-import { IsString } from "class-validator";
 
 export class CreateTipoInstituicaoDto extends TipoInstituicao {
-    @IsString()
+    @IsNotEmpty({ message: "O campo não pode estar vazio" })
+    @IsString({ message: "O tipo de dado deve ser uma string" })
     descricao: string;
 }

@@ -1,26 +1,24 @@
 ###
-GET http://localhost:3000/instituicao
+GET http://localhost:3000/tipo-instituicao
 
 ###
-GET http://localhost:3000/instituicao/6
+GET http://localhost:3000/tipo-instituicao/3
 
 
 ###
-POST http://localhost:3000/instituicao
+POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-   "nome": 12,
-    "sigla": "USCS"
+   "descricao": "abc123"
 }
 
 ###
-PATCH http://localhost:3000/instituicao/6
+PATCH http://localhost:3000/tipo-instituicao/3
 Content-Type: application/json
 
 {
-   "nome": "USCS1-EDITADO",
-   "sigla": "USCS1"
+   "descricao": "Xablau2"
 }
 ###
-DELETE http://localhost:3000/instituicao/7
+DELETE http://localhost:3000/tipo-instituicao/3

@@ -2,35 +2,36 @@ import { Injectable } from '@nestjs/common';
 import { CreateTipoInstituicaoDto } from './dto/create-tipo-instituicao.dto';
 import { UpdateTipoInstituicaoDto } from './dto/update-tipo-instituicao.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { TipoInstituicao } from './entities/tipo-instituicao.entity';
 
 @Injectable()
 export class TipoInstituicaoService {
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma:PrismaService) {}
 
-  create(data: CreateTipoInstituicaoDto) {
-    return this.prisma.tipoInstituicao.create({ data });
+  async create(data: CreateTipoInstituicaoDto): Promise<TipoInstituicao> {
+    return await this. prisma.tipoInstituicao.create({ data });
   }
 
-  findAll() {
-    return this.prisma.tipoInstituicao.findMany(); 
+  async findAll(): Promise<TipoInstituicao[]> {
+    return await this.prisma.tipoInstituicao.findMany() ;
   }
 
-  findOne(id: number) {
-    return this.prisma.tipoInstituicao.findUnique({
+  async findOne(id: number): Promise<TipoInstituicao> {
+    return await this.prisma.tipoInstituicao.findUnique({
       where: { id },
     });
   }
 
-  update(id: number, data: UpdateTipoInstituicaoDto) {
-    return this.prisma.tipoInstituicao.update({
+  async update(id: number, data: UpdateTipoInstituicaoDto): Promise<TipoInstituicao> {
+    return await this.prisma.tipoInstituicao.update({
       where: { id },
       data,
     });
   }
 
-  remove(id: number) {
-    return this.prisma.tipoInstituicao.delete({
+  async remove(id: number): Promise<TipoInstituicao> {
+    return await this.prisma.tipoInstituicao.delete({
       where: { id },
     });
   }

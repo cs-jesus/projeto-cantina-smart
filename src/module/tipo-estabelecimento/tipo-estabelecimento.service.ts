@@ -3,7 +3,6 @@ import { CreateTipoEstabelecimentoDto } from './dto/create-tipo-estabelecimento.
 import { UpdateTipoEstabelecimentoDto } from './dto/update-tipo-estabelecimento.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { TipoEstabelecimento } from './entities/tipo-estabelecimento.entity';
-import { promises } from 'dns';
 
 @Injectable()
 export class TipoEstabelecimentoService {

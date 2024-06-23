@@ -36,6 +36,14 @@ model TipoInstituicaoAssociativa {
   @@map("tipo_instituicao_associativa")
 }
 
+model Logradouro {
+  id          Int       @id @default(autoincrement()) @map("id_logradouro")
+  nome        String    @unique @map("nome_logradouro")
+  enderecos   Endereco[]
+
+  @@map("logradouro")
+}
+
 model Bairro {
   id          Int       @id @default(autoincrement()) @map("id_bairro")
   nome        String    @unique @map("nome_bairro")
@@ -61,18 +69,20 @@ model Estado {
 }
 
 model Endereco {
-  id          Int     @id @default(autoincrement()) @map("id_endereco")
-  fk_bairro   Int     @map("fk_bairro")
-  fk_cidade   Int     @map("fk_cidade")
-  fk_estado   Int     @map("fk_estado")
-  cep         String  @map("cep_endereco")
-  numero      String  @map("numero_endereco")
-  polos       Polo[]
-  filiais     Filial[]
+  id            Int     @id @default(autoincrement()) @map("id_endereco")
+  fk_logradouro Int     @map("fk_logradouro")
+  fk_bairro     Int     @map("fk_bairro")
+  fk_cidade     Int     @map("fk_cidade")
+  fk_estado     Int     @map("fk_estado")
+  cep           String  @map("cep_endereco")
+  numero        String  @map("numero_endereco")
+  polos         Polo[]
+  filiais       Filial[]
 
-  bairro    Bairro    @relation(fields: [fk_bairro], references: [id])
-  cidade    Cidade    @relation(fields: [fk_cidade], references: [id])
-  estado    Estado    @relation(fields: [fk_estado], references: [id])
+  logradouro  Logradouro  @relation(fields: [fk_logradouro], references: [id])
+  bairro      Bairro      @relation(fields: [fk_bairro], references: [id])
+  cidade      Cidade      @relation(fields: [fk_cidade], references: [id])
+  estado      Estado      @relation(fields: [fk_estado], references: [id])
 
   @@map("endereco")
 }
@@ -91,12 +101,12 @@ model Polo {
   @@map("polo")
 }
 
-model TipoEstabelecimento {
-  id                Int         @id @default(autoincrement()) @map("id_tipo_estabelecimento")
-  descricao         String      @unique @map("descricao_tipo_estabelecimento")
+model TipoJuridico {
+  id                Int         @id @default(autoincrement()) @map("id_tipo_juridico")
+  descricao         String      @unique @map("descricao_tipo_juridico")
   estabelecimentos  Estabelecimento[]
 
-  @@map("tipo_estabelecimento")
+  @@map("tipo_juridico")
 }
 
 model Juridica {
@@ -117,7 +127,6 @@ model Fisica {
   email     String      @map("email_fisica")
   senha     String      @map("senha_fisica")
   estabelecimentos  Estabelecimento[]
-  telefonesP  TelefoneFisica[]
   colaboradores Colaborador[]
 
   @@map("fisica")
@@ -129,13 +138,15 @@ model Estabelecimento {
   fk_juridica   Int?      @map("fk_juridica")
   fk_tipo       Int       @map("fk_tipo_estabelecimento")
   registro      DateTime  @map("registro_estabelecimento")
+  telefone      String?   @map("telefone_estabelecimento")
+  celular       String    @map("celular_estabelecimento")
   limite        Int       @default(3) @map("limite_estabelecimento")
   filiais       Filial[]
   assocProprietario ProprietarioEstabelecimento[]
 
-  fisica              Fisica?               @relation(fields: [fk_fisica], references: [id])
-  juridica            Juridica?             @relation(fields: [fk_juridica], references: [id])
-  tipoEstabelecimento TipoEstabelecimento   @relation(fields: [fk_tipo], references: [id])
+  fisica          Fisica?        @relation(fields: [fk_fisica], references: [id])
+  juridica        Juridica?      @relation(fields: [fk_juridica], references: [id])
+  tipoJuridico    TipoJuridico   @relation(fields: [fk_tipo], references: [id])
 
   @@map("estabelecimento")
 }
@@ -148,45 +159,14 @@ model Filial {
   complemento         String?   @map("complemento_end_filial")
   nome                String    @map("nome_filial")
   registro            DateTime  @map("registro_filial")
-  assocFuncionario  FuncionarioFilial[]
+  assocFuncionario    FuncionarioFilial[]
+  estoque             ProdutoFilial[]
 
   estabelecimento   Estabelecimento @relation(fields: [fk_estabelecimento], references: [id])
   polo              Polo            @relation(fields: [fk_polo], references: [id])
   endereco          Endereco?       @relation(fields: [fk_endereco], references: [id])
 
   @@map("filial")
-}
-
-model TipoTelefone {
-  id        Int     @id @default(autoincrement()) @map("id_tipo_telefone")
-  descricao String  @unique @map("descricao_tipo_telefone")
-  telefones Telefone[]
-
-  @@map("tipo_telefone")
-}
-
-model Telefone {
-  id      Int @id @default(autoincrement()) @map("id_telefone")
-  fk_tipo Int @map("fk_tipo_telefone")
-  numero  String  @unique @map("numero_telefone")
-  ramal   String  @map("ramal_telefone")
-  telefonesP  TelefoneFisica[]
-
-  tipoTelefone  TipoTelefone @relation(fields: [fk_tipo], references: [id])
-
-  @@map("telefone")
-}
-
-model TelefoneFisica {
-  fk_telefone   Int
-  fk_fisica     Int
-
-  telefone  Telefone  @relation(fields: [fk_telefone], references: [id])
-  fisica    Fisica    @relation(fields: [fk_fisica], references: [id])
-
-  @@id( [fk_telefone, fk_fisica] )
-
-  @@map("telefone_fisica")
 }
 
 model Funcao {
@@ -222,12 +202,59 @@ model ProprietarioEstabelecimento {
 }
 
 model FuncionarioFilial {
-  fk_colaborador      Int   @map("fk_colaborador")
-  fk_filial  Int   @map("fk_filial")
+  fk_colaborador    Int   @map("fk_colaborador")
+  fk_filial         Int   @map("fk_filial")
 
   colaborador   Colaborador   @relation(fields: [fk_colaborador], references: [id])
   filial        Filial        @relation(fields: [fk_filial], references: [id])
 
   @@id([fk_colaborador, fk_filial])
   @@map("funcionario_filial")
+}
+
+model Produto {
+  id        Int     @id @default(autoincrement()) @map("id_produto")
+  nome      String  @unique @map("nome_produto")
+  estoque   ProdutoFilial[]
+
+  @@map("produto")
+}
+
+model CategoriaProduto {
+  id          Int       @id @default(autoincrement()) @map("id_categoria_produto")
+  descricao   String    @unique @map("descricao_categoria_produto")
+  estoque     ProdutoFilial[]
+
+  @@map("categoria_produto")
+}
+
+model UnidadeMedida {
+  id        Int       @id @default(autoincrement()) @map("id_unidade_medida")
+  nome      String    @unique @map("nome_unidade_medida")
+  sigla     String    @unique @map("sigla_unidade_medida")
+  estoque   ProdutoFilial[]
+
+  @@map("unidade_medida")
+}
+
+model ProdutoFilial {
+  id                    Int         @id @default(autoincrement()) @map("id_produto_filial")
+  fk_filial             Int         @map("fk_filial")
+  fk_produto            Int         @map("fk_produto")
+  fk_categoria_produto  Int         @map("fk_categoria_produto")
+  fk_unidade_medida     Int         @map("fk_unidade_medida")
+  descricao             String      @map("descricao_produto_filial")
+  perecivel             Boolean     @map("perecivel_produto_filial")
+  preco                 Float       @map("preco_produto_filial")
+  quantidade_atual      Float       @map("quantidade_atual_produto_filial")
+  quantidade_minima     Float       @map("quantidade_minima_produto_filial")
+  quantidade_seguranca  Float       @map("quantidade_seguranca_produto_filial")
+  data_vencimento       DateTime    @map("data_vencimento_produto_filial")
+
+  filial              Filial                @relation(fields: [fk_filial], references: [id])
+  produto             Produto               @relation(fields: [fk_produto], references: [id])
+  categoriaProduto    CategoriaProduto      @relation(fields: [fk_categoria_produto], references: [id])
+  unidadeMedida       UnidadeMedida         @relation(fields: [fk_unidade_medida], references: [id])
+
+  @@map("produto_filial")
 }

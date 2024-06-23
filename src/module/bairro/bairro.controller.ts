@@ -2,33 +2,34 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BairroService } from './bairro.service';
 import { CreateBairroDto } from './dto/create-bairro.dto';
 import { UpdateBairroDto } from './dto/update-bairro.dto';
+import { Bairro } from './entities/bairro.entity';
 
 @Controller('bairro')
 export class BairroController {
   constructor(private readonly bairroService: BairroService) { }
 
   @Post()
-  create(@Body() createBairroDto: CreateBairroDto) {
-    return this.bairroService.create(createBairroDto);
+  async create(@Body() createBairroDto: CreateBairroDto): Promise<Bairro> {
+    return await this.bairroService.create(createBairroDto);
   }
 
   @Get()
-  getAll() {
-    return this.bairroService.getAll();
+  async getAll(): Promise<Bairro[]> {
+    return await this.bairroService.getAll();
   }
 
   @Get(':id')
-  getById(@Param('id') id: string) {
-    return this.bairroService.getById(+id);
+  async getById(@Param('id') id: string): Promise<Bairro> {
+    return await this.bairroService.getById(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBairroDto: UpdateBairroDto) {
-    return this.bairroService.update(+id, updateBairroDto);
+  async update(@Param('id') id: string, @Body() updateBairroDto: UpdateBairroDto): Promise<Bairro> {
+    return await this.bairroService.update(+id, updateBairroDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bairroService.remove(+id);
+  async remove(@Param('id') id: string): Promise<Bairro> {
+    return await this.bairroService.remove(+id);
   }
 }

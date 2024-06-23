@@ -8,32 +8,23 @@ datasource db {
 }
 
 model TipoInstituicao {
-  id          Int                          @id @default(autoincrement()) @map("id_tipo_instituicao")
-  descricao   String                       @unique @map("descricao_tipo_instituicao") @db.VarChar(128)
-  associacoes InstituicaoTipoInstituicao[]
+  id           Int           @id @default(autoincrement()) @map("id_tipo_instituicao")
+  descricao    String        @unique @map("descricao_tipo_instituicao") @db.VarChar(128)
+  instituicoes Instituicao[]
 
   @@map("tipo_instituicao")
 }
 
 model Instituicao {
-  id          Int                          @id @default(autoincrement()) @map("id_instituicao")
-  nome        String                       @unique @map("nome_instituicao") @db.VarChar(255)
-  sigla       String?                      @map("sigla_instituicao") @db.VarChar(10)
-  associacoes InstituicaoTipoInstituicao[]
-  polos       Polo[]
+  id      Int     @id @default(autoincrement()) @map("id_instituicao")
+  fk_tipo Int     @map("tipo_instituicao")
+  nome    String  @unique @map("nome_instituicao") @db.VarChar(255)
+  sigla   String? @map("sigla_instituicao") @db.VarChar(10)
+  polos   Polo[]
+
+  tipoInstituicao TipoInstituicao @relation(fields: [fk_tipo], references: [id])
 
   @@map("instituicao")
-}
-
-model InstituicaoTipoInstituicao {
-  fk_instituicao      Int
-  fk_tipo_instituicao Int
-
-  instituicao     Instituicao     @relation(fields: [fk_instituicao], references: [id])
-  tipoInstituicao TipoInstituicao @relation(fields: [fk_tipo_instituicao], references: [id])
-
-  @@id([fk_instituicao, fk_tipo_instituicao])
-  @@map("tipo_instituicao_associativa")
 }
 
 model Logradouro {

@@ -22,12 +22,10 @@ import { ProdutoModule } from './module/produto/produto.module';
 import { CategoriaProdutoModule } from './module/categoria-produto/categoria-produto.module';
 import { UnidadeMedidaModule } from './module/unidade-medida/unidade-medida.module';
 import { ProdutoFilialModule } from './module/produto-filial/produto-filial.module';
-import { InstituicaoTipoInstituicaoModule } from './module/instituicao-tipo-instituicao/instituicao-tipo-instituicao.module';
-
 
 @Module({
   imports: [
-    TipoInstituicaoModule, InstituicaoTipoInstituicaoModule, InstituicaoModule, PoloModule,
+    TipoInstituicaoModule, InstituicaoModule, PoloModule,
     LogradouroModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule,
     JuridicaModule, FisicaModule, TipoJuridicoModule, EstabelecimentoModule, FilialModule,
     FuncaoModule, ColaboradorModule, ProprietarioEstabelecimentoModule, FuncionarioFilialModule,

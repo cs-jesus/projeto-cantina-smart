@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
 import { UpdateInstituicaoDto } from './dto/update-instituicao.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -28,9 +28,7 @@ export class InstituicaoService {
     });
   };
 
-
-
-  async findAll(): Promise<Instituicao[]> {
+  async getAll(): Promise<Instituicao[]> {
     return await this.prisma.instituicao.findMany({
       include: {
         tipoInstituicao: true,
@@ -38,7 +36,7 @@ export class InstituicaoService {
     });
   }
 
-  async findOne(id: number): Promise<Instituicao | null> {
+  async getById(id: number): Promise<Instituicao | null> {
     return await this.prisma.instituicao.findUnique({
       where: { id },
       include: {
@@ -46,6 +44,7 @@ export class InstituicaoService {
       },
     });
   }
+
 
   async update(id: number, data: UpdateInstituicaoDto): Promise<Instituicao> {
 

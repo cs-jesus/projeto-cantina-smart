@@ -1,12 +1,14 @@
 ###
-GET http://localhost:3000/tipo-instituicao
+GET http://localhost:3000/instituicao
 
 ###
-GET http://localhost:3000/tipo-instituicao/3
-
+GET http://localhost:3000/instituicao/2
 
 ###
-POST http://localhost:3000/tipo-instituicao
+GET http://localhost:3000/instituicao?filtro=USCS
+
+###
+POST http://localhost:3000/instituicao
 Content-Type: application/json
 
 {

@@ -8,11 +8,11 @@ export class LogradouroService {
     return 'This action adds a new logradouro';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all logradouro`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} logradouro`;
   }
 

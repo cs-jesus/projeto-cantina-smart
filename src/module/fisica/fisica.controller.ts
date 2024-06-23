@@ -5,7 +5,7 @@ import { UpdateFisicaDto } from './dto/update-fisica.dto';
 
 @Controller('fisica')
 export class FisicaController {
-  constructor(private readonly fisicaService: FisicaService) {}
+  constructor(private readonly fisicaService: FisicaService) { }
 
   @Post()
   create(@Body() createFisicaDto: CreateFisicaDto) {
@@ -13,13 +13,13 @@ export class FisicaController {
   }
 
   @Get()
-  findAll() {
-    return this.fisicaService.findAll();
+  getAll() {
+    return this.fisicaService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.fisicaService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.fisicaService.getById(+id);
   }
 
   @Patch(':id')

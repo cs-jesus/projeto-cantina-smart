@@ -5,7 +5,7 @@ import { UpdateJuridicaDto } from './dto/update-juridica.dto';
 
 @Controller('juridica')
 export class JuridicaController {
-  constructor(private readonly juridicaService: JuridicaService) {}
+  constructor(private readonly juridicaService: JuridicaService) { }
 
   @Post()
   create(@Body() createJuridicaDto: CreateJuridicaDto) {
@@ -13,13 +13,13 @@ export class JuridicaController {
   }
 
   @Get()
-  findAll() {
-    return this.juridicaService.findAll();
+  getAll() {
+    return this.juridicaService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.juridicaService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.juridicaService.getById(+id);
   }
 
   @Patch(':id')

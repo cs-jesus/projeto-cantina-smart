@@ -8,11 +8,11 @@ export class ProprietarioEstabelecimentoService {
     return 'This action adds a new proprietarioEstabelecimento';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all proprietarioEstabelecimento`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} proprietarioEstabelecimento`;
   }
 

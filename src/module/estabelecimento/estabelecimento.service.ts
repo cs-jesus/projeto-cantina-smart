@@ -8,11 +8,11 @@ export class EstabelecimentoService {
     return 'This action adds a new estabelecimento';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all estabelecimento`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} estabelecimento`;
   }
 

@@ -8,11 +8,11 @@ export class PoloService {
     return 'This action adds a new polo';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all polo`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} polo`;
   }
 

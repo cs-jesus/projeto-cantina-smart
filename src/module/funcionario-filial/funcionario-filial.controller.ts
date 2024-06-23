@@ -5,7 +5,7 @@ import { UpdateFuncionarioFilialDto } from './dto/update-funcionario-filial.dto'
 
 @Controller('funcionario-filial')
 export class FuncionarioFilialController {
-  constructor(private readonly funcionarioFilialService: FuncionarioFilialService) {}
+  constructor(private readonly funcionarioFilialService: FuncionarioFilialService) { }
 
   @Post()
   create(@Body() createFuncionarioFilialDto: CreateFuncionarioFilialDto) {
@@ -13,13 +13,13 @@ export class FuncionarioFilialController {
   }
 
   @Get()
-  findAll() {
-    return this.funcionarioFilialService.findAll();
+  getAll() {
+    return this.funcionarioFilialService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.funcionarioFilialService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.funcionarioFilialService.getById(+id);
   }
 
   @Patch(':id')

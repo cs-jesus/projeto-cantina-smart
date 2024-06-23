@@ -5,7 +5,7 @@ import { UpdateCategoriaProdutoDto } from './dto/update-categoria-produto.dto';
 
 @Controller('categoria-produto')
 export class CategoriaProdutoController {
-  constructor(private readonly categoriaProdutoService: CategoriaProdutoService) {}
+  constructor(private readonly categoriaProdutoService: CategoriaProdutoService) { }
 
   @Post()
   create(@Body() createCategoriaProdutoDto: CreateCategoriaProdutoDto) {
@@ -13,13 +13,13 @@ export class CategoriaProdutoController {
   }
 
   @Get()
-  findAll() {
-    return this.categoriaProdutoService.findAll();
+  getAll() {
+    return this.categoriaProdutoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoriaProdutoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.categoriaProdutoService.getById(+id);
   }
 
   @Patch(':id')

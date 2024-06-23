@@ -8,11 +8,11 @@ export class UnidadeMedidaService {
     return 'This action adds a new unidadeMedida';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all unidadeMedida`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} unidadeMedida`;
   }
 

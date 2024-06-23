@@ -5,7 +5,7 @@ import { UpdateFilialDto } from './dto/update-filial.dto';
 
 @Controller('filial')
 export class FilialController {
-  constructor(private readonly filialService: FilialService) {}
+  constructor(private readonly filialService: FilialService) { }
 
   @Post()
   create(@Body() createFilialDto: CreateFilialDto) {
@@ -13,13 +13,13 @@ export class FilialController {
   }
 
   @Get()
-  findAll() {
-    return this.filialService.findAll();
+  getAll() {
+    return this.filialService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.filialService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.filialService.getById(+id);
   }
 
   @Patch(':id')

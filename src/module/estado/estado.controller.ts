@@ -5,7 +5,7 @@ import { UpdateEstadoDto } from './dto/update-estado.dto';
 
 @Controller('estado')
 export class EstadoController {
-  constructor(private readonly estadoService: EstadoService) {}
+  constructor(private readonly estadoService: EstadoService) { }
 
   @Post()
   create(@Body() createEstadoDto: CreateEstadoDto) {
@@ -13,13 +13,13 @@ export class EstadoController {
   }
 
   @Get()
-  findAll() {
-    return this.estadoService.findAll();
+  getAll() {
+    return this.estadoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.estadoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.estadoService.getById(+id);
   }
 
   @Patch(':id')

@@ -5,7 +5,7 @@ import { UpdateLogradouroDto } from './dto/update-logradouro.dto';
 
 @Controller('logradouro')
 export class LogradouroController {
-  constructor(private readonly logradouroService: LogradouroService) {}
+  constructor(private readonly logradouroService: LogradouroService) { }
 
   @Post()
   create(@Body() createLogradouroDto: CreateLogradouroDto) {
@@ -13,13 +13,13 @@ export class LogradouroController {
   }
 
   @Get()
-  findAll() {
-    return this.logradouroService.findAll();
+  getAll() {
+    return this.logradouroService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.logradouroService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.logradouroService.getById(+id);
   }
 
   @Patch(':id')

@@ -5,7 +5,7 @@ import { UpdateProdutoFilialDto } from './dto/update-produto-filial.dto';
 
 @Controller('produto-filial')
 export class ProdutoFilialController {
-  constructor(private readonly produtoFilialService: ProdutoFilialService) {}
+  constructor(private readonly produtoFilialService: ProdutoFilialService) { }
 
   @Post()
   create(@Body() createProdutoFilialDto: CreateProdutoFilialDto) {
@@ -13,13 +13,13 @@ export class ProdutoFilialController {
   }
 
   @Get()
-  findAll() {
-    return this.produtoFilialService.findAll();
+  getAll() {
+    return this.produtoFilialService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.produtoFilialService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.produtoFilialService.getById(+id);
   }
 
   @Patch(':id')

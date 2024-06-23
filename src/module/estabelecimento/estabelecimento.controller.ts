@@ -5,7 +5,7 @@ import { UpdateEstabelecimentoDto } from './dto/update-estabelecimento.dto';
 
 @Controller('estabelecimento')
 export class EstabelecimentoController {
-  constructor(private readonly estabelecimentoService: EstabelecimentoService) {}
+  constructor(private readonly estabelecimentoService: EstabelecimentoService) { }
 
   @Post()
   create(@Body() createEstabelecimentoDto: CreateEstabelecimentoDto) {
@@ -13,13 +13,13 @@ export class EstabelecimentoController {
   }
 
   @Get()
-  findAll() {
-    return this.estabelecimentoService.findAll();
+  getAll() {
+    return this.estabelecimentoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.estabelecimentoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.estabelecimentoService.getById(+id);
   }
 
   @Patch(':id')

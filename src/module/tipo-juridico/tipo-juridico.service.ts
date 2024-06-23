@@ -8,11 +8,11 @@ export class TipoJuridicoService {
     return 'This action adds a new tipoJuridico';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all tipoJuridico`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} tipoJuridico`;
   }
 

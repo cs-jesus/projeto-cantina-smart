@@ -5,7 +5,7 @@ import { UpdateUnidadeMedidaDto } from './dto/update-unidade-medida.dto';
 
 @Controller('unidade-medida')
 export class UnidadeMedidaController {
-  constructor(private readonly unidadeMedidaService: UnidadeMedidaService) {}
+  constructor(private readonly unidadeMedidaService: UnidadeMedidaService) { }
 
   @Post()
   create(@Body() createUnidadeMedidaDto: CreateUnidadeMedidaDto) {
@@ -13,13 +13,13 @@ export class UnidadeMedidaController {
   }
 
   @Get()
-  findAll() {
-    return this.unidadeMedidaService.findAll();
+  getAll() {
+    return this.unidadeMedidaService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.unidadeMedidaService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.unidadeMedidaService.getById(+id);
   }
 
   @Patch(':id')

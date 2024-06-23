@@ -8,11 +8,11 @@ export class JuridicaService {
     return 'This action adds a new juridica';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all juridica`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} juridica`;
   }
 

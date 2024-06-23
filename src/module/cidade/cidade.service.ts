@@ -8,11 +8,11 @@ export class CidadeService {
     return 'This action adds a new cidade';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all cidade`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} cidade`;
   }
 

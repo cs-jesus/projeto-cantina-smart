@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { InstituicaoService } from './instituicao.service';
 import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
 import { UpdateInstituicaoDto } from './dto/update-instituicao.dto';
@@ -6,7 +6,7 @@ import { Instituicao } from './entities/instituicao.entity';
 
 @Controller('instituicao')
 export class InstituicaoController {
-  constructor(private readonly instituicaoService: InstituicaoService) {}
+  constructor(private readonly instituicaoService: InstituicaoService) { }
 
   @Post()
   async create(@Body() data: CreateInstituicaoDto): Promise<Instituicao> {
@@ -14,13 +14,13 @@ export class InstituicaoController {
   }
 
   @Get()
-  async findAll(): Promise<Instituicao[]> {
-    return await this.instituicaoService.findAll();
+  async getAll(): Promise<Instituicao[]> {
+    return await this.instituicaoService.getAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Instituicao> {
-    return await this.instituicaoService.findOne(+id);
+  async getById(@Param('id') id: string): Promise<Instituicao> {
+    return await this.instituicaoService.getById(+id);
   }
 
   @Patch(':id')

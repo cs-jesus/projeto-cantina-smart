@@ -7,14 +7,14 @@ import { TipoInstituicao } from './entities/tipo-instituicao.entity';
 @Injectable()
 export class TipoInstituicaoService {
 
-  constructor(private readonly prisma:PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(data: CreateTipoInstituicaoDto): Promise<TipoInstituicao> {
-    return await this. prisma.tipoInstituicao.create({ data });
+    return await this.prisma.tipoInstituicao.create({ data });
   }
 
   async findAll(): Promise<TipoInstituicao[]> {
-    return await this.prisma.tipoInstituicao.findMany() ;
+    return await this.prisma.tipoInstituicao.findMany();
   }
 
   async findOne(id: number): Promise<TipoInstituicao> {

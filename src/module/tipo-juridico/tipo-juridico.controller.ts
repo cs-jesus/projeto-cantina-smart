@@ -5,7 +5,7 @@ import { UpdateTipoJuridicoDto } from './dto/update-tipo-juridico.dto';
 
 @Controller('tipo-juridico')
 export class TipoJuridicoController {
-  constructor(private readonly tipoJuridicoService: TipoJuridicoService) {}
+  constructor(private readonly tipoJuridicoService: TipoJuridicoService) { }
 
   @Post()
   create(@Body() createTipoJuridicoDto: CreateTipoJuridicoDto) {
@@ -13,13 +13,13 @@ export class TipoJuridicoController {
   }
 
   @Get()
-  findAll() {
-    return this.tipoJuridicoService.findAll();
+  getAll() {
+    return this.tipoJuridicoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tipoJuridicoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.tipoJuridicoService.getById(+id);
   }
 
   @Patch(':id')

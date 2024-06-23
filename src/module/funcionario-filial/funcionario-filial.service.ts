@@ -8,11 +8,11 @@ export class FuncionarioFilialService {
     return 'This action adds a new funcionarioFilial';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all funcionarioFilial`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} funcionarioFilial`;
   }
 

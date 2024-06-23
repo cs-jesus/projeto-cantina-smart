@@ -5,7 +5,7 @@ import { UpdateProprietarioEstabelecimentoDto } from './dto/update-proprietario-
 
 @Controller('proprietario-estabelecimento')
 export class ProprietarioEstabelecimentoController {
-  constructor(private readonly proprietarioEstabelecimentoService: ProprietarioEstabelecimentoService) {}
+  constructor(private readonly proprietarioEstabelecimentoService: ProprietarioEstabelecimentoService) { }
 
   @Post()
   create(@Body() createProprietarioEstabelecimentoDto: CreateProprietarioEstabelecimentoDto) {
@@ -13,13 +13,13 @@ export class ProprietarioEstabelecimentoController {
   }
 
   @Get()
-  findAll() {
-    return this.proprietarioEstabelecimentoService.findAll();
+  getAll() {
+    return this.proprietarioEstabelecimentoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.proprietarioEstabelecimentoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.proprietarioEstabelecimentoService.getById(+id);
   }
 
   @Patch(':id')

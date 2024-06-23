@@ -5,7 +5,7 @@ import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
 
 @Controller('colaborador')
 export class ColaboradorController {
-  constructor(private readonly colaboradorService: ColaboradorService) {}
+  constructor(private readonly colaboradorService: ColaboradorService) { }
 
   @Post()
   create(@Body() createColaboradorDto: CreateColaboradorDto) {
@@ -13,13 +13,13 @@ export class ColaboradorController {
   }
 
   @Get()
-  findAll() {
-    return this.colaboradorService.findAll();
+  getAll() {
+    return this.colaboradorService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.colaboradorService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.colaboradorService.getById(+id);
   }
 
   @Patch(':id')

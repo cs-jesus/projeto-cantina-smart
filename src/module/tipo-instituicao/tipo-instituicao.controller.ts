@@ -6,7 +6,7 @@ import { TipoInstituicao } from './entities/tipo-instituicao.entity';
 
 @Controller('tipo-instituicao')
 export class TipoInstituicaoController {
-  constructor(private readonly tipoInstituicaoService: TipoInstituicaoService) {}
+  constructor(private readonly tipoInstituicaoService: TipoInstituicaoService) { }
 
   @Post()
   async create(@Body() data: CreateTipoInstituicaoDto): Promise<TipoInstituicao> {
@@ -14,13 +14,13 @@ export class TipoInstituicaoController {
   }
 
   @Get()
-  async findAll(): Promise<TipoInstituicao[]> {
-    return await this.tipoInstituicaoService.findAll();
+  async getAll(): Promise<TipoInstituicao[]> {
+    return await this.tipoInstituicaoService.getAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<TipoInstituicao> {
-    return await this.tipoInstituicaoService.findOne(+id);
+  async getById(@Param('id') id: string): Promise<TipoInstituicao> {
+    return await this.tipoInstituicaoService.getById(+id);
   }
 
   @Patch(':id')

@@ -5,7 +5,7 @@ import { UpdatePoloDto } from './dto/update-polo.dto';
 
 @Controller('polo')
 export class PoloController {
-  constructor(private readonly poloService: PoloService) {}
+  constructor(private readonly poloService: PoloService) { }
 
   @Post()
   create(@Body() createPoloDto: CreatePoloDto) {
@@ -13,13 +13,13 @@ export class PoloController {
   }
 
   @Get()
-  findAll() {
-    return this.poloService.findAll();
+  getAll() {
+    return this.poloService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.poloService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.poloService.getById(+id);
   }
 
   @Patch(':id')

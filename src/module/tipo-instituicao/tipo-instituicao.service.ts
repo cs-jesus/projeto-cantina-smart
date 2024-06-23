@@ -13,11 +13,11 @@ export class TipoInstituicaoService {
     return await this.prisma.tipoInstituicao.create({ data });
   }
 
-  async findAll(): Promise<TipoInstituicao[]> {
+  async getAll(): Promise<TipoInstituicao[]> {
     return await this.prisma.tipoInstituicao.findMany();
   }
 
-  async findOne(id: number): Promise<TipoInstituicao> {
+  async getById(id: number): Promise<TipoInstituicao> {
     return await this.prisma.tipoInstituicao.findUnique({
       where: { id },
     });

@@ -8,11 +8,11 @@ export class FilialService {
     return 'This action adds a new filial';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all filial`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} filial`;
   }
 

@@ -5,7 +5,7 @@ import { UpdateEndrecoDto } from './dto/update-endreco.dto';
 
 @Controller('endreco')
 export class EndrecoController {
-  constructor(private readonly endrecoService: EndrecoService) {}
+  constructor(private readonly endrecoService: EndrecoService) { }
 
   @Post()
   create(@Body() createEndrecoDto: CreateEndrecoDto) {
@@ -13,13 +13,13 @@ export class EndrecoController {
   }
 
   @Get()
-  findAll() {
-    return this.endrecoService.findAll();
+  getAll() {
+    return this.endrecoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.endrecoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.endrecoService.getById(+id);
   }
 
   @Patch(':id')

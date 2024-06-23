@@ -5,7 +5,7 @@ import { UpdateFuncaoDto } from './dto/update-funcao.dto';
 
 @Controller('funcao')
 export class FuncaoController {
-  constructor(private readonly funcaoService: FuncaoService) {}
+  constructor(private readonly funcaoService: FuncaoService) { }
 
   @Post()
   create(@Body() createFuncaoDto: CreateFuncaoDto) {
@@ -13,13 +13,13 @@ export class FuncaoController {
   }
 
   @Get()
-  findAll() {
-    return this.funcaoService.findAll();
+  getAll() {
+    return this.funcaoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.funcaoService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.funcaoService.getById(+id);
   }
 
   @Patch(':id')

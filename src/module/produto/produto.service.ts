@@ -8,11 +8,11 @@ export class ProdutoService {
     return 'This action adds a new produto';
   }
 
-  findAll() {
+  getAll() {
     return `This action returns all produto`;
   }
 
-  findOne(id: number) {
+  getById(id: number) {
     return `This action returns a #${id} produto`;
   }
 

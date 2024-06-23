@@ -5,7 +5,7 @@ import { UpdateCidadeDto } from './dto/update-cidade.dto';
 
 @Controller('cidade')
 export class CidadeController {
-  constructor(private readonly cidadeService: CidadeService) {}
+  constructor(private readonly cidadeService: CidadeService) { }
 
   @Post()
   create(@Body() createCidadeDto: CreateCidadeDto) {
@@ -13,13 +13,13 @@ export class CidadeController {
   }
 
   @Get()
-  findAll() {
-    return this.cidadeService.findAll();
+  getAll() {
+    return this.cidadeService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cidadeService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.cidadeService.getById(+id);
   }
 
   @Patch(':id')

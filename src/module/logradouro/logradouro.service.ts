@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLogradouroDto } from './dto/create-logradouro.dto';
 import { UpdateLogradouroDto } from './dto/update-logradouro.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Logradouro } from './entities/logradouro.entity';
 
 @Injectable()
 export class LogradouroService {
-  create(createLogradouroDto: CreateLogradouroDto) {
-    return 'This action adds a new logradouro';
+
+  constructor(private readonly prisma: PrismaService) { }
+
+  async create(data: CreateLogradouroDto): Promise<Logradouro> {
+    return await this.prisma.logradouro.create({ data });
   }
 
-  getAll() {
-    return `This action returns all logradouro`;
+  async getAll(): Promise<Logradouro[]> {
+    return await this.prisma.logradouro.findMany();
   }
 
-  getById(id: number) {
-    return `This action returns a #${id} logradouro`;
+  async getById(id: number): Promise<Logradouro> {
+    return await this.prisma.logradouro.findUnique({
+      where: { id },
+    });
   }
 
-  update(id: number, updateLogradouroDto: UpdateLogradouroDto) {
-    return `This action updates a #${id} logradouro`;
+  async update(id: number, data: UpdateLogradouroDto): Promise<Logradouro> {
+    return await this.prisma.logradouro.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} logradouro`;
+  async remove(id: number): Promise<Logradouro> {
+    return await this.prisma.logradouro.delete({
+      where: { id },
+    });
   }
 }

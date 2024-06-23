@@ -2,33 +2,34 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { LogradouroService } from './logradouro.service';
 import { CreateLogradouroDto } from './dto/create-logradouro.dto';
 import { UpdateLogradouroDto } from './dto/update-logradouro.dto';
+import { Logradouro } from './entities/logradouro.entity';
 
 @Controller('logradouro')
 export class LogradouroController {
   constructor(private readonly logradouroService: LogradouroService) { }
 
   @Post()
-  create(@Body() createLogradouroDto: CreateLogradouroDto) {
-    return this.logradouroService.create(createLogradouroDto);
+  async create(@Body() createLogradouroDto: CreateLogradouroDto): Promise<Logradouro> {
+    return await this.logradouroService.create(createLogradouroDto);
   }
 
   @Get()
-  getAll() {
-    return this.logradouroService.getAll();
+  async getAll(): Promise<Logradouro[]> {
+    return await this.logradouroService.getAll();
   }
 
   @Get(':id')
-  getById(@Param('id') id: string) {
-    return this.logradouroService.getById(+id);
+  async getById(@Param('id') id: string): Promise<Logradouro> {
+    return await this.logradouroService.getById(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLogradouroDto: UpdateLogradouroDto) {
-    return this.logradouroService.update(+id, updateLogradouroDto);
+  async update(@Param('id') id: string, @Body() updateLogradouroDto: UpdateLogradouroDto): Promise<Logradouro> {
+    return await this.logradouroService.update(+id, updateLogradouroDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.logradouroService.remove(+id);
+  async remove(@Param('id') id: string): Promise<Logradouro> {
+    return await this.logradouroService.remove(+id);
   }
 }

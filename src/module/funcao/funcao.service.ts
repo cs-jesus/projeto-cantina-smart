@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFuncaoDto } from './dto/create-funcao.dto';
 import { UpdateFuncaoDto } from './dto/update-funcao.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Funcao } from './entities/funcao.entity';
 
 @Injectable()
 export class FuncaoService {
-  create(createFuncaoDto: CreateFuncaoDto) {
-    return 'This action adds a new funcao';
+
+  constructor(private readonly prisma: PrismaService) { }
+
+  async create(data: CreateFuncaoDto): Promise<Funcao> {
+    return await this.prisma.funcao.create({ data });
   }
 
-  getAll() {
-    return `This action returns all funcao`;
+  async getAll(): Promise<Funcao[]> {
+    return await this.prisma.funcao.findMany();
   }
 
-  getById(id: number) {
-    return `This action returns a #${id} funcao`;
+  async getById(id: number): Promise<Funcao> {
+    return await this.prisma.funcao.findUnique({
+      where: { id },
+    });
   }
 
-  update(id: number, updateFuncaoDto: UpdateFuncaoDto) {
-    return `This action updates a #${id} funcao`;
+  async update(id: number, data: UpdateFuncaoDto): Promise<Funcao> {
+    return await this.prisma.funcao.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} funcao`;
+  async remove(id: number): Promise<Funcao> {
+    return await this.prisma.funcao.delete({
+      where: { id }
+    });
   }
 }

@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TipoInstituicaoModule } from './module/tipo-instituicao/tipo-instituicao.module';
 import { InstituicaoModule } from './module/instituicao/instituicao.module';
 import { TipoInstituicaoAssociativaModule } from './module/tipo-instituicao-associativa/tipo-instituicao-associativa.module';
-import { TipoEstabelecimentoModule } from './module/tipo-estabelecimento/tipo-estabelecimento.module';
 import { BairroModule } from './module/bairro/bairro.module';
 import { CidadeModule } from './module/cidade/cidade.module';
 import { EstadoModule } from './module/estado/estado.module';
@@ -26,7 +25,7 @@ import { UnidadeMedidaModule } from './module/unidade-medida/unidade-medida.modu
 import { ProdutoFilialModule } from './module/produto-filial/produto-filial.module';
 
 @Module({
-  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, TipoEstabelecimentoModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule, PoloModule, JuridicaModule, FisicaModule, EstabelecimentoModule, TipoJuridicoModule, LogradouroModule, FilialModule, FuncaoModule, ColaboradorModule, ProprietarioEstabelecimentoModule, FuncionarioFilialModule, ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule],
+  imports: [TipoInstituicaoModule, InstituicaoModule, TipoInstituicaoAssociativaModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule, PoloModule, JuridicaModule, FisicaModule, EstabelecimentoModule, TipoJuridicoModule, LogradouroModule, FilialModule, FuncaoModule, ColaboradorModule, ProprietarioEstabelecimentoModule, FuncionarioFilialModule, ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule],
   controllers: [AppController],
   providers: [AppService],
 })

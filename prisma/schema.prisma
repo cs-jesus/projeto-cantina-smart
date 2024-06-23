@@ -10,7 +10,7 @@ datasource db {
 model TipoInstituicao {
   id          Int                          @id @default(autoincrement()) @map("id_tipo_instituicao")
   descricao   String                       @unique @map("descricao_tipo_instituicao") @db.VarChar(128)
-  associacoes TipoInstituicaoAssociativa[]
+  associacoes InstituicaoTipoInstituicao[]
 
   @@map("tipo_instituicao")
 }
@@ -19,20 +19,20 @@ model Instituicao {
   id          Int                          @id @default(autoincrement()) @map("id_instituicao")
   nome        String                       @unique @map("nome_instituicao") @db.VarChar(255)
   sigla       String?                      @map("sigla_instituicao") @db.VarChar(10)
-  associacoes TipoInstituicaoAssociativa[]
+  associacoes InstituicaoTipoInstituicao[]
   polos       Polo[]
 
   @@map("instituicao")
 }
 
-model TipoInstituicaoAssociativa {
-  fk_tipo_instituicao Int
+model InstituicaoTipoInstituicao {
   fk_instituicao      Int
+  fk_tipo_instituicao Int
 
-  tipoInstituicao TipoInstituicao @relation(fields: [fk_tipo_instituicao], references: [id])
   instituicao     Instituicao     @relation(fields: [fk_instituicao], references: [id])
+  tipoInstituicao TipoInstituicao @relation(fields: [fk_tipo_instituicao], references: [id])
 
-  @@id([fk_tipo_instituicao, fk_instituicao])
+  @@id([fk_instituicao, fk_tipo_instituicao])
   @@map("tipo_instituicao_associativa")
 }
 

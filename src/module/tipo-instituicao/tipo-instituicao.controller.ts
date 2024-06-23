@@ -9,8 +9,8 @@ export class TipoInstituicaoController {
   constructor(private readonly tipoInstituicaoService: TipoInstituicaoService) {}
 
   @Post()
-  async create(@Body() createTipoInstituicaoDto: CreateTipoInstituicaoDto): Promise<TipoInstituicao> {
-    return await this.tipoInstituicaoService.create(createTipoInstituicaoDto);
+  async create(@Body() data: CreateTipoInstituicaoDto): Promise<TipoInstituicao> {
+    return await this.tipoInstituicaoService.create(data);
   }
 
   @Get()
@@ -24,8 +24,8 @@ export class TipoInstituicaoController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateTipoInstituicaoDto: UpdateTipoInstituicaoDto): Promise<TipoInstituicao> {
-    return await this.tipoInstituicaoService.update(+id, updateTipoInstituicaoDto);
+  async update(@Param('id') id: string, @Body() data: UpdateTipoInstituicaoDto): Promise<TipoInstituicao> {
+    return await this.tipoInstituicaoService.update(+id, data);
   }
 
   @Delete(':id')

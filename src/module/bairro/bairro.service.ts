@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBairroDto } from './dto/create-bairro.dto';
 import { UpdateBairroDto } from './dto/update-bairro.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Bairro } from './entities/bairro.entity';
 
 @Injectable()
 export class BairroService {
-  create(createBairroDto: CreateBairroDto) {
-    return 'This action adds a new bairro';
+
+  constructor(private readonly prisma: PrismaService) { }
+
+  async create(data: CreateBairroDto): Promise<Bairro> {
+    return await this.prisma.bairro.create({ data });
   }
 
-  findAll() {
-    return `This action returns all bairro`;
+  async getAll(): Promise<Bairro[]> {
+    return await this.prisma.bairro.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} bairro`;
+  async getById(id: number): Promise<Bairro> {
+    return await this.prisma.bairro.findUnique({
+      where: { id },
+    });
   }
 
-  update(id: number, updateBairroDto: UpdateBairroDto) {
-    return `This action updates a #${id} bairro`;
+  async update(id: number, data: UpdateBairroDto): Promise<Bairro> {
+    return await this.prisma.bairro.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} bairro`;
+  async remove(id: number): Promise<Bairro> {
+    return await this.prisma.bairro.delete({
+      where: { id },
+    });
   }
 }

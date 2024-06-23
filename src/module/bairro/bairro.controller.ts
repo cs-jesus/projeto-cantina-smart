@@ -5,7 +5,7 @@ import { UpdateBairroDto } from './dto/update-bairro.dto';
 
 @Controller('bairro')
 export class BairroController {
-  constructor(private readonly bairroService: BairroService) {}
+  constructor(private readonly bairroService: BairroService) { }
 
   @Post()
   create(@Body() createBairroDto: CreateBairroDto) {
@@ -13,13 +13,13 @@ export class BairroController {
   }
 
   @Get()
-  findAll() {
-    return this.bairroService.findAll();
+  getAll() {
+    return this.bairroService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bairroService.findOne(+id);
+  getById(@Param('id') id: string) {
+    return this.bairroService.getById(+id);
   }
 
   @Patch(':id')

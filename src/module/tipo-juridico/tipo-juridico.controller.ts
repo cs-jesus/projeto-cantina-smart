@@ -2,33 +2,38 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { TipoJuridicoService } from './tipo-juridico.service';
 import { CreateTipoJuridicoDto } from './dto/create-tipo-juridico.dto';
 import { UpdateTipoJuridicoDto } from './dto/update-tipo-juridico.dto';
+import { TipoJuridico } from './entities/tipo-juridico.entity';
 
 @Controller('tipo-juridico')
 export class TipoJuridicoController {
   constructor(private readonly tipoJuridicoService: TipoJuridicoService) { }
 
   @Post()
-  create(@Body() createTipoJuridicoDto: CreateTipoJuridicoDto) {
-    return this.tipoJuridicoService.create(createTipoJuridicoDto);
+  async create(@Body() CreateTipoJuridicoDto: CreateTipoJuridicoDto): Promise<TipoJuridico>{
+  return await this.tipoJuridicoService.create(CreateTipoJuridicoDto);
   }
+  
 
   @Get()
-  getAll() {
-    return this.tipoJuridicoService.getAll();
+  async getAll(): Promise<TipoJuridico[]> {
+    return await this.tipoJuridicoService.getdAll();
   }
 
   @Get(':id')
-  getById(@Param('id') id: string) {
-    return this.tipoJuridicoService.getById(+id);
+  async getById(@Param('id') id: string): Promise<TipoJuridico> {
+    return await this.tipoJuridicoService.findOne(+id);
   }
+  
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTipoJuridicoDto: UpdateTipoJuridicoDto) {
-    return this.tipoJuridicoService.update(+id, updateTipoJuridicoDto);
+  async update(@Param('id') id: string, @Body() data: UpdateTipoJuridicoDto): Promise<TipoJuridico> {
+    return await this.tipoJuridicoService.update(+id, data);
   }
+  
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tipoJuridicoService.remove(+id);
+  async remove(@Param ('id') id: string): Promise<TipoJuridico>{
+    return await this.tipoJuridicoService.remove(+id);
   }
+  
 }

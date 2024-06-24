@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFisicaDto } from './dto/create-fisica.dto';
-import { UpdateFisicaDto } from './dto/update-fisica.dto';
+import { UpdateFisicaDto } from './dto/update-fisica.dto'
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Fisica } from './entities/fisica.entity'
 
 @Injectable()
-export class FisicaService {
-  create(createFisicaDto: CreateFisicaDto) {
-    return 'This action adds a new fisica';
+export class TipoFisicaService {
+  findUnique: any;
+  constructor(private readonly prisma:PrismaService){}
+
+async create (data: CreateFisicaDto): Promise<Fisica>{
+  return await this.prisma.fisica.create({data});
+}
+
+async getAll(): Promise<Fisica[]> {
+  return await this.prisma.fisica.findMany();
+}
+
+async findOne (id: number): Promise<Fisica> {
+ return await this.prisma.fisica.findUnique({
+  where: { id },
+ });
   }
 
-  getAll() {
-    return `This action returns all fisica`;
-  }
+async update(id: number, data: UpdateFisicaDto): Promise<Fisica>{
+  return await this.prisma.fisica.update({
+    where:{ id },
+    data,
+  });
+}
 
-  getById(id: number) {
-    return `This action returns a #${id} fisica`;
-  }
+async remove(id: number): Promise<Fisica> {
+  return await this.prisma.fisica.delete({
+    where: { id }
+  });
+}
 
-  update(id: number, updateFisicaDto: UpdateFisicaDto) {
-    return `This action updates a #${id} fisica`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} fisica`;
-  }
 }

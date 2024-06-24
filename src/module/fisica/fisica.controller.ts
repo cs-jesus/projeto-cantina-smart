@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { FisicaService } from './fisica.service';
+import { TipoFisicaService } from './fisica.service';
 import { CreateFisicaDto } from './dto/create-fisica.dto';
 import { UpdateFisicaDto } from './dto/update-fisica.dto';
 
 @Controller('fisica')
 export class FisicaController {
-  constructor(private readonly fisicaService: FisicaService) { }
+  constructor(private readonly fisicaService: TipoFisicaService) { }
 
   @Post()
   create(@Body() createFisicaDto: CreateFisicaDto) {
@@ -19,7 +19,7 @@ export class FisicaController {
 
   @Get(':id')
   getById(@Param('id') id: string) {
-    return this.fisicaService.getById(+id);
+    return this.fisicaService.findUnique(+id);
   }
 
   @Patch(':id')

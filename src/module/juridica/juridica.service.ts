@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { CreateJuridicaDto } from './dto/create-juridica.dto';
-import { UpdateJuridicaDto } from './dto/update-juridica.dto';
+import { CreateTipoJuridicoDto } from './dto/create-juridica.dto';
+import { UpdateJuridicaDto } from './dto/update-juridica.dto'
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Juridica } from './entities/juridica.entity'
+import { JuridicaController } from './juridica.controller';
 
 @Injectable()
 export class JuridicaService {
-  create(createJuridicaDto: CreateJuridicaDto) {
-    return 'This action adds a new juridica';
-  }
+  constructor(private readonly prisma:PrismaService){}
 
-  getAll() {
-    return `This action returns all juridica`;
-  }
+ async create (data: CreateTipoJuridicoDto): Promise<Juridica>{
+  return await this.prisma.juridica.create({ data });
+ }
 
-  getById(id: number) {
-    return `This action returns a #${id} juridica`;
-  }
+ async getAll(): Promise<Juridica[]> {
+  return await this.prisma.juridica.findMany();
+ }
 
-  update(id: number, updateJuridicaDto: UpdateJuridicaDto) {
-    return `This action updates a #${id} juridica`;
-  }
+ async getById(id: number): Promise<Juridica> {
+  return await this.prisma.juridica.findUnique({
+    where: { id },
+  });
+ }
 
-  remove(id: number) {
-    return `This action removes a #${id} juridica`;
-  }
+ async update(id: number, data: UpdateJuridicaDto): Promise<Juridica>{
+  return await this.prisma.juridica.update({
+    where: { id },
+    data,
+  });
+ }
+
+ async remove(id: number): Promise<Juridica>{
+  return await this.prisma.juridica.delete({
+    where: { id }
+  });
+ }
+
 }

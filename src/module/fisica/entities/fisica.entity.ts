@@ -1,1 +1,13 @@
-export class Fisica {}
+import { Prisma } from "@prisma/client";
+
+export class Fisica implements Prisma.FisicaCreateInput {
+    cpf: string;
+    nome: string;
+    email: string;
+    senha: string;
+    estabelecimentos?: Prisma.EstabelecimentoCreateNestedManyWithoutFisicaInput;
+    colaboradores?: Prisma.ColaboradorCreateNestedManyWithoutFisicaInput;
+
+}
+
+

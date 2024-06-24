@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/bairro
+GET http://localhost:3000/tipo-instituicao
 
 ###
 GET http://localhost:3000/bairro/1
@@ -7,11 +7,11 @@ GET http://localhost:3000/bairro/1
 
 
 ###
-POST http://localhost:3000/bairro
+POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-   "nome": "abc123"
+   "descricao": "água"
 }
 
 ###

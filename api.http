@@ -1,25 +1,23 @@
 ###
-GET http://localhost:3000/bairro
+GET http://localhost:3000/tipo-instituicao
 
 ###
 GET http://localhost:3000/bairro/1
 
-
-
 ###
-POST http://localhost:3000/bairro
+POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-   "nome": "abc123"
+   "descricao": "ág ua"
 }
 
 ###
-PATCH http://localhost:3000/bairro/1
+PATCH http://localhost:3000/tipo-instituicao/1
 Content-Type: application/json
 
 {
-   "nome": "Xablau2"
+   "descricao": "Xablaufasegsgsgdgsadgag2"
 }
 ###
 DELETE http://localhost:3000/bairro/1

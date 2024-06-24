@@ -9,7 +9,7 @@ datasource db {
 
 model TipoInstituicao {
   id           Int           @id @default(autoincrement()) @map("id_tipo_instituicao")
-  descricao    String        @unique @map("descricao_tipo_instituicao") @db.VarChar(128)
+  descricao    String        @unique @map("descricao_tipo_instituicao") @db.VarChar(32)
   instituicoes Instituicao[]
 
   @@map("tipo_instituicao")
@@ -18,7 +18,7 @@ model TipoInstituicao {
 model Instituicao {
   id      Int     @id @default(autoincrement()) @map("id_instituicao")
   fk_tipo Int     @map("tipo_instituicao")
-  nome    String  @unique @map("nome_instituicao") @db.VarChar(255)
+  nome    String  @unique @map("nome_instituicao") @db.VarChar(128)
   sigla   String? @map("sigla_instituicao") @db.VarChar(10)
   polos   Polo[]
 
@@ -82,8 +82,8 @@ model Polo {
   id             Int      @id @default(autoincrement()) @map("id_polo")
   fk_instituicao Int      @map("fk_instituicao")
   fk_endereco    Int      @map("fk_endereco")
-  complemento    String?  @map("complemento_end_polo") @db.VarChar(64)
-  nome           String   @map("nome_polo") @db.VarChar(128)
+  complemento    String?  @map("complemento_end_polo") @db.VarChar(32)
+  nome           String   @map("nome_polo") @db.VarChar(64)
   filiais        Filial[]
 
   instituicao Instituicao @relation(fields: [fk_instituicao], references: [id])
@@ -94,7 +94,7 @@ model Polo {
 
 model TipoJuridico {
   id               Int               @id @default(autoincrement()) @map("id_tipo_juridico")
-  descricao        String            @unique @map("descricao_tipo_juridico") @db.VarChar(64)
+  descricao        String            @unique @map("descricao_tipo_juridico") @db.VarChar(32)
   estabelecimentos Estabelecimento[]
 
   @@map("tipo_juridico")
@@ -147,7 +147,7 @@ model Filial {
   fk_estabelecimento Int                 @map("fk_estabelecimento")
   fk_polo            Int                 @map("fk_polo")
   fk_endereco        Int?                @map("fk_endereco")
-  complemento        String?             @map("complemento_end_filial") @db.VarChar(64)
+  complemento        String?             @map("complemento_end_filial") @db.VarChar(32)
   nome               String              @map("nome_filial") @db.VarChar(128)
   registro           DateTime            @map("registro_filial") @db.Date
   assocFuncionario   FuncionarioFilial[]
@@ -162,7 +162,7 @@ model Filial {
 
 model Funcao {
   id            Int           @id @default(autoincrement()) @map("id_funcao")
-  descricao     String        @unique @map("descricao_funcao") @db.VarChar(64)
+  descricao     String        @unique @map("descricao_funcao") @db.VarChar(32)
   colaboradores Colaborador[]
 
   @@map("funcao")
@@ -234,7 +234,7 @@ model ProdutoFilial {
   fk_produto           Int      @map("fk_produto")
   fk_categoria_produto Int      @map("fk_categoria_produto")
   fk_unidade_medida    Int      @map("fk_unidade_medida")
-  descricao            String   @map("descricao_produto_filial") @db.VarChar(128)
+  descricao            String   @map("descricao_produto_filial") @db.VarChar(255)
   perecivel            Boolean  @map("perecivel_produto_filial") @db.TinyInt
   preco                Float    @map("preco_produto_filial")
   quantidade_atual     Float    @default(0) @map("quantidade_atual_produto_filial")

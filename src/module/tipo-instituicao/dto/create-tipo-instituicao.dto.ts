@@ -9,10 +9,6 @@ export class CreateTipoInstituicaoDto extends TipoInstituicao {
     @IsString({ message: "O tipo de dado deve ser uma string" })
     @Length(minL, maxL, { message: `O campo deve conter entre ${minL} e ${maxL} caracteres.` })
     @IsAlpha('pt-BR', { message: "O campo deve conter somente letras" })
-    @Trim()
+
     descricao: string;
 }
-function Trim(): (target: CreateTipoInstituicaoDto, propertyKey: "descricao") => void {
-    throw new Error("Function not implemented.");
-}
-

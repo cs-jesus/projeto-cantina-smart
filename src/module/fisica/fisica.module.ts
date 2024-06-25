@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { FisicaService } from './fisica.service';
 import { FisicaController } from './fisica.controller';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { TipoFisicaService } from './fisica.service';
 
 @Module({
   controllers: [FisicaController],
-  providers: [FisicaService, PrismaService],
+  providers: [TipoFisicaService, PrismaService],
 })
-export class FisicaModule {}
+export class FisicaModule { }

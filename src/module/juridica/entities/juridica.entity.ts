@@ -5,5 +5,5 @@ export class Juridica implements Prisma.JuridicaCreateInput {
     social: string;
     fantasia: string;
     email: string;
-    estabelecimentos?: Prisma.EstabelecimentoCreateNestedManyWithoutJuridicaInput;
+    estabelecimentos?: Prisma.EstabelecimentoUncheckedCreateNestedManyWithoutJuridicaInput;
 }

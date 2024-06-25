@@ -5,9 +5,6 @@ export class Fisica implements Prisma.FisicaCreateInput {
     nome: string;
     email: string;
     senha: string;
-    estabelecimentos?: Prisma.EstabelecimentoCreateNestedManyWithoutFisicaInput;
-    colaboradores?: Prisma.ColaboradorCreateNestedManyWithoutFisicaInput;
-
+    estabelecimentos?: Prisma.EstabelecimentoUncheckedCreateNestedManyWithoutFisicaInput;
+    colaboradores?: Prisma.ColaboradorUncheckedCreateNestedManyWithoutFisicaInput;
 }
-
-

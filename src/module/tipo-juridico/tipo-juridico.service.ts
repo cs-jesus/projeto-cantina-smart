@@ -6,30 +6,30 @@ import { TipoJuridico } from './entities/tipo-juridico.entity'
 
 @Injectable()
 export class TipoJuridicoService {
-  constructor(private readonly prisma:PrismaService){}
+  constructor(private readonly prisma: PrismaService) { }
 
-  async create (data: CreateTipoJuridicoDto): Promise<TipoJuridico> {
+  async create(data: CreateTipoJuridicoDto): Promise<TipoJuridico> {
     return await this.prisma.tipoJuridico.create({ data });
   }
 
   async getdAll(): Promise<TipoJuridico[]> {
-    return await this.prisma.tipoJuridico.findMany() ;
+    return await this.prisma.tipoJuridico.findMany();
   }
 
-  async findOne (id: number): Promise<TipoJuridico> {
-    return await this.prisma.tipoJuridico.findUnique ({
+  async findOne(id: number): Promise<TipoJuridico> {
+    return await this.prisma.tipoJuridico.findUnique({
       where: { id },
     });
   }
 
-  async update(id: number, data: UpdateTipoJuridicoDto): Promise<TipoJuridico>{
+  async update(id: number, data: UpdateTipoJuridicoDto): Promise<TipoJuridico> {
     return await this.prisma.tipoJuridico.update({
       where: { id },
       data,
     });
   }
 
-  async remove (id: number): Promise<TipoJuridico>{
+  async remove(id: number): Promise<TipoJuridico> {
     return await this.prisma.tipoJuridico.delete({
       where: { id }
     });

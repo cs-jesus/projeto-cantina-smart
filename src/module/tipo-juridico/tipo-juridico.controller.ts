@@ -9,10 +9,10 @@ export class TipoJuridicoController {
   constructor(private readonly tipoJuridicoService: TipoJuridicoService) { }
 
   @Post()
-  async create(@Body() CreateTipoJuridicoDto: CreateTipoJuridicoDto): Promise<TipoJuridico>{
-  return await this.tipoJuridicoService.create(CreateTipoJuridicoDto);
+  async create(@Body() CreateTipoJuridicoDto: CreateTipoJuridicoDto): Promise<TipoJuridico> {
+    return await this.tipoJuridicoService.create(CreateTipoJuridicoDto);
   }
-  
+
 
   @Get()
   async getAll(): Promise<TipoJuridico[]> {
@@ -23,17 +23,17 @@ export class TipoJuridicoController {
   async getById(@Param('id') id: string): Promise<TipoJuridico> {
     return await this.tipoJuridicoService.findOne(+id);
   }
-  
+
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() data: UpdateTipoJuridicoDto): Promise<TipoJuridico> {
     return await this.tipoJuridicoService.update(+id, data);
   }
-  
+
 
   @Delete(':id')
-  async remove(@Param ('id') id: string): Promise<TipoJuridico>{
+  async remove(@Param('id') id: string): Promise<TipoJuridico> {
     return await this.tipoJuridicoService.remove(+id);
   }
-  
+
 }

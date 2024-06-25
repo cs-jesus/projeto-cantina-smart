@@ -8,8 +8,8 @@ export class FisicaController {
   constructor(private readonly fisicaService: TipoFisicaService) { }
 
   @Post()
-  create(@Body() createFisicaDto: CreateFisicaDto) {
-    return this.fisicaService.create(createFisicaDto);
+  create(@Body() data: CreateFisicaDto) {
+    return this.fisicaService.create(data);
   }
 
   @Get()
@@ -23,8 +23,8 @@ export class FisicaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFisicaDto: UpdateFisicaDto) {
-    return this.fisicaService.update(+id, updateFisicaDto);
+  update(@Param('id') id: string, @Body() data: UpdateFisicaDto) {
+    return this.fisicaService.update(+id, data);
   }
 
   @Delete(':id')

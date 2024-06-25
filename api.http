@@ -1,28 +1,28 @@
 ###
-GET http://localhost:3000/categoria-produto
+GET http://localhost:3000/
 
 
 ###
-GET http://localhost:3000/categoria-produto/1
+GET http://localhost:3000/
 
 
 ###
-POST http://localhost:3000/categoria-produto
+POST http://localhost:3000/
 Content-Type: application/json
 
 {
-   "descricao": "aaaa"
+   
 }
 
 
 ###
-PATCH http://localhost:3000/categoria-produto/1
+PATCH http://localhost:3000/
 Content-Type: application/json
 
 {
-   "descricao": "aaaaEDITADO"
+   
 }
 
 
 ###
-DELETE http://localhost:3000/categoria-produto/1
+DELETE http://localhost:3000/

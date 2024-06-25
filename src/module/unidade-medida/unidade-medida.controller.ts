@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UnidadeMedidaService } from './unidade-medida.service';
 import { CreateUnidadeMedidaDto } from './dto/create-unidade-medida.dto';
 import { UpdateUnidadeMedidaDto } from './dto/update-unidade-medida.dto';
@@ -17,7 +9,7 @@ export class UnidadeMedidaController {
   constructor(private readonly unidadeMedidaService: UnidadeMedidaService) {}
 
   @Post()
-  async create(@Body() data: CreateUnidadeMedidaDto): Promise<UnidadeMedida> {
+  async create( @Body() data: CreateUnidadeMedidaDto): Promise<UnidadeMedida> {
     return await this.unidadeMedidaService.create(data);
   }
 
@@ -28,14 +20,11 @@ export class UnidadeMedidaController {
 
   @Get(':id')
   async getById(@Param('id') id: string): Promise<UnidadeMedida> {
-    return this.unidadeMedidaService.getById(+id);
+    return await this.unidadeMedidaService.getById(+id);
   }
 
   @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() data: UpdateUnidadeMedidaDto,
-  ): Promise<UnidadeMedida> {
+  async update( @Param('id') id: string, @Body() data: UpdateUnidadeMedidaDto ): Promise<UnidadeMedida> {
     return await this.unidadeMedidaService.update(+id, data);
   }
 

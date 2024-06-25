@@ -10,7 +10,7 @@ export class UnidadeMedidaService {
   constructor(private readonly prisma: PrismaService) { }
 
   async create(data: CreateUnidadeMedidaDto): Promise<UnidadeMedida> {
-    return await this.prisma.unidadeMedida.create({ data });;
+    return await this.prisma.unidadeMedida.create({ data });
   }
 
   async getAll(): Promise<UnidadeMedida[]> {

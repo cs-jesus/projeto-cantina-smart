@@ -1,16 +1,20 @@
 ###
-GET http://localhost:3000/
+GET http://localhost:3000/unidade-medida
+
 
 ###
 GET http://localhost:3000/
 
+
 ###
-POST http://localhost:3000/
+POST http://localhost:3000/unidade-medida
 Content-Type: application/json
 
 {
-   
+   "nome": "aaa",
+   "sigla": "aa"
 }
+
 
 ###
 PATCH http://localhost:3000/
@@ -19,6 +23,7 @@ Content-Type: application/json
 {
    
 }
+
 
 ###
 DELETE http://localhost:3000/Logradouro/2

@@ -8,28 +8,28 @@ import { Produto } from './entities/produto.entity';
 export class ProdutoService {
   constructor(private readonly prisma:PrismaService){}
   async create(data:CreateProdutoDto): Promise <Produto> {
-    return await this.prisma.Produto.create({data});;
+    return await this.prisma.produto.create({data});
   }
 
   async getAll(): Promise<Produto[]> {
-    return await this.prisma.Produto.findmany();
+    return await this.prisma.produto.findMany();
   }
 
   async getById(id: number): Promise<Produto> {
-    return await this.prisma.Produto.findUnique({
+    return await this.prisma.produto.findUnique({
     where:{id},
   });
   }
 
   async update(id: number, data: UpdateProdutoDto):Promise <Produto> {
-    return await this.prisma.Produto.update({
+    return await this.prisma.produto.update({
       where: {id},
       data,
  });
   }
 
   async remove(id: number):Promise<Produto> {
-    return await this.prisma.Produto.delete(
+    return await this.prisma.produto.delete(
       {where: {id},
     } );
   }

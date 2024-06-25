@@ -2,10 +2,7 @@ import { Prisma } from "@prisma/client";
 
 
 export class Produto implements Prisma.ProdutoCreateInput {
+    nome: string;
 
-    descricao: string;
-
-    estoque?: Prisma.ProdutoFilialUncheckedCreateNestedManyWithoutProdutoInput;
-
-    
+    estoque?: Prisma.ProdutoFilialUncheckedCreateNestedManyWithoutProdutoInput;   
 }

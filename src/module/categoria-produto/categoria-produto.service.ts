@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoriaProdutoDto } from './dto/create-categoria-produto.dto';
 import { UpdateCategoriaProdutoDto } from './dto/update-categoria-produto.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CategoriaProduto } from './entities/categoria-produto.entity';
 
 @Injectable()
+
 export class CategoriaProdutoService {
-  create(createCategoriaProdutoDto: CreateCategoriaProdutoDto) {
-    return 'This action adds a new categoriaProduto';
+  constructor(private readonly prisma:PrismaService){}
+  async create(data:CreateCategoriaProdutoDto): Promise <CategoriaProduto> {
+    return await this.prisma.categoriaProduto.create({data});;
   }
 
-  getAll() {
-    return `This action returns all categoriaProduto`;
+  async getAll(): Promise <CategoriaProduto[]> {
+    return await this.prisma.categoriaProduto.findmany();
   }
 
-  getById(id: number) {
-    return `This action returns a #${id} categoriaProduto`;
+  async getById(id: number): Promise<CategoriaProduto> {
+    return await this.prisma.categoriaProduto.findUnique({
+    where:{id},
+  });
   }
 
-  update(id: number, updateCategoriaProdutoDto: UpdateCategoriaProdutoDto) {
-    return `This action updates a #${id} categoriaProduto`;
+ async update(id: number, data: UpdateCategoriaProdutoDto):Promise <CategoriaProduto> {
+    return await this.prisma.categoriaProduto.update({
+      where: {id},
+      data,
+ });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} categoriaProduto`;
+  async remove(id: number):Promise<CategoriaProduto> {
+    return await this.prisma.categoriaProduto.delete(
+      {where: {id},
+    } );
   }
 }

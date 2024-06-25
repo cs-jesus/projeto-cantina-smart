@@ -13,7 +13,7 @@ export class CategoriaProdutoService {
   }
 
   async getAll(): Promise <CategoriaProduto[]> {
-    return await this.prisma.categoriaProduto.findmany();
+    return await this.prisma.categoriaProduto.findMany();
   }
 
   async getById(id: number): Promise<CategoriaProduto> {

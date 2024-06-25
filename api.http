@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/
+GET http://localhost:3000/tipo-instituicao
 
 
 ###
@@ -7,11 +7,11 @@ GET http://localhost:3000/
 
 
 ###
-POST http://localhost:3000/
+POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-   
+   "descricao": 1
 }
 
 

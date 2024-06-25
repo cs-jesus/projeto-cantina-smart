@@ -1,3 +1,4 @@
+/*
 import { PrismaService } from "src/prisma/prisma.service";
 
 export abstract class uniqueValidate {
@@ -12,3 +13,4 @@ export abstract class uniqueValidate {
   }
   
 }
+*/

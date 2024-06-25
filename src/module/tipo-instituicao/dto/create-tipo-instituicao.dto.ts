@@ -5,8 +5,9 @@ const minLenght = 3, maxLenght = 32;
 
 export class CreateTipoInstituicaoDto extends TipoInstituicao {
 
-    @IsNotEmpty({ message: "O campo não pode estar vazio" })
+    // Validação para controle interno do sistema
     @IsString({ message: "O tipo de dado deve ser uma string" })
+    // Validação para controle de dados externos
     @Length(minLenght, maxLenght, { message: `O campo deve conter entre ${minLenght} e ${maxLenght} caracteres.` })
     @IsAlpha('pt-BR', { message: "O campo deve conter somente letras" })
     descricao: string;

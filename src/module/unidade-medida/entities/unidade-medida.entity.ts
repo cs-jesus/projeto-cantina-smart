@@ -1,8 +1,8 @@
 import { Prisma } from "@prisma/client";
 
-export class UnidadeMedida implements Prisma.UnidadeMedidacreatinput {
-    descricao: string;
+export class UnidadeMedida implements Prisma.UnidadeMedidaCreateInput {
+    nome: string;
+    sigla: string;
 
     estoque?: Prisma.ProdutoFilialUncheckedCreateNestedManyWithoutUnidadeMedidaInput;
 }
-    

@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUnidadeMedidaDto } from './dto/create-unidade-medida.dto';
 import { UpdateUnidadeMedidaDto } from './dto/update-unidade-medida.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UnidadeMedida } from './entities/unidade-medida.entity';
 
 @Injectable()
 export class UnidadeMedidaService {
-  create(createUnidadeMedidaDto: CreateUnidadeMedidaDto) {
-    return 'This action adds a new unidadeMedida';
+  constructor(private readonly prisma:PrismaService){}
+  async create(data:CreateUnidadeMedidaDto): Promise <UnidadeMedida> {
+    return await this.prisma.UnidadeMedida.create({data});;
   }
 
-  getAll() {
-    return `This action returns all unidadeMedida`;
+  async getAll(): Promise<UnidadeMedida[]> {
+    return await this.prisma.UnidadeMedida.findmany();
   }
 
-  getById(id: number) {
-    return `This action returns a #${id} unidadeMedida`;
+  async getById(id: number): Promise<UnidadeMedida> {
+    return await this.prisma.UnidadeMedida.findUnique({
+    where:{id},
+  });
   }
 
-  update(id: number, updateUnidadeMedidaDto: UpdateUnidadeMedidaDto) {
-    return `This action updates a #${id} unidadeMedida`;
+  async update(id: number, data: UpdateUnidadeMedidaDto):Promise <UnidadeMedida> {
+    return await this.prisma.UnidadeMedida.update({
+      where: {id},
+      data,
+ });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} unidadeMedida`;
+  async remove(id: number):Promise<UnidadeMedida> {
+    return await this.prisma.UnidadeMedida.delete(
+      {where: {id},
+    } );
   }
 }

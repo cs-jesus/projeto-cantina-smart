@@ -25,4 +25,4 @@ Content-Type: application/json
 
 
 ###
-DELETE http://localhost:3000/
+DELETE http://localhost:3000/categoria-produto/1

@@ -1,4 +1,4 @@
-import { ArrayUnique, IsAlpha, IsNotEmpty, IsString, Length } from "class-validator";
+import { IsAlpha, IsNotEmpty, IsString, Length } from "class-validator";
 import { TipoInstituicao } from "../entities/tipo-instituicao.entity";
 
 const minLenght = 3, maxLenght = 32;

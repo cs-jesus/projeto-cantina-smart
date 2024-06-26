@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { PrismaModule } from './prisma/prisma.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TipoInstituicaoModule } from './module/tipo-instituicao/tipo-instituicao.module';
@@ -25,6 +26,7 @@ import { ProdutoFilialModule } from './module/produto-filial/produto-filial.modu
 
 @Module({
   imports: [
+    PrismaModule,
     TipoInstituicaoModule, InstituicaoModule, PoloModule,
     LogradouroModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule,
     JuridicaModule, FisicaModule, TipoJuridicoModule, EstabelecimentoModule, FilialModule,

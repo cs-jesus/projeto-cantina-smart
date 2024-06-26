@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEstadoDto } from './dto/create-estado.dto';
 import { UpdateEstadoDto } from './dto/update-estado.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Estado } from './entities/estado.entity';
 
 @Injectable()
 export class EstadoService {
-  create(createEstadoDto: CreateEstadoDto) {
-    return 'This action adds a new estado';
+
+  constructor(private readonly prisma: PrismaService) { }
+
+  async create(data: CreateEstadoDto): Promise<Estado> {
+    return await this.prisma.estado.create({ data });
   }
 
-  getAll() {
-    return `This action returns all estado`;
+  async getAll(): Promise<Estado[]> {
+    return await this.prisma.estado.findMany();
   }
 
-  getById(id: number) {
-    return `This action returns a #${id} estado`;
+  async getById(id: number): Promise<Estado> {
+    return await this.prisma.estado.findUnique({
+      where: { id },
+    });
   }
 
-  update(id: number, updateEstadoDto: UpdateEstadoDto) {
-    return `This action updates a #${id} estado`;
+  async update(id: number, data: UpdateEstadoDto): Promise<Estado> {
+    return await this.prisma.estado.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} estado`;
+  async remove(id: number): Promise<Estado> {
+    return await this.prisma.estado.delete({
+      where: { id },
+    });
   }
 }

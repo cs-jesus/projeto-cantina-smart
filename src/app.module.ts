@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PrismaModule } from './prisma/prisma.module';
+
 import { TipoInstituicaoModule } from './module/tipo-instituicao/tipo-instituicao.module';
 import { InstituicaoModule } from './module/instituicao/instituicao.module';
 import { BairroModule } from './module/bairro/bairro.module';
@@ -25,6 +25,7 @@ import { ProdutoFilialModule } from './module/produto-filial/produto-filial.modu
 
 @Module({
   imports: [
+    PrismaModule,
     TipoInstituicaoModule, InstituicaoModule, PoloModule,
     LogradouroModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule,
     JuridicaModule, FisicaModule, TipoJuridicoModule, EstabelecimentoModule, FilialModule,
@@ -32,7 +33,7 @@ import { ProdutoFilialModule } from './module/produto-filial/produto-filial.modu
     ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule
   ],
 
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule { }

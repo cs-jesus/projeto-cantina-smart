@@ -23,6 +23,20 @@ export class TipoInstituicaoService {
     });
   }
 
+  async existsDescricao(descricao: string): Promise<boolean> {
+    const exists = await this.prisma.tipoInstituicao.findFirst({
+      where: { descricao },
+    });
+
+    return !!exists;
+  }
+
+  async getByDescricao(descricao: string): Promise<TipoInstituicao> {
+    return await this.prisma.tipoInstituicao.findFirst({
+      where: { descricao },
+    });
+  }
+
   async update(id: number, data: UpdateTipoInstituicaoDto): Promise<TipoInstituicao> {
     return await this.prisma.tipoInstituicao.update({
       where: { id },

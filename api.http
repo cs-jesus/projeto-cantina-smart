@@ -1,9 +1,9 @@
 ###
 GET http://localhost:3000/tipo-instituicao
 
-###
-GET http://localhost:3000/bairro/1
 
+###
+GET http://localhost:3000/
 
 
 ###
@@ -11,15 +11,18 @@ POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-   "descricao": "água"
+   "descricao": 1
 }
 
+
 ###
-PATCH http://localhost:3000/bairro/1
+PATCH http://localhost:3000/
 Content-Type: application/json
 
 {
-   "descricao": "Xablaufasegsgsgdgsadgag2"
+   
 }
+
+
 ###
-DELETE http://localhost:3000/Logradouro/2
+DELETE http://localhost:3000/

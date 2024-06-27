@@ -8,6 +8,7 @@ export class CreateJuridicaDto extends Juridica {
     @IsNotEmpty({ message: "O campo não pode estar vazio, insira o CNPJ" })
     @IsString({ message: "O tipo de dado dever ser uma string" })
     //@Matches(CNPJ_REGEX, { message: "CNPJ inválido" })
+    //Validar CNPJ único
     cnpj: string;
 
     @IsNotEmpty({ message: "O campo não pode estar vazio" })
@@ -24,6 +25,7 @@ export class CreateJuridicaDto extends Juridica {
 
     @IsEmail()
     @IsNotEmpty({ message: "O campo não pode estar vazio, insira o seu e-mail" })
-    //@Lenght() Implementar mínimo e máximo de caracteres
+    //@Lenght() Implementar mínimo e máximo de caracteres]
+    //Validar email único
     email: string;
 }

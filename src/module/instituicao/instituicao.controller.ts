@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { InstituicaoService } from './instituicao.service';
 import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
 import { UpdateInstituicaoDto } from './dto/update-instituicao.dto';
@@ -13,16 +13,6 @@ export class InstituicaoController {
     return await this.instituicaoService.create(data);
   }
 
-  @Get()
-  async getAll(): Promise<Instituicao[]> {
-    return await this.instituicaoService.getAll();
-  }
-
-  @Get(':id')
-  async getById(@Param('id') id: string): Promise<Instituicao> {
-    return await this.instituicaoService.getById(+id);
-  }
-
   @Patch(':id')
   async update(@Param('id') id: string, @Body() data: UpdateInstituicaoDto): Promise<Instituicao> {
     return await this.instituicaoService.update(+id, data);
@@ -32,4 +22,20 @@ export class InstituicaoController {
   async remove(@Param('id') id: string): Promise<Instituicao> {
     return await this.instituicaoService.remove(+id);
   }
+
+  @Get()
+  async findAll(): Promise<Instituicao[]> {
+    return await this.instituicaoService.getAll();
+  }
+
+  @Get(':id')
+  async findById(@Param('id') id: string): Promise<Instituicao> {
+    return await this.instituicaoService.getById(+id);
+  }
+
+  @Get('tipo/:tipoId')
+  async findByTipo(@Param('tipoId') tipoId: number) {
+    return await this.instituicaoService.getByTipoInstituicao(+tipoId);
+  }
+
 }

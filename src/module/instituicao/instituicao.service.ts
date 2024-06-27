@@ -1,39 +1,60 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
 import { UpdateInstituicaoDto } from './dto/update-instituicao.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Instituicao } from './entities/instituicao.entity';
-import { Prisma } from '@prisma/client';
+
 
 @Injectable()
 export class InstituicaoService {
 
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) { }
 
   async create(data: CreateInstituicaoDto): Promise<Instituicao> {
-
-    const createData: Prisma.InstituicaoCreateInput = {
-      nome: data.nome,
-      sigla: data.sigla,
-      tipoInstituicao: {
-        connect: { id: data.fk_tipo },
-      },
-    };
-
     return await this.prisma.instituicao.create({
-      data: createData,
+      data: {
+        nome: data.nome,
+        sigla: data.sigla,
+        tipoInstituicao: { connect: { id: data.tipoInstituicao.id } },
+      },
+
       include: {
         tipoInstituicao: true,
-      }
-    });
-  };
+      },
+    }) as Instituicao;
+  }
+
+  async update(id: number, data: UpdateInstituicaoDto): Promise<Instituicao> {
+    return await this.prisma.instituicao.update({
+      where: { id },
+      data: {
+        nome: data.nome,
+        sigla: data.sigla,
+        tipoInstituicao: {
+          connect: { id: data.fk_tipo },
+        },
+      },
+      include: {
+        tipoInstituicao: true,
+      },
+    }) as Instituicao;
+  }
+
+  async remove(id: number): Promise<Instituicao> {
+    return await this.prisma.instituicao.delete({
+      where: { id },
+      include: {
+        tipoInstituicao: true,
+      },
+    }) as Instituicao;
+  }
 
   async getAll(): Promise<Instituicao[]> {
     return await this.prisma.instituicao.findMany({
       include: {
         tipoInstituicao: true,
       },
-    });
+    }) as Instituicao[];
   }
 
   async getById(id: number): Promise<Instituicao | null> {
@@ -42,34 +63,13 @@ export class InstituicaoService {
       include: {
         tipoInstituicao: true,
       },
-    });
+    }) as Instituicao;
   }
 
-
-  async update(id: number, data: UpdateInstituicaoDto): Promise<Instituicao> {
-
-    const createData: Prisma.InstituicaoCreateInput = {
-      nome: data.nome,
-      sigla: data.sigla,
-      tipoInstituicao: {
-        connect: { id: data.fk_tipo },
-      },
-    };
-
-    return await this.prisma.instituicao.create({
-      data: createData,
-      include: {
-        tipoInstituicao: true,
-      }
-    });
-  };
-
-  async remove(id: number): Promise<Instituicao> {
-    return await this.prisma.instituicao.delete({
-      where: { id },
-      include: {
-        tipoInstituicao: true,
-      },
-    });
+  async getByTipoInstituicao(tipoId: number): Promise<Instituicao[]> {
+    return await this.prisma.instituicao.findMany({
+      where: { fk_tipo: tipoId },
+      include: { tipoInstituicao: true },
+    }) as Instituicao[];
   }
 }

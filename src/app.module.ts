@@ -6,7 +6,7 @@ import { InstituicaoModule } from './module/instituicao/instituicao.module';
 import { BairroModule } from './module/bairro/bairro.module';
 import { CidadeModule } from './module/cidade/cidade.module';
 import { EstadoModule } from './module/estado/estado.module';
-import { EndrecoModule } from './module/endreco/endreco.module';
+import { EnderecoModule } from './module/endereco/endereco.module';
 import { PoloModule } from './module/polo/polo.module';
 import { JuridicaModule } from './module/juridica/juridica.module';
 import { FisicaModule } from './module/fisica/fisica.module';
@@ -27,10 +27,10 @@ import { ProdutoFilialModule } from './module/produto-filial/produto-filial.modu
   imports: [
     PrismaModule,
     TipoInstituicaoModule, InstituicaoModule, PoloModule,
-    LogradouroModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule,
+    LogradouroModule, BairroModule, CidadeModule, EstadoModule, EnderecoModule,
     JuridicaModule, FisicaModule, TipoJuridicoModule, EstabelecimentoModule, FilialModule,
     FuncaoModule, ColaboradorModule, ProprietarioEstabelecimentoModule, FuncionarioFilialModule,
-    ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule
+    ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule,
   ],
 
   controllers: [],

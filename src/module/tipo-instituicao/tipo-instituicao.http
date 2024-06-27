@@ -1,0 +1,30 @@
+### Requisição de cadastro
+POST http://localhost:3000/tipo-instituicao
+Content-Type: application/json
+
+{
+  "nome": "",
+  "sigla": "",
+}
+
+
+### Requisição de listagem
+GET http://localhost:3000/tipo-instituicao
+
+
+### Requisição de consulta por ID
+GET http://localhost:3000/tipo-instituicao/
+
+
+### Requisição de edição
+PATCH http://localhost:3000/tipo-instituicao/
+Content-Type: application/json
+
+{
+  "nome": "",
+  "sigla": "",
+}
+
+
+### Requisição de exclusão
+DELETE http://localhost:3000/tipo-instituicao/

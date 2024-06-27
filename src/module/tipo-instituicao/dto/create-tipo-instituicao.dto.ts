@@ -10,5 +10,7 @@ export class CreateTipoInstituicaoDto extends TipoInstituicao {
     // Validação para controle de dados externos
     @Length(descricaoMinLenght, descricaoMaxLenght, { message: `O campo deve conter entre ${descricaoMinLenght} e ${descricaoMaxLenght} caracteres.` })
     @IsAlpha('pt-BR', { message: "O campo deve conter somente letras" })
+
+    //Implementar validação de registro único
     descricao: string;
 }

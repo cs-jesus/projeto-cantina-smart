@@ -75,6 +75,7 @@ model Endereco {
   cidade     Cidade     @relation(fields: [fk_cidade], references: [id])
   estado     Estado     @relation(fields: [fk_estado], references: [id])
 
+  @@unique([cep, numero])
   @@map("endereco")
 }
 

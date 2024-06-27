@@ -3,8 +3,8 @@ POST http://localhost:3000/unidade-medida
 Content-Type: application/json
 
 {
-  "nome": "",
-  "sigla": "",
+  "nome": "Unidade",
+  "sigla": "un"
 }
 
 

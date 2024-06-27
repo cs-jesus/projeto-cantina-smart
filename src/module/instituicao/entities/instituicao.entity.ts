@@ -6,6 +6,7 @@ export class Instituicao implements Prisma.InstituicaoCreateInput {
     nome: string;
     sigla?: string;
     fk_tipo: number;
+
     // Definição de chave estrangeira
     tipoInstituicao: Prisma.TipoInstituicaoCreateNestedOneWithoutInstituicoesInput;
 

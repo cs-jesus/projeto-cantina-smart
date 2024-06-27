@@ -1,13 +1,18 @@
 import { Prisma } from "@prisma/client";
 
 export class Estabelecimento implements Prisma.EstabelecimentoCreateInput {
-    registro: string | Date;
+    //Definição dos atributos básicos
+    registro: Date;
     telefone?: string;
     celular: string;
     limite?: number;
-    filiais?: Prisma.FilialCreateNestedManyWithoutEstabelecimentoInput;
-    assocProprietario?: Prisma.ProprietarioEstabelecimentoCreateNestedManyWithoutEstabelecimentoInput;
+
+    //Definição das chaves estrangeiras
+    tipoJuridico: Prisma.TipoJuridicoCreateNestedOneWithoutEstabelecimentosInput;
     fisica?: Prisma.FisicaCreateNestedOneWithoutEstabelecimentosInput;
     juridica?: Prisma.JuridicaCreateNestedOneWithoutEstabelecimentosInput;
-    tipoJuridico: Prisma.TipoJuridicoCreateNestedOneWithoutEstabelecimentosInput;
+
+    //Declara que a entidade será refereciada como chave estrangeira
+    filiais?: Prisma.FilialUncheckedCreateNestedManyWithoutEstabelecimentoInput;
+    assocProprietario?: Prisma.ProprietarioEstabelecimentoUncheckedCreateNestedManyWithoutEstabelecimentoInput;
 }

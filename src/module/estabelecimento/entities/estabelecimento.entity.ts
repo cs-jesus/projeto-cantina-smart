@@ -1,7 +1,11 @@
 import { Prisma } from "@prisma/client";
 
 export class Estabelecimento implements Prisma.EstabelecimentoCreateInput {
+
     //Definição de atributo básico
+    fk_tipoJuridico: number;
+    fk_fisica?: number;
+    fk_juridica?: number;
     registro: Date;
     telefone?: string;
     celular: string;

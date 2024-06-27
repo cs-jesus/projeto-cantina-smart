@@ -1,0 +1,33 @@
+### Criar Instituição
+POST http://localhost:3000/instituicao
+Content-Type: application/json
+
+{
+  "nome": "",
+  "sigla": "",
+  "tipoInstituicao": {
+    "id": 
+  }
+}
+
+
+### Listar Todas as Instituições
+GET http://localhost:3000/instituicao
+
+
+### Obter Instituição por ID
+GET http://localhost:3000/instituicao/
+
+
+### Atualizar Instituição
+PATCH http://localhost:3000/instituicao/
+Content-Type: application/json
+
+{
+  "nome": "",
+  "sigla": "",
+  "fk_tipo": 
+}
+
+### Remover Instituição
+DELETE http://localhost:3000/instituicao/

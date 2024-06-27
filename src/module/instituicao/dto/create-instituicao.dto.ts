@@ -1,10 +1,15 @@
-import { IsAlpha, IsInt, IsNotEmpty, IsOptional, IsString, Length, Matches } from "class-validator";
-import { Instituicao } from "../entities/instituicao.entity";
+import { IsAlpha, IsNotEmpty, IsOptional, IsString, Length, Matches, ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 const siglaMinLenght = 2, siglaMaxLenght = 10;
 const nomeMinLenght = 3, nomeMaxLenght = 128;
 
-export class CreateInstituicaoDto extends Instituicao {
+class TipoInstituicaoConnectInput {
+    @IsNotEmpty({ message: 'O campo \'id\' de tipoInstituicao não pode estar vazio' })
+    id: number;
+}
+
+export class CreateInstituicaoDto {
 
     // Validação para controle interno do sistema    
     @IsString({ message: 'O campo \'nome\' deve ser uma string' })
@@ -23,8 +28,8 @@ export class CreateInstituicaoDto extends Instituicao {
     sigla?: string | null;
 
     // Validação para controle interno do sistema
-    @IsInt({ message: 'O campo \'fk_tipo\' deve ser um número inteiro' })
-    // Validação para controle de dados externos
-    @IsNotEmpty({ message: 'O campo \'fk_tipo\' não pode estar vazio' })
-    fk_tipo: number;
+    @ValidateNested()
+    @Type(() => TipoInstituicaoConnectInput)
+    @IsNotEmpty({ message: 'O campo \'tipoInstituicao\' não pode estar vazio' })
+    tipoInstituicao: TipoInstituicaoConnectInput;
 }

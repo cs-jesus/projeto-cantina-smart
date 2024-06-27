@@ -22,6 +22,7 @@ import { ProdutoModule } from './module/produto/produto.module';
 import { CategoriaProdutoModule } from './module/categoria-produto/categoria-produto.module';
 import { UnidadeMedidaModule } from './module/unidade-medida/unidade-medida.module';
 import { ProdutoFilialModule } from './module/produto-filial/produto-filial.module';
+import { EnderecoModule } from './module/endereco/endereco.module';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { ProdutoFilialModule } from './module/produto-filial/produto-filial.modu
     LogradouroModule, BairroModule, CidadeModule, EstadoModule, EndrecoModule,
     JuridicaModule, FisicaModule, TipoJuridicoModule, EstabelecimentoModule, FilialModule,
     FuncaoModule, ColaboradorModule, ProprietarioEstabelecimentoModule, FuncionarioFilialModule,
-    ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule
+    ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule, EnderecoModule
   ],
 
   controllers: [],

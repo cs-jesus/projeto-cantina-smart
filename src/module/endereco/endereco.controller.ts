@@ -1,34 +1,29 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { EnderecoService } from './endereco.service';
 import { CreateEnderecoDto } from './dto/create-endereco.dto';
-import { UpdateEnderecoDto } from './dto/update-endereco.dto';
+import { Endereco } from './entities/endereco.entity';
 
 @Controller('endereco')
 export class EnderecoController {
-  constructor(private readonly enderecoService: EnderecoService) {}
+  constructor(private readonly enderecoService: EnderecoService) { }
 
   @Post()
-  create(@Body() createEnderecoDto: CreateEnderecoDto) {
-    return this.enderecoService.create(createEnderecoDto);
+  async create(@Body() data: CreateEnderecoDto): Promise<Endereco> {
+    return await this.enderecoService.create(data);
   }
 
   @Get()
-  findAll() {
-    return this.enderecoService.findAll();
+  async getAll(): Promise<Endereco[]> {
+    return await this.enderecoService.getAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.enderecoService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEnderecoDto: UpdateEnderecoDto) {
-    return this.enderecoService.update(+id, updateEnderecoDto);
+  async getById(@Param('id') id: string): Promise<Endereco> {
+    return await this.enderecoService.getById(+id);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.enderecoService.remove(+id);
+  async remove(@Param('id') id: string): Promise<Endereco> {
+    return await this.enderecoService.remove(+id);
   }
 }

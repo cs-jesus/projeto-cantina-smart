@@ -3,7 +3,7 @@ POST http://localhost:3000/estado
 Content-Type: application/json
 
 {
-  "uf": "",
+  "uf": "XX"
 }
 
 

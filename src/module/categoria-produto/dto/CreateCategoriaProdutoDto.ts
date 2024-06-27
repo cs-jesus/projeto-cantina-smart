@@ -1,7 +1,7 @@
 import { IsAlpha, IsNotEmpty, IsString, Length } from "class-validator";
 import { CategoriaProduto } from "../entities/categoria-produto.entity";
-import { descricaoMinLenght, descricaoMaxLenght } from "./create-categoria-produto.dto";
 
+const descricaoMinLenght = 3, descricaoMaxLenght = 64;
 
 export class CreateCategoriaProdutoDto extends CategoriaProduto {
 

@@ -6,6 +6,7 @@ import { Instituicao } from "src/module/instituicao/entities/instituicao.entity"
 
 const compMinLenght = 3, compMaxLenght = 32;
 const nomeMinLenght = 3, nomeMaxLenght = 64;
+
 export class CreatePoloDto extends Polo {
 
     @IsString({ message: "O tipo de dado deve ser uma string" })

@@ -1,26 +1,65 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEnderecoDto } from './dto/create-endereco.dto';
-import { UpdateEnderecoDto } from './dto/update-endereco.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Endereco } from './entities/endereco.entity';
 
 @Injectable()
 export class EnderecoService {
-  create(createEnderecoDto: CreateEnderecoDto) {
-    return 'This action adds a new endereco';
+
+  constructor(private prisma: PrismaService) { }
+
+  async create(data: CreateEnderecoDto): Promise<Endereco> {
+    return await this.prisma.endereco.create({
+      data: {
+        cep: data.cep,
+        numero: data.numero,
+        logradouro: { connect: { id: data.logradouro.id } },
+        bairro: { connect: { id: data.bairro.id } },
+        cidade: { connect: { id: data.cidade.id } },
+        estado: { connect: { id: data.estado.id } },
+      },
+
+      include: {
+        logradouro: true,
+        bairro: true,
+        cidade: true,
+        estado: true,
+      }
+    }) as Endereco;
   }
 
-  findAll() {
-    return `This action returns all endereco`;
+  async getAll(): Promise<Endereco[]> {
+    return await this.prisma.endereco.findMany({
+      include: {
+        logradouro: true,
+        bairro: true,
+        cidade: true,
+        estado: true,
+      },
+    }) as Endereco[];
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} endereco`;
+  async getById(id: number): Promise<Endereco | null> {
+    return await this.prisma.endereco.findUnique({
+      where: { id },
+      include: {
+        logradouro: true,
+        bairro: true,
+        cidade: true,
+        estado: true,
+      }
+    }) as Endereco;
   }
 
-  update(id: number, updateEnderecoDto: UpdateEnderecoDto) {
-    return `This action updates a #${id} endereco`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} endereco`;
+  async remove(id: number): Promise<Endereco> {
+    return await this.prisma.endereco.delete({
+      where: { id },
+      include: {
+        logradouro: true,
+        bairro: true,
+        cidade: true,
+        estado: true,
+      }
+    }) as Endereco;
   }
 }

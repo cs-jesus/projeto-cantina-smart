@@ -1,8 +1,27 @@
-import { IsInt, IsNotEmpty, IsString, Length, Matches } from "class-validator";
-import { Endereco } from "../entities/endereco.entity";
-import { Prisma } from "@prisma/client";
+import { IsInt, IsNotEmpty, IsString, Length, Matches, ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
-export class CreateEnderecoDto extends Endereco {
+class LogradoudoConnectInput {
+    @IsInt({ message: "O campo 'id' deve ser um número inteiro" })
+    id: number;
+}
+
+class BairroConnectInput {
+    @IsInt({ message: "O campo 'id' deve ser um número inteiro" })
+    id: number;
+}
+
+class CidadeConnectInput {
+    @IsInt({ message: "O campo 'id' deve ser um número inteiro" })
+    id: number;
+}
+
+class EstadoConnectInput {
+    @IsInt({ message: "O campo 'id' deve ser um número inteiro" })
+    id: number;
+}
+
+export class CreateEnderecoDto {
 
     @IsString()
     @Matches(/^[0-9]{8}$/, { message: "O campo 'cep' deve conter exatamente 8 dígitos numéricos" })
@@ -12,19 +31,23 @@ export class CreateEnderecoDto extends Endereco {
     @Matches(/^[0-9]{1,10}$/, { message: "O campo 'numero' deve conter entre 1 e 10 dígitos numéricos" })
     numero: string;
 
-    @IsInt({ message: "O campo 'logradouro' deve ser um número inteiro (id do logradouro)" })
-    @IsNotEmpty({ message: "O campo 'logradouro' não pode estar vazio" })
-    logradouro: Prisma.LogradouroCreateNestedOneWithoutEnderecosInput;
+    @ValidateNested()
+    @Type(() => LogradoudoConnectInput)
+    @IsNotEmpty({})
+    logradouro: LogradoudoConnectInput;
 
-    @IsInt({ message: "O campo 'bairro' deve ser um número inteiro (id do bairro)" })
-    @IsNotEmpty({ message: "O campo 'bairro' não pode estar vazio" })
-    bairro: Prisma.BairroCreateNestedOneWithoutEnderecosInput;
+    @ValidateNested()
+    @Type(() => BairroConnectInput)
+    @IsNotEmpty({})
+    bairro: BairroConnectInput;
 
-    @IsInt({ message: "O campo 'cidade' deve ser um número inteiro (id da cidade)" })
-    @IsNotEmpty({ message: "O campo 'cidade' não pode estar vazio" })
-    cidade: Prisma.CidadeCreateNestedOneWithoutEnderecosInput;
+    @ValidateNested()
+    @Type(() => CidadeConnectInput)
+    @IsNotEmpty({})
+    cidade: CidadeConnectInput;
 
-    @IsInt({ message: "O campo 'estado' deve ser um número inteiro (id do estado)" })
-    @IsNotEmpty({ message: "O campo 'estado' não pode estar vazio" })
-    estado: Prisma.EstadoCreateNestedOneWithoutEnderecosInput;
+    @ValidateNested()
+    @Type(() => EstadoConnectInput)
+    @IsNotEmpty({})
+    estado: EstadoConnectInput;
 }

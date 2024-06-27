@@ -15,12 +15,9 @@ export class InstituicaoService {
       data: {
         nome: data.nome,
         sigla: data.sigla,
-        tipoInstituicao: {
-          connect: {
-            id: data.tipoInstituicao.id
-          },
-        },
+        tipoInstituicao: { connect: { id: data.tipoInstituicao.id } },
       },
+
       include: {
         tipoInstituicao: true,
       },

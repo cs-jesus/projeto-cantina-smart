@@ -3,7 +3,7 @@ POST http://localhost:3000/cidade
 Content-Type: application/json
 
 {
-  "nome": "",
+  "nome": "BBBBBBB"
 }
 
 

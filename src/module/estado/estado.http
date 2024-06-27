@@ -1,0 +1,28 @@
+### Requisição de cadastro
+POST http://localhost:3000/estado
+Content-Type: application/json
+
+{
+  "uf": "",
+}
+
+
+### Requisição de listagem
+GET http://localhost:3000/estado
+
+
+### Requisição de consulta por ID
+GET http://localhost:3000/estado/
+
+
+### Requisição de edição
+PATCH http://localhost:3000/estado/
+Content-Type: application/json
+
+{
+  "uf": "",
+}
+
+
+### Requisição de exclusão
+DELETE http://localhost:3000/estado/

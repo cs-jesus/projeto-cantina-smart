@@ -5,10 +5,11 @@ import { Juridica } from "../entities/juridica.entity";
 //const CNPJ_REGEX = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
 
 export class CreateJuridicaDto extends Juridica {
+
     @IsNotEmpty({ message: "O campo não pode estar vazio, insira o CNPJ" })
     @IsString({ message: "O tipo de dado dever ser uma string" })
-    //@Matches(CNPJ_REGEX, { message: "CNPJ inválido" })
-    //Validar CNPJ único
+    //@Matches(CNPJ_REGEX, { message: "CNPJ inválido" }) - Deverá ser solucionado até o final da sprint 3
+    //Validar CNPJ único - Deverá ser solucionado até o final da sprint 3
     cnpj: string;
 
     @IsNotEmpty({ message: "O campo não pode estar vazio" })
@@ -26,6 +27,6 @@ export class CreateJuridicaDto extends Juridica {
     @IsEmail()
     @IsNotEmpty({ message: "O campo não pode estar vazio, insira o seu e-mail" })
     //@Lenght() Implementar mínimo e máximo de caracteres]
-    //Validar email único
+    //Validar email único - Deverá ser solucionado até o final da sprint 3
     email: string;
 }

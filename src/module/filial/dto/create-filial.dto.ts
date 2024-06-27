@@ -17,6 +17,11 @@ export class CreateFilialDto extends Filial {
     @IsNotEmpty({ message: 'O campo não pode estar vazio' })
     @IsDate({ message: 'o dado recebido deve ser uma DATA' })
     registro: Date; //Alterado para receber apenas data
+
+
+    //Validação adicional: Deverá atender o limite definido no cadastro de um estabelecimetno, impedindo novos cadastros
+    // - Deverá ser solucionado até o final da sprint 3
+
     /*
     
         Para implementação de validação de chaves estrangeiras, seguir padrão definido em create-endereco.dto e update-endereco.dto

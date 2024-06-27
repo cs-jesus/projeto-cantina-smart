@@ -33,7 +33,7 @@ export class CreateEnderecoDto {
     @Matches(/^[0-9]{1,10}$/, { message: "O campo 'numero' deve conter entre 1 e 10 dígitos numéricos" })
     numero: string;
 
-    //Implementar validação de registro único de CEP + número
+    //Implementar validação de registro único de CEP + número - Deverá ser solucionado até o final da sprint 3
 
 
     //Implementa validação e restrição dos atributos definidos como chave estrangeira

@@ -6,8 +6,8 @@ import { Fisica } from "../entities/fisica.entity";
 export class CreateFisicaDto extends Fisica {
     @IsNotEmpty({ message: "O campo não pode estar vazio, Insira seu CPF" })
     @IsString({ message: "O tipo de dado dever ser uma string" })
-    //@Matches(CPF_REGEX, { message: "CPF inválido" })
-    //Validar CPF único
+    //@Matches(CPF_REGEX, { message: "CPF inválido" }) - Deverá ser solucionado até o final da sprint 3
+    //Validar CPF único - Deverá ser solucionado até o final da sprint 3
     cpf: string;
 
     @IsNotEmpty({ message: "O campo não pode estar vazio" })
@@ -19,7 +19,7 @@ export class CreateFisicaDto extends Fisica {
     @IsEmail()
     @IsNotEmpty({ message: "O campo não pode estar vazio, insira o seu e-mail" })
     //@Lenght() Implementar mínimo e máximo de caracteres]
-    //Validar email único
+    //Validar email único - Deverá ser solucionado até o final da sprint 3
     email: string;
 
     @IsNotEmpty({ message: "O campo não pode estar vazio" })

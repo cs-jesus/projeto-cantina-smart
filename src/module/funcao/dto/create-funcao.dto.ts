@@ -9,5 +9,7 @@ export class CreateFuncaoDto extends Funcao {
     @Matches(/^[A-Za-zÀ-úaâãeêiíoôõuüç\s]+$/, { message: 'O nome deve conter apenas caracteres alfabéticos e espaços', })
     @Length(nomeMinLenght, nomeMaxLenght, { message: "O campo descricao deve conter entre ${nomeMinLenght} e ${nomeMaxLenght} caracteres." })
     @IsAlpha('pt-BR', {})
+
+    //Implementar validação de registro único - Deverá ser solucionado até o final da sprint 3
     descricao: string;
 }

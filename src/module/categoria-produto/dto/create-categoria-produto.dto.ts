@@ -9,6 +9,6 @@ export class CreateCategoriaProdutoDto extends CategoriaProduto {
     @IsNotEmpty({ message: "O campo não pode estar vazio" })
     @Length(descricaoMinLenght, descricaoMaxLenght, { message: "O campo deve conter entre ${descricaoMinLenght} e ${descricaoMaxLenght} caracteres." })
     @IsAlpha('pt-BR', { message: "O campo deve conter somente letras" })
-    //Implementar validação de registro único
+    //Implementar validação de registro único - Deverá ser solucionado até o final da sprint 3
     descricao: string;
 }

@@ -18,7 +18,7 @@ export class CreatePoloDto extends Polo {
     @IsString()
     @Length(nomeMinLenght, nomeMaxLenght, { message: `O campo 'complemento' deve conter entre ${nomeMinLenght} e ${nomeMaxLenght} caracteres.` })
     @IsAlpha('pt-BR',)
-    //Implementar validação de registro único
+    //Implementar validação de registro único - Deverá ser solucionado até o final da sprint 3
     nome: string;
 
     @ValidateNested()

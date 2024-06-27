@@ -28,6 +28,7 @@ export class CreateEstabelecimentoDto extends Estabelecimento {
     @IsOptional() //Alterado para a conformidade do tipo limite? onde permite a inserção de valor nulo
     limite?: number;
 
+    /*
     //@IsBoolean({ message: 'O campo deve ser um booleano' })
     @IsInt()
     @IsOptional()
@@ -42,8 +43,9 @@ export class CreateEstabelecimentoDto extends Estabelecimento {
     @IsInt()
     @IsNotEmpty()
     tipoJuridico;
+    */
 }
 //deixei de forma booleano para ser true ou false, como vamos ter 3 tipos de verificação, achei que seria o melhor a se fazer
-// Definido restrição para Int, pois os campos irão armazenar os identificadores das tabelas relacionadas.
+// Por se tratar de entidade que armazena valores como chave estrangeira, seguir o padrão definido no create-endereco.dto.ts
 
 //Lembrete para o futuro: Criar estrutura condicional que determina a seleção 

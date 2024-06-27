@@ -1,13 +1,13 @@
 import { Prisma } from "@prisma/client";
 
 export class Estabelecimento implements Prisma.EstabelecimentoCreateInput {
-    //Definição dos atributos básicos
+    //Definição de atributo básico
     registro: Date;
     telefone?: string;
     celular: string;
     limite?: number;
 
-    //Definição das chaves estrangeiras
+    //Definição de chave estrangeira
     tipoJuridico: Prisma.TipoJuridicoCreateNestedOneWithoutEstabelecimentosInput;
     fisica?: Prisma.FisicaCreateNestedOneWithoutEstabelecimentosInput;
     juridica?: Prisma.JuridicaCreateNestedOneWithoutEstabelecimentosInput;

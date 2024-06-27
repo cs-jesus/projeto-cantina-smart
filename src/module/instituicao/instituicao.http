@@ -8,6 +8,8 @@ Content-Type: application/json
   "tipoInstituicao": { "id": 2 }
 }
 
+###
+GET http://localhost:3000/instituicao/tipo/2
 
 ### Listar Todas as Instituições
 GET http://localhost:3000/instituicao

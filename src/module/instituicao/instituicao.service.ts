@@ -24,23 +24,6 @@ export class InstituicaoService {
     }) as Instituicao;
   }
 
-  async getAll(): Promise<Instituicao[]> {
-    return await this.prisma.instituicao.findMany({
-      include: {
-        tipoInstituicao: true,
-      },
-    }) as Instituicao[];
-  }
-
-  async getById(id: number): Promise<Instituicao | null> {
-    return await this.prisma.instituicao.findUnique({
-      where: { id },
-      include: {
-        tipoInstituicao: true,
-      },
-    }) as Instituicao;
-  }
-
   async update(id: number, data: UpdateInstituicaoDto): Promise<Instituicao> {
     return await this.prisma.instituicao.update({
       where: { id },
@@ -64,5 +47,29 @@ export class InstituicaoService {
         tipoInstituicao: true,
       },
     }) as Instituicao;
+  }
+
+  async getAll(): Promise<Instituicao[]> {
+    return await this.prisma.instituicao.findMany({
+      include: {
+        tipoInstituicao: true,
+      },
+    }) as Instituicao[];
+  }
+
+  async getById(id: number): Promise<Instituicao | null> {
+    return await this.prisma.instituicao.findUnique({
+      where: { id },
+      include: {
+        tipoInstituicao: true,
+      },
+    }) as Instituicao;
+  }
+
+  async getByTipoInstituicao(tipoId: number): Promise<Instituicao[]> {
+    return await this.prisma.instituicao.findMany({
+      where: { fk_tipo: tipoId },
+      include: { tipoInstituicao: true },
+    }) as Instituicao[];
   }
 }

@@ -28,6 +28,18 @@ export class EnderecoService {
     }) as Endereco;
   }
 
+  async remove(id: number): Promise<Endereco> {
+    return await this.prisma.endereco.delete({
+      where: { id },
+      include: {
+        logradouro: true,
+        bairro: true,
+        cidade: true,
+        estado: true,
+      }
+    }) as Endereco;
+  }
+
   async getAll(): Promise<Endereco[]> {
     return await this.prisma.endereco.findMany({
       include: {
@@ -39,20 +51,8 @@ export class EnderecoService {
     }) as Endereco[];
   }
 
-  async getById(id: number): Promise<Endereco | null> {
+  async getById(id: number): Promise<Endereco> {
     return await this.prisma.endereco.findUnique({
-      where: { id },
-      include: {
-        logradouro: true,
-        bairro: true,
-        cidade: true,
-        estado: true,
-      }
-    }) as Endereco;
-  }
-
-  async remove(id: number): Promise<Endereco> {
-    return await this.prisma.endereco.delete({
       where: { id },
       include: {
         logradouro: true,

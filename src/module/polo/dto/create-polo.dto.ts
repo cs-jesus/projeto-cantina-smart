@@ -1,13 +1,20 @@
-import { IsAlpha, IsNotEmpty, IsOptional, IsString, Length, Matches, ValidateNested } from "class-validator";
-import { Polo } from "../entities/polo.entity";
-import { Prisma } from "@prisma/client";
+import { IsAlpha, IsInt, IsNotEmpty, IsOptional, IsString, Length, Matches, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { Instituicao } from "src/module/instituicao/entities/instituicao.entity";
+
+class InstituicaoConnectInput {
+    @IsInt()
+    id: number;
+}
+
+class EnderecoConnectInput {
+    @IsInt()
+    id: number;
+}
 
 const compMinLenght = 3, compMaxLenght = 32;
 const nomeMinLenght = 3, nomeMaxLenght = 64;
 
-export class CreatePoloDto extends Polo {
+export class CreatePoloDto {
 
     @IsString({ message: "O tipo de dado deve ser uma string" })
     @IsOptional()
@@ -22,14 +29,14 @@ export class CreatePoloDto extends Polo {
     nome: string;
 
     @ValidateNested()
-    @Type(() => Instituicao)
-    @IsNotEmpty()
-    instituicao: Prisma.InstituicaoCreateNestedOneWithoutPolosInput;
+    @Type(() => InstituicaoConnectInput)
+    @IsNotEmpty({})
+    instituicao: InstituicaoConnectInput;
 
-    /*
+
     @ValidateNested()
-    @Type(() => Endereco)
+    @Type(() => EnderecoConnectInput)
     @IsNotEmpty()
-    endereco: Prisma.EnderecoCreateNestedOneWithoutPolosInput;
-    */
+    endereco: EnderecoConnectInput;
+
 }

@@ -3,6 +3,8 @@ import { Prisma } from "@prisma/client";
 export class Polo implements Prisma.PoloCreateInput {
 
     //Definição de atributo básico
+    fk_instituicao: number;
+    fk_endereco: number;
     complemento?: string;
     nome: string;
 

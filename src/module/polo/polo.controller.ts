@@ -2,24 +2,30 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PoloService } from './polo.service';
 import { CreatePoloDto } from './dto/create-polo.dto';
 import { UpdatePoloDto } from './dto/update-polo.dto';
+import { Polo } from './entities/polo.entity';
 
 @Controller('polo')
 export class PoloController {
   constructor(private readonly poloService: PoloService) { }
 
   @Post()
-  create(@Body() createPoloDto: CreatePoloDto) {
-    return this.poloService.create(createPoloDto);
+  async create(@Body() data: CreatePoloDto): Promise<Polo> {
+    return await this.poloService.create(data);
   }
 
   @Get()
-  getAll() {
-    return this.poloService.getAll();
+  async getAll(): Promise<Polo[]> {
+    return await this.poloService.getAll();
   }
 
   @Get(':id')
-  getById(@Param('id') id: string) {
-    return this.poloService.getById(+id);
+  async getById(@Param('id') id: string): Promise<Polo> {
+    return await this.poloService.getById(+id);
+  }
+
+  @Get(':instituicao/fk')
+  async getByInstituicao(@Param('instituicaoId') instituicaoId: string): Promise<Polo[]> {
+    return await this.poloService.getByInstituicao(+instituicaoId);
   }
 
   @Patch(':id')
@@ -28,7 +34,7 @@ export class PoloController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.poloService.remove(+id);
+  async remove(@Param('id') id: string): Promise<Polo> {
+    return await this.poloService.remove(+id);
   }
 }

@@ -25,7 +25,7 @@ export class PoloService {
     }) as Polo;
   }
 
-  update(id: number, updatePoloDto: UpdatePoloDto) {
+  update(id: number, data: UpdatePoloDto) {
     return `This action updates a #${id} polo`;
   }
 

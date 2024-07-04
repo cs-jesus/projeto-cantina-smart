@@ -1,39 +1,54 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule } from './prisma/prisma.module';
+import { CreateInstituicaoUseCase } from './application/use-cases/instituicao/create-instituicao.use-case';
+import { DeleteInstituicaoUseCase } from './application/use-cases/instituicao/delete-instituicao.use-case';
+import { GetInstituicaoByIdUseCase } from './application/use-cases/instituicao/get-instituicao-by-id.use-case';
+import { GetInstituicoesUseCase } from './application/use-cases/instituicao/get-instituicoes.use-case';
+import { UpdateInstituicaoUseCase } from './application/use-cases/instituicao/update-instituicao.use-case';
+import { ValidateInstituicaoNameUseCase } from './application/use-cases/instituicao/validate-instituicao-name.use-case';
+import { CreateTipoInstituicaoUseCase } from './application/use-cases/tipo-instituicao/create-tipo-instituicao.use-case';
+import { DeleteTipoInstituicaoUseCase } from './application/use-cases/tipo-instituicao/delete-tipo-instituicao.use-case';
+import { GetTipoInstituicaoByIdUseCase } from './application/use-cases/tipo-instituicao/get-tipo-instituicao-by-id.use-case';
+import { GetTipoInstituicoesUseCase } from './application/use-cases/tipo-instituicao/get-tipo-instituicoes.use-case';
+import { UpdateTipoInstituicaoUseCase } from './application/use-cases/tipo-instituicao/update-tipo-instituicao.use-case';
+import { ValidateTipoInstituicaoNameUseCase } from './application/use-cases/tipo-instituicao/validate-tipo-instituicao-name.use-case';
+import { InstituicaoService } from './domain/service/instituicao.service';
+import { TipoInstituicaoService } from './domain/service/tipo-instituicao.service';
+import { InstituicaoController } from './module/instituicao/instituicao.controller';
+import { TipoInstituicaoController } from './module/tipo-instituicao/tipo-instituicao.controller';
+import { PrismaInstituicaoRepository } from './infraestructure/repositories/prisma/prisma-instituicao.repository';
+import { PrismaTipoInstituicaoRepository } from './infraestructure/repositories/prisma/prisma-tipo-instituicao.repository';
 
-import { TipoInstituicaoModule } from './module/tipo-instituicao/tipo-instituicao.module';
-import { InstituicaoModule } from './module/instituicao/instituicao.module';
-import { BairroModule } from './module/bairro/bairro.module';
-import { CidadeModule } from './module/cidade/cidade.module';
-import { EstadoModule } from './module/estado/estado.module';
-import { EnderecoModule } from './module/endereco/endereco.module';
-import { PoloModule } from './module/polo/polo.module';
-import { JuridicaModule } from './module/juridica/juridica.module';
-import { FisicaModule } from './module/fisica/fisica.module';
-import { EstabelecimentoModule } from './module/estabelecimento/estabelecimento.module';
-import { TipoJuridicoModule } from './module/tipo-juridico/tipo-juridico.module';
-import { LogradouroModule } from './module/logradouro/logradouro.module';
-import { FilialModule } from './module/filial/filial.module';
-import { FuncaoModule } from './module/funcao/funcao.module';
-import { ColaboradorModule } from './module/colaborador/colaborador.module';
-import { ProprietarioEstabelecimentoModule } from './module/proprietario-estabelecimento/proprietario-estabelecimento.module';
-import { FuncionarioFilialModule } from './module/funcionario-filial/funcionario-filial.module';
-import { ProdutoModule } from './module/produto/produto.module';
-import { CategoriaProdutoModule } from './module/categoria-produto/categoria-produto.module';
-import { UnidadeMedidaModule } from './module/unidade-medida/unidade-medida.module';
-import { ProdutoFilialModule } from './module/produto-filial/produto-filial.module';
+
 
 @Module({
-  imports: [
-    PrismaModule,
-    TipoInstituicaoModule, InstituicaoModule, PoloModule,
-    LogradouroModule, BairroModule, CidadeModule, EstadoModule, EnderecoModule,
-    JuridicaModule, FisicaModule, TipoJuridicoModule, EstabelecimentoModule, FilialModule,
-    FuncaoModule, ColaboradorModule, ProprietarioEstabelecimentoModule, FuncionarioFilialModule,
-    ProdutoModule, CategoriaProdutoModule, UnidadeMedidaModule, ProdutoFilialModule,
-  ],
+  imports: [PrismaModule],
 
-  controllers: [],
-  providers: [],
+  controllers: [InstituicaoController, TipoInstituicaoController],
+
+  providers: [
+    InstituicaoService,
+    {
+      provide: 'InstituicaoRepository',
+      useClass: PrismaInstituicaoRepository,
+    },
+    CreateInstituicaoUseCase,
+    GetInstituicoesUseCase,
+    GetInstituicaoByIdUseCase,
+    UpdateInstituicaoUseCase,
+    DeleteInstituicaoUseCase,
+    ValidateInstituicaoNameUseCase,
+    TipoInstituicaoService,
+    {
+      provide: 'TipoInstituicaoRepository',
+      useClass: PrismaTipoInstituicaoRepository,
+    },
+    CreateTipoInstituicaoUseCase,
+    GetTipoInstituicoesUseCase,
+    GetTipoInstituicaoByIdUseCase,
+    UpdateTipoInstituicaoUseCase,
+    DeleteTipoInstituicaoUseCase,
+    ValidateTipoInstituicaoNameUseCase,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

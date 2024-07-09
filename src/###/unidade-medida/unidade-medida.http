@@ -1,0 +1,30 @@
+### Requisição de cadastro
+POST http://localhost:3000/unidade-medida
+Content-Type: application/json
+
+{
+  "nome": "Unidade",
+  "sigla": "un"
+}
+
+
+### Requisição de listagem
+GET http://localhost:3000/unidade-medida
+
+
+### Requisição de consulta por ID
+GET http://localhost:3000/unidade-medida/
+
+
+### Requisição de edição
+PATCH http://localhost:3000/unidade-medida/
+Content-Type: application/json
+
+{
+  "nome": "",
+  "sigla": "",
+}
+
+
+### Requisição de exclusão
+DELETE http://localhost:3000/unidade-medida/

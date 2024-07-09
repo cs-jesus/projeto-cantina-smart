@@ -1,0 +1,22 @@
+###
+POST http://localhost:3000/endereco
+Content-Type: application/json
+
+{
+  "logradouro": { "id": 4 },
+  "bairro": { "id": 4 },
+  "cidade": { "id": 4 },
+  "estado": { "id": 2 },
+  "cep": "12345678",
+  "numero": "123"
+}
+
+###
+GET http://localhost:3000/endereco
+
+###
+GET http://localhost:3000/endereco/1
+
+
+###
+DELETE http://localhost:3000/endereco/1

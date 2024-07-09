@@ -1,0 +1,28 @@
+### Requisição de cadastro
+POST http://localhost:3000/bairro
+Content-Type: application/json
+
+{
+  "nome": "AAAAAAAA"
+}
+
+
+### Requisição de listagem
+GET http://localhost:3000/bairro
+
+
+### Requisição de consulta por ID
+GET http://localhost:3000/bairro/
+
+
+### Requisição de edição
+PATCH http://localhost:3000/bairro/
+Content-Type: application/json
+
+{
+  "nome": "",
+}
+
+
+### Requisição de exclusão
+DELETE http://localhost:3000/bairro/

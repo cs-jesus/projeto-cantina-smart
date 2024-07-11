@@ -17,7 +17,7 @@ export class TipoInstituicaoController {
     private readonly updateTipoInstituicaoUseCase: UpdateTipoInstituicaoUseCase,
     private readonly deleteTipoInstituicaoUseCase: DeleteTipoInstituicaoUseCase,
     private readonly validateTipoInstituicaoNameUseCase: ValidateTipoInstituicaoNameUseCase
-  ) {}
+  ) { }
 
   @Post()
   async create(@Body() createTipoInstituicaoDto: CreateTipoInstituicaoDto) {

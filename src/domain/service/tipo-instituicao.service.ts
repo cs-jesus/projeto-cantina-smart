@@ -2,7 +2,7 @@ import { TipoInstituicaoRepository } from '../repositories/tipo-instituicao.repo
 import { TipoInstituicao } from '../entities/tipo-instituicao.entity';
 
 export class TipoInstituicaoService {
-  constructor(private readonly tipoInstituicaoRepository: TipoInstituicaoRepository) {}
+  constructor(private readonly tipoInstituicaoRepository: TipoInstituicaoRepository) { }
 
   async createTipoInstituicao(descricao: string): Promise<TipoInstituicao> {
     const tipoInstituicao = new TipoInstituicao(0, descricao);

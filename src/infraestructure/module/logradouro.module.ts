@@ -5,15 +5,18 @@ import { LogradouroService } from "src/domain/service/logradouro.service";
 import { CreateLogradouroUseCase } from "src/application/use-cases/logradouro/create-logradouro.use-case";
 
 import { PrismaModule } from "../prisma/prisma.module";
+import { UpdateLogradouroUseCase } from "src/application/use-cases/logradouro/update-logradouro.use-case";
 
 @Module({
     imports: [PrismaModule],
     controllers: [LogradouroController],
-    
-    providers: [
 
+    providers: [
         LogradouroService,
         CreateLogradouroUseCase,
+        UpdateLogradouroUseCase,
+
+
         {
             provide: 'LogradouroRepository',
             useClass: PrismaLogradouroRepository
@@ -23,4 +26,4 @@ import { PrismaModule } from "../prisma/prisma.module";
     exports: [LogradouroService],
 })
 
-export class LogradouroModule {}
+export class LogradouroModule { }

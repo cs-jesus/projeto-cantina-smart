@@ -1,5 +1,6 @@
 export class Logradouro {
-    constructor (
-        public readonly nome: string
-    ) {}
+    constructor(
+        public readonly nome: string,
+        public readonly id?: number,
+    ) { }
 }

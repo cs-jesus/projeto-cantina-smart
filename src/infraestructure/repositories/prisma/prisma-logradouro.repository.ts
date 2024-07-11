@@ -4,21 +4,26 @@ import { LogradouroRepository } from "src/domain/repositories/logradouro.reposit
 import { PrismaService } from "src/infraestructure/prisma/prisma.service";
 
 @Injectable()
-export class PrismaLogradouroRepository implements LogradouroRepository{
-    constructor(private readonly prisma: PrismaService) {}
+export class PrismaLogradouroRepository implements LogradouroRepository {
+    constructor(private readonly prisma: PrismaService) { }
 
     async create(logradouro: Logradouro): Promise<Logradouro> {
-        const criado = await this.prisma.logradouro.create({
+        const created = await this.prisma.logradouro.create({
             data: {
                 nome: logradouro.nome,
             },
         });
-        return new Logradouro(criado.nome);
+        return new Logradouro(created.nome, created.id);
     }
-    
-    update(id: number, logradouro: Logradouro): Promise<Logradouro> {
-        throw new Error("Method not implemented.");
+
+    async update(id: number, logradouro: Logradouro): Promise<Logradouro> {
+        const updated = await this.prisma.logradouro.update({
+            where: { id },
+            data: { nome: logradouro.nome },
+        });
+        return new Logradouro(updated.nome, updated.id);
     }
+
     delete(id: number): Promise<void> {
         throw new Error("Method not implemented.");
     }

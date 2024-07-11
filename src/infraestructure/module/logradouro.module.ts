@@ -1,11 +1,16 @@
 import { Module } from "@nestjs/common";
+import { PrismaModule } from "../prisma/prisma.module";
+
+import { LogradouroService } from "src/domain/service/logradouro.service";
 import { LogradouroController } from "src/interface/controllers/logradouro.controller";
 import { PrismaLogradouroRepository } from "../repositories/prisma/prisma-logradouro.repository";
-import { LogradouroService } from "src/domain/service/logradouro.service";
-import { CreateLogradouroUseCase } from "src/application/use-cases/logradouro/create-logradouro.use-case";
 
-import { PrismaModule } from "../prisma/prisma.module";
+import { CreateLogradouroUseCase } from "src/application/use-cases/logradouro/create-logradouro.use-case";
 import { UpdateLogradouroUseCase } from "src/application/use-cases/logradouro/update-logradouro.use-case";
+import { DeleteLogradouroUseCase } from "src/application/use-cases/logradouro/delete-logradouro.use-case";
+import { FindAllLogradouros } from "src/application/use-cases/logradouro/find-all-logradouros.use-case";
+import { FindLogradouroByIdUseCase } from "src/application/use-cases/logradouro/find-logradouro-by-id.use-case";
+import { FindLogradouroByNameUseCase } from "src/application/use-cases/logradouro/find-logradouro-by-name.use-case";
 
 @Module({
     imports: [PrismaModule],
@@ -15,6 +20,10 @@ import { UpdateLogradouroUseCase } from "src/application/use-cases/logradouro/up
         LogradouroService,
         CreateLogradouroUseCase,
         UpdateLogradouroUseCase,
+        DeleteLogradouroUseCase,
+        FindAllLogradouros,
+        FindLogradouroByIdUseCase,
+        FindLogradouroByNameUseCase,
 
 
         {

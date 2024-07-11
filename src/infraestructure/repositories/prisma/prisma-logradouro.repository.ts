@@ -24,17 +24,25 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
         return new Logradouro(updated.nome, updated.id);
     }
 
-    delete(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+    async delete(id: number): Promise<void> {
+        await this.prisma.logradouro.delete({ where: { id } });
     }
-    findAll(): Promise<Logradouro[]> {
-        throw new Error("Method not implemented.");
+
+    async findAll(): Promise<Logradouro[]> {
+        const logradouros = await this.prisma.logradouro.findMany();
+        return logradouros.map(logradouro => new Logradouro(logradouro.nome, logradouro.id))
     }
-    findById(id: number): Promise<Logradouro | null> {
-        throw new Error("Method not implemented.");
+
+    async findById(id: number): Promise<Logradouro | null> {
+        const logradouro = await this.prisma.logradouro.findUnique({ where: { id } });
+        if (!logradouro) return null;
+        return new Logradouro(logradouro.nome, logradouro.id);
     }
-    findByName(name: string): Promise<Logradouro | null> {
-        throw new Error("Method not implemented.");
+
+    async findByName(name: string): Promise<Logradouro | null> {
+        const logradouro = await this.prisma.logradouro.findUnique({ where: { nome: name } });
+        if (!logradouro) return null;
+        return new Logradouro(logradouro.nome, logradouro.id);
     }
 
 }

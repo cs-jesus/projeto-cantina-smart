@@ -6,6 +6,7 @@ Content-Type: application/json
   "nome": "abcdc"
 }
 
+
 ###
 PATCH http://localhost:3000/logradouro/1
 Content-Type: application/json
@@ -13,3 +14,19 @@ Content-Type: application/json
 {
   "nome": "XYZ"
 }
+
+
+###
+DELETE http://localhost:3000/logradouro/1
+
+
+###
+GET http://localhost:3000/logradouro/1
+
+
+###
+GET http://localhost:3000/logradouro
+
+
+###
+GET http://localhost:3000/logradouro/name/abcdc

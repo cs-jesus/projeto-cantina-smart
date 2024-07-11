@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTipoJuridicoDto } from './dto/create-tipo-juridico.dto';
 import { UpdateTipoJuridicoDto } from './dto/update-tipo-juridico.dto'
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { TipoJuridico } from './entities/tipo-juridico.entity'
 
 @Injectable()

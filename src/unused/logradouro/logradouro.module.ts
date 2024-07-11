@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { LogradouroService } from './logradouro.service';
 import { LogradouroController } from './logradouro.controller';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 
 @Module({
   controllers: [LogradouroController],

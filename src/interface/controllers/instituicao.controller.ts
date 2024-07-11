@@ -5,8 +5,9 @@ import { GetInstituicaoByIdUseCase } from 'src/application/use-cases/instituicao
 import { GetInstituicoesUseCase } from 'src/application/use-cases/instituicao/get-instituicoes.use-case';
 import { UpdateInstituicaoUseCase } from 'src/application/use-cases/instituicao/update-instituicao.use-case';
 import { ValidateInstituicaoNameUseCase } from 'src/application/use-cases/instituicao/validate-instituicao-name.use-case';
-import { CreateInstituicaoDto } from 'src/module/instituicao/dto/create-instituicao.dto';
-import { UpdateInstituicaoDto } from 'src/module/instituicao/dto/update-instituicao.dto';
+import { CreateInstituicaoDto } from '../dto/create-instituicao.dto';
+import { UpdateInstituicaoDto } from '../dto/update-instituicao.dto';
+
 
 @Controller('instituicao')
 export class InstituicaoController {

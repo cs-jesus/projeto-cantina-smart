@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLogradouroDto } from './dto/create-logradouro.dto';
 import { UpdateLogradouroDto } from './dto/update-logradouro.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { Logradouro } from './entities/logradouro.entity';
 
 @Injectable()

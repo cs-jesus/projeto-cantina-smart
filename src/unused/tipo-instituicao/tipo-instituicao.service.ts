@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTipoInstituicaoDto } from './dto/create-tipo-instituicao.dto';
 import { UpdateTipoInstituicaoDto } from './dto/update-tipo-instituicao.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { TipoInstituicao } from './entities/tipo-instituicao.entity';
 
 @Injectable()

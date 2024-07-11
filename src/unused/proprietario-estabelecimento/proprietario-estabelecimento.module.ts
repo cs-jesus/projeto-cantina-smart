@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProprietarioEstabelecimentoService } from './proprietario-estabelecimento.service';
 import { ProprietarioEstabelecimentoController } from './proprietario-estabelecimento.controller';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 
 @Module({
   controllers: [ProprietarioEstabelecimentoController],

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUnidadeMedidaDto } from './dto/create-unidade-medida.dto';
 import { UpdateUnidadeMedidaDto } from './dto/update-unidade-medida.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { UnidadeMedida } from './entities/unidade-medida.entity';
 
 @Injectable()

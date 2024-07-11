@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePoloDto } from './dto/create-polo.dto';
 import { UpdatePoloDto } from './dto/update-polo.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { Polo } from './entities/polo.entity';
 
 @Injectable()

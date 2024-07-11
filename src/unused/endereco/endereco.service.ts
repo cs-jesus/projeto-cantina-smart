@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEnderecoDto } from './dto/create-endereco.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { Endereco } from './entities/endereco.entity';
 
 @Injectable()

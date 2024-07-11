@@ -1,0 +1,7 @@
+###
+POST http://localhost:3000/logradouro
+Content-Type: application/json
+
+{
+  "nome": "abcdc"
+}

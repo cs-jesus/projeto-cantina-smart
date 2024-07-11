@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFisicaDto } from './dto/create-fisica.dto';
 import { UpdateFisicaDto } from './dto/update-fisica.dto'
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { Fisica } from './entities/fisica.entity'
 
 @Injectable()

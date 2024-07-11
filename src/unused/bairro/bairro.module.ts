@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BairroService } from './bairro.service';
 import { BairroController } from './bairro.controller';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 
 @Module({
   controllers: [BairroController],

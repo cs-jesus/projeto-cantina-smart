@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Instituicao } from "src/domain/entities/instituicao.entity";
 import { TipoInstituicao } from "src/domain/entities/tipo-instituicao.entity";
 import { InstituicaoRepository } from "src/domain/repositories/instituicao.repository";
-import { PrismaService } from "src/prisma/prisma.service";
+import { PrismaService } from "src/infraestructure/prisma/prisma.service";
 
 @Injectable()
 export class PrismaInstituicaoRepository implements InstituicaoRepository {

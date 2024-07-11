@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFuncaoDto } from './dto/create-funcao.dto';
 import { UpdateFuncaoDto } from './dto/update-funcao.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 import { Funcao } from './entities/funcao.entity';
 
 @Injectable()

@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from './prisma/prisma.module';
 import { CreateInstituicaoUseCase } from './application/use-cases/instituicao/create-instituicao.use-case';
 import { DeleteInstituicaoUseCase } from './application/use-cases/instituicao/delete-instituicao.use-case';
 import { GetInstituicaoByIdUseCase } from './application/use-cases/instituicao/get-instituicao-by-id.use-case';
@@ -14,19 +13,28 @@ import { UpdateTipoInstituicaoUseCase } from './application/use-cases/tipo-insti
 import { ValidateTipoInstituicaoNameUseCase } from './application/use-cases/tipo-instituicao/validate-tipo-instituicao-name.use-case';
 import { InstituicaoService } from './domain/service/instituicao.service';
 import { TipoInstituicaoService } from './domain/service/tipo-instituicao.service';
-import { InstituicaoController } from './module/instituicao/instituicao.controller';
-import { TipoInstituicaoController } from './module/tipo-instituicao/tipo-instituicao.controller';
+
 import { PrismaInstituicaoRepository } from './infraestructure/repositories/prisma/prisma-instituicao.repository';
 import { PrismaTipoInstituicaoRepository } from './infraestructure/repositories/prisma/prisma-tipo-instituicao.repository';
+import { InstituicaoController } from './interface/controllers/instituicao.controller';
+import { TipoInstituicaoController } from './interface/controllers/tipo-instituicao.controller';
+
+import { LogradouroModule } from './infraestructure/module/logradouro.module';
+import { PrismaModule } from './infraestructure/prisma/prisma.module';
 
 
 
 @Module({
-  imports: [PrismaModule],
+  imports: [
+
+    LogradouroModule,
+    PrismaModule
+    ],
 
   controllers: [InstituicaoController, TipoInstituicaoController],
 
   providers: [
+
     InstituicaoService,
     {
       provide: 'InstituicaoRepository',

@@ -19,7 +19,9 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
     async update(id: number, logradouro: Logradouro): Promise<Logradouro> {
         const updated = await this.prisma.logradouro.update({
             where: { id },
-            data: { nome: logradouro.nome },
+            data: { 
+                nome: logradouro.nome 
+            },
         });
         return new Logradouro(updated.nome, updated.id);
     }
@@ -44,5 +46,4 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
         if (!logradouro) return null;
         return new Logradouro(logradouro.nome, logradouro.id);
     }
-
 }

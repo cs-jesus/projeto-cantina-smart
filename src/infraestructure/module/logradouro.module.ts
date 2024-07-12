@@ -14,10 +14,12 @@ import { FindLogradouroByNameUseCase } from "src/application/use-cases/logradour
 
 @Module({
     imports: [PrismaModule],
+    exports: [LogradouroService],
     controllers: [LogradouroController],
 
     providers: [
         LogradouroService,
+
         CreateLogradouroUseCase,
         UpdateLogradouroUseCase,
         DeleteLogradouroUseCase,
@@ -25,14 +27,10 @@ import { FindLogradouroByNameUseCase } from "src/application/use-cases/logradour
         FindLogradouroByIdUseCase,
         FindLogradouroByNameUseCase,
 
-
         {
             provide: 'LogradouroRepository',
             useClass: PrismaLogradouroRepository
         },
     ],
 
-    exports: [LogradouroService],
-})
-
-export class LogradouroModule { }
+}) export class LogradouroModule { }

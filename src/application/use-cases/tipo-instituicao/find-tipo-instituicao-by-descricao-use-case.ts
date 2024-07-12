@@ -7,7 +7,7 @@ export class FindTipoInstituicaoByDescricaoUseCase {
     constructor(private readonly tipoInstituicaoService: TipoInstituicaoService) { }
 
     async execute(descricao: string): Promise<TipoInstituicao | null> {
-        return this.tipoInstituicaoService.FindTipoInstituicaoByDescricao(descricao);
+        return this.tipoInstituicaoService.findTipoInstituicaoByDescricao(descricao);
 
     }
 }

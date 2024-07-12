@@ -4,6 +4,9 @@ import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TipoInstituicaoService {
+    findTipoInstituicaoByDescricao(descricao: string): TipoInstituicao | PromiseLike<TipoInstituicao> {
+        throw new Error("Method not implemented.");
+    }
   	constructor(
 		@Inject('TipoInstituicaoRepository')
     	private readonly tipoInstituicaoRepository: TipoInstituicaoRepository

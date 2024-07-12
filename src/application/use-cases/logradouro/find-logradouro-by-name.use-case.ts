@@ -8,5 +8,6 @@ export class FindLogradouroByNameUseCase {
 
     async execute(nome: string): Promise<Logradouro | null> {
         return this.logradouroService.findLogradouroByName(nome);
+        
     }
 }

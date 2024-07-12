@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Param, Body, Patch, Delete } from '@nestjs/common';
 import { CreateTipoInstituicaoUseCase } from '../../application/use-cases/tipo-instituicao/create-tipo-instituicao.use-case';
-import { GetTipoInstituicoesUseCase } from '../../application/use-cases/tipo-instituicao/get-tipo-instituicoes.use-case';
-import { GetTipoInstituicaoByIdUseCase } from '../../application/use-cases/tipo-instituicao/get-tipo-instituicao-by-id.use-case';
+import { GetTipoInstituicoesUseCase } from '../../application/use-cases/tipo-instituicao/find-all-tipo-instituicoes.use-case';
+import { GetTipoInstituicaoByIdUseCase } from '../../application/use-cases/tipo-instituicao/find-tipo-instituicao-by-id.use-case';
 import { UpdateTipoInstituicaoUseCase } from '../../application/use-cases/tipo-instituicao/update-tipo-instituicao.use-case';
 import { DeleteTipoInstituicaoUseCase } from '../../application/use-cases/tipo-instituicao/delete-tipo-instituicao.use-case';
 import { ValidateTipoInstituicaoNameUseCase } from '../../application/use-cases/tipo-instituicao/validate-tipo-instituicao-name.use-case';

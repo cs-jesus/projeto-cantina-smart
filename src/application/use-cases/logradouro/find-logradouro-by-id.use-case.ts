@@ -7,6 +7,6 @@ export class FindLogradouroByIdUseCase {
     constructor(private readonly logradouroService: LogradouroService) { }
 
     async execute(id: number): Promise<Logradouro | null> {
-        return this.logradouroService.findLogradouroById(id);
+        return this.logradouroService.findLogradouroById(+id);
     }
 }

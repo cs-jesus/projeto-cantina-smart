@@ -7,6 +7,6 @@ export class UpdateLogradouroUseCase {
     constructor(private readonly logradouroService: LogradouroService) { }
 
     async execute(id: number, nome: string): Promise<Logradouro> {
-        return this.logradouroService.updateLogradouro(id, nome)
+        return this.logradouroService.updateLogradouro(+id, nome)
     }
 }

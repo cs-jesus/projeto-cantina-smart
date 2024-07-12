@@ -6,6 +6,6 @@ export class DeleteLogradouroUseCase {
     constructor(private readonly logradouroService: LogradouroService) { }
 
     async execute(id: number): Promise<void> {
-        return this.logradouroService.deleteLogradouro(id);
+        return this.logradouroService.deleteLogradouro(+id);
     }
 }

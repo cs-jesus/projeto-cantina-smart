@@ -1,10 +1,12 @@
+import { Injectable } from "@nestjs/common";
 import { TipoInstituicao } from "src/domain/entities/tipo-instituicao.entity";
 import { TipoInstituicaoService } from "src/domain/service/tipo-instituicao.service";
 
-export class GetTipoInstituicoesUseCase {
+@Injectable()
+export class FindAllTipoInstituicoesUseCase {
     constructor(private readonly tipoInstituicaoService: TipoInstituicaoService) {}
   
     async execute(): Promise<TipoInstituicao[]> {
-      return this.tipoInstituicaoService.getTipoInstituicoes();
+        return this.tipoInstituicaoService.findAllTipoInstituicoes();
     }
-  }
+}

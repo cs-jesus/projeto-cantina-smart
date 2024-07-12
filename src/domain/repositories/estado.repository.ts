@@ -6,5 +6,5 @@ export interface EstadoRepository {
     delete(id: number): Promise<void>;
     findAll(): Promise<Estado[]>;
     findById(id: number): Promise<Estado | null>;
-    findByName(name: string): Promise<Estado | null>;
+    findByUf(uf: string): Promise<Estado | null>;
 }

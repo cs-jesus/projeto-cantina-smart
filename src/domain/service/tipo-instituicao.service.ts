@@ -1,33 +1,37 @@
 import { TipoInstituicaoRepository } from '../repositories/tipo-instituicao.repository';
 import { TipoInstituicao } from '../entities/tipo-instituicao.entity';
+import { Inject, Injectable } from '@nestjs/common';
 
+@Injectable()
 export class TipoInstituicaoService {
-  constructor(private readonly tipoInstituicaoRepository: TipoInstituicaoRepository) { }
+  	constructor(
+		@Inject('TipoInstituicaoRepository')
+    	private readonly tipoInstituicaoRepository: TipoInstituicaoRepository
+	) { }
 
-  async createTipoInstituicao(descricao: string): Promise<TipoInstituicao> {
-    const tipoInstituicao = new TipoInstituicao(0, descricao);
-    return this.tipoInstituicaoRepository.save(tipoInstituicao);
-  }
+	async createTipoInstituicao(descricao: string): Promise<TipoInstituicao> {
+		const tipoInstituicao = new TipoInstituicao(descricao);
+		return this.tipoInstituicaoRepository.create(tipoInstituicao);
+	}
 
-  async updateTipoInstituicao(id: number, descricao: string): Promise<TipoInstituicao> {
-    const tipoInstituicao = new TipoInstituicao(id, descricao);
-    return this.tipoInstituicaoRepository.update(id, tipoInstituicao);
-  }
+	async updateTipoInstituicao(id: number, descricao: string): Promise<TipoInstituicao> {
+		const tipoInstituicao = new TipoInstituicao(descricao);
+		return this.tipoInstituicaoRepository.update(+id, tipoInstituicao);
+	}
 
-  async deleteTipoInstituicao(id: number): Promise<void> {
-    return this.tipoInstituicaoRepository.delete(id);
-  }
+	async deleteTipoInstituicao(id: number): Promise<void> {
+		return this.tipoInstituicaoRepository.delete(+id);
+	}
 
-  async getTipoInstituicaoById(id: number): Promise<TipoInstituicao | null> {
-    return this.tipoInstituicaoRepository.findById(id);
-  }
+	async findAllTipoInstituicoes(): Promise<TipoInstituicao[]> {
+		return this.tipoInstituicaoRepository.findAll();
+	}
 
-  async getTipoInstituicoes(): Promise<TipoInstituicao[]> {
-    return this.tipoInstituicaoRepository.findAll();
-  }
+	async findTipoInstituicaoById(id: number): Promise<TipoInstituicao | null> {
+		return this.tipoInstituicaoRepository.findById(+id);
+	}
 
-  async validateDescricao(descricao: string): Promise<boolean> {
-    const tipoInstituicao = await this.tipoInstituicaoRepository.findByDescricao(descricao);
-    return tipoInstituicao !== null;
-  }
+	async findTipoInstituicaoByName(descricao: string): Promise<TipoInstituicao | null> {
+        return this.tipoInstituicaoRepository.findByDescricao(descricao);
+    }
 }

@@ -1,7 +1,6 @@
 import { LogradouroRepository } from "../repositories/logradouro.repository";
 import { Logradouro } from "../entities/logradouro.entity";
 import { Injectable, Inject } from "@nestjs/common";
-import { promises } from "dns";
 
 @Injectable()
 export class LogradouroService {
@@ -17,11 +16,11 @@ export class LogradouroService {
 
     async updateLogradouro(id: number, nome: string): Promise<Logradouro> {
         const logradouro = new Logradouro(nome);
-        return this.logradouroRepository.update(id, logradouro);
+        return this.logradouroRepository.update(+id, logradouro);
     }
 
     async deleteLogradouro(id: number): Promise<void> {
-        return this.logradouroRepository.delete(id)
+        return this.logradouroRepository.delete(+id)
     }
 
     async findAllLogradouros(): Promise<Logradouro[]> {
@@ -29,7 +28,7 @@ export class LogradouroService {
     }
 
     async findLogradouroById(id: number): Promise<Logradouro | null> {
-        return this.logradouroRepository.findById(id);
+        return this.logradouroRepository.findById(+id);
     }
 
     async findLogradouroByName(nome: string): Promise<Logradouro | null> {

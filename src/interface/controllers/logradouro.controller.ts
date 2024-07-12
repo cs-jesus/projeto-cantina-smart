@@ -1,13 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { Controller, Body, Param, Post, Patch, Delete, Get } from "@nestjs/common";
+
 import { CreateLogradouroUseCase } from "src/application/use-cases/logradouro/create-logradouro.use-case";
 import { UpdateLogradouroUseCase } from "src/application/use-cases/logradouro/update-logradouro.use-case";
-
-import { CreateLogradouroDto } from "../dto/create-logradouro.dto";
-import { UpdateLogradouroDto } from "../dto/update-logradouro.dto";
 import { DeleteLogradouroUseCase } from "src/application/use-cases/logradouro/delete-logradouro.use-case";
 import { FindAllLogradouros } from "src/application/use-cases/logradouro/find-all-logradouros.use-case";
 import { FindLogradouroByIdUseCase } from "src/application/use-cases/logradouro/find-logradouro-by-id.use-case";
 import { FindLogradouroByNameUseCase } from "src/application/use-cases/logradouro/find-logradouro-by-name.use-case";
+
+import { CreateLogradouroDto } from "../dto/create-logradouro.dto";
+import { UpdateLogradouroDto } from "../dto/update-logradouro.dto";
 
 @Controller('logradouro')
 export class LogradouroController {
@@ -33,7 +34,7 @@ export class LogradouroController {
 
     @Delete(':id')
     async delete(@Param('id') id: number) {
-        return this.deleteLogradouroUseCase.execute(id);
+        return this.deleteLogradouroUseCase.execute(+id);
     }
 
     @Get()
@@ -43,7 +44,7 @@ export class LogradouroController {
 
     @Get(':id')
     async findById(@Param('id') id: number) {
-        return this.findLogradouroByIdUseCase.execute(id);
+        return this.findLogradouroByIdUseCase.execute(+id);
     }
 
     @Get('name/:name')

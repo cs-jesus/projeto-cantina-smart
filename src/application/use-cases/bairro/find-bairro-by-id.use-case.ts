@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { Logradouro } from "src/domain/entities/logradouro.entity";
-import { LogradouroService } from "src/domain/service/logradouro.service";
+import { Bairro } from "src/domain/entities/bairro.entity";
+import { BairroService } from "src/domain/service/bairro.service";
 
 @Injectable()
-export class FindLogradouroByIdUseCase {
-    constructor(private readonly logradouroService: LogradouroService) { }
+export class FindBairroByIdUseCase {
+    constructor(private readonly bairroService: BairroService) { }
 
-    async execute(id: number): Promise<Logradouro | null> {
-        return this.logradouroService.findLogradouroById(+id);
+    async execute(id: number): Promise<Bairro | null> {
+        return this.bairroService.findBairroById(+id);
     }
 }

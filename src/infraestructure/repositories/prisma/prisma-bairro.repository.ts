@@ -1,49 +1,50 @@
+// src/infrastructure/repositories/prisma-bairro.repository.ts
 import { Injectable } from "@nestjs/common";
-import { Logradouro } from "src/domain/entities/logradouro.entity";
-import { LogradouroRepository } from "src/domain/repositories/logradouro.repository";
+import { Bairro } from "src/domain/entities/bairro.entity";
+import { BairroRepository } from "src/domain/repositories/bairro.repository";
 import { PrismaService } from "src/infraestructure/prisma/prisma.service";
 
 @Injectable()
-export class PrismaLogradouroRepository implements LogradouroRepository {
+export class PrismaBairroRepository implements BairroRepository {
     constructor(private readonly prisma: PrismaService) { }
 
-    async create(logradouro: Logradouro): Promise<Logradouro> {
-        const created = await this.prisma.logradouro.create({
+    async create(bairro: Bairro): Promise<Bairro> {
+        const created = await this.prisma.bairro.create({
             data: {
-                nome: logradouro.nome,
+                nome: bairro.nome,
             },
         });
-        return new Logradouro(created.nome, created.id);
+        return new Bairro(created.nome, created.id);
     }
 
-    async update(id: number, logradouro: Logradouro): Promise<Logradouro> {
-        const updated = await this.prisma.logradouro.update({
+    async update(id: number, bairro: Bairro): Promise<Bairro> {
+        const updated = await this.prisma.bairro.update({
             where: { id },
-            data: { 
-                nome: logradouro.nome 
+            data: {
+                nome: bairro.nome
             },
         });
-        return new Logradouro(updated.nome, updated.id);
+        return new Bairro(updated.nome, updated.id);
     }
 
     async delete(id: number): Promise<void> {
-        await this.prisma.logradouro.delete({ where: { id } });
+        await this.prisma.bairro.delete({ where: { id } });
     }
 
-    async findAll(): Promise<Logradouro[]> {
-        const logradouros = await this.prisma.logradouro.findMany();
-        return logradouros.map(logradouro => new Logradouro(logradouro.nome, logradouro.id))
+    async findAll(): Promise<Bairro[]> {
+        const bairros = await this.prisma.bairro.findMany();
+        return bairros.map(bairro => new Bairro(bairro.nome, bairro.id))
     }
 
-    async findById(id: number): Promise<Logradouro | null> {
-        const logradouro = await this.prisma.logradouro.findUnique({ where: { id } });
-        if (!logradouro) return null;
-        return new Logradouro(logradouro.nome, logradouro.id);
+    async findById(id: number): Promise<Bairro | null> {
+        const bairro = await this.prisma.bairro.findUnique({ where: { id } });
+        if (!bairro) return null;
+        return new Bairro(bairro.nome, bairro.id);
     }
 
-    async findByName(name: string): Promise<Logradouro | null> {
-        const logradouro = await this.prisma.logradouro.findUnique({ where: { nome: name } });
-        if (!logradouro) return null;
-        return new Logradouro(logradouro.nome, logradouro.id);
+    async findByName(name: string): Promise<Bairro | null> {
+        const bairro = await this.prisma.bairro.findUnique({ where: { nome: name } });
+        if (!bairro) return null;
+        return new Bairro(bairro.nome, bairro.id);
     }
 }

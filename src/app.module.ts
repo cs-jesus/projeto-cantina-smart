@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule } from './infraestructure/prisma/prisma.module';
 
-import { TipoInstituicaoModule } from './infraestructure/module/tipo-instituicao.modulo';
-import { InstituicaoModule } from './infraestructure/module/instituicao.modulo';
+import { TipoInstituicaoModule } from './infraestructure/module/tipo-instituicao.module';
+import { InstituicaoModule } from './infraestructure/module/instituicao.module';
 
 import { LogradouroModule } from './infraestructure/module/logradouro.module';
 import { BairroModule } from './infraestructure/module/bairro.module';
@@ -13,7 +13,7 @@ import { EstadoModule } from './infraestructure/module/estado.module';
     imports: [
         PrismaModule,
 
-        TipoInstituicaoModule, InstituicaoModule, 
+        TipoInstituicaoModule, InstituicaoModule,
 
         LogradouroModule, BairroModule, CidadeModule, EstadoModule,
     ],
@@ -21,4 +21,4 @@ import { EstadoModule } from './infraestructure/module/estado.module';
     controllers: [],
     providers: [],
 })
-export class AppModule {}
+export class AppModule { }

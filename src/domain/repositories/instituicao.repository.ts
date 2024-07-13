@@ -1,10 +1,11 @@
 import { Instituicao } from "../entities/instituicao.entity";
 
 export interface InstituicaoRepository {
-  save(instituicao: Instituicao): Promise<Instituicao>;
-  update(id: number, instituicao: Instituicao): Promise<Instituicao>;
-  delete(id: number): Promise<void>;
-  findById(id: number): Promise<Instituicao | null>;
-  findAll(): Promise<Instituicao[]>;
-  findByNome(nome: string): Promise<Instituicao | null>;
+    create(instituicao: Instituicao): Promise<Instituicao>;
+    update(id: number, instituicao: Instituicao): Promise<Instituicao>;
+    delete(id: number): Promise<void>;
+    findAll(): Promise<Instituicao[]>;
+    findById(id: number): Promise<Instituicao | null>;
+    findByName(name: string): Promise<Instituicao | null>;
+    //findByTipo()
 }

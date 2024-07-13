@@ -1,33 +1,38 @@
+import { Inject, Injectable } from '@nestjs/common';
+
 import { InstituicaoRepository } from '../repositories/instituicao.repository';
 import { Instituicao } from '../entities/instituicao.entity';
 
+@Injectable()
 export class InstituicaoService {
-  constructor(private readonly instituicaoRepository: InstituicaoRepository) {}
+    constructor(
+        @Inject('InstituicaoRepository')
+        private readonly instituicaoRepository: InstituicaoRepository
+    ) { }
 
-  async createInstituicao(nome: string, sigla: string, tipoInstituicaoId: number): Promise<Instituicao> {
-    const instituicao = new Instituicao(0, tipoInstituicaoId, nome, sigla);
-    return this.instituicaoRepository.save(instituicao);
-  }
+    async createInstituicao(tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
+        const instituicao = new Instituicao(+tipoInstituicaoId, nome, sigla);
+        return this.instituicaoRepository.create(instituicao);
+    }
 
-  async updateInstituicao(id: number, nome: string, sigla: string, tipoInstituicaoId: number): Promise<Instituicao> {
-    const instituicao = new Instituicao(id, tipoInstituicaoId, nome, sigla);
-    return this.instituicaoRepository.update(id, instituicao);
-  }
+    async updateInstituicao(tipoInstituicaoId: number, nome: string, sigla: string, id: number): Promise<Instituicao> {
+        const instituicao = new Instituicao(tipoInstituicaoId, nome, sigla);
+        return this.instituicaoRepository.update(+id, instituicao);
+    }
 
-  async deleteInstituicao(id: number): Promise<void> {
-    return this.instituicaoRepository.delete(id);
-  }
+    async deleteInstituicao(id: number): Promise<void> {
+        return this.instituicaoRepository.delete(+id);
+    }
 
-  async getInstituicaoById(id: number): Promise<Instituicao | null> {
-    return this.instituicaoRepository.findById(id);
-  }
+    async findAllInstituicoes(): Promise<Instituicao[]> {
+        return this.instituicaoRepository.findAll();
+    }
 
-  async getInstituicoes(): Promise<Instituicao[]> {
-    return this.instituicaoRepository.findAll();
-  }
+    async findInstituicaoById(id: number): Promise<Instituicao | null> {
+        return this.instituicaoRepository.findById(+id);
+    }
 
-  async validateNome(nome: string): Promise<boolean> {
-    const instituicao = await this.instituicaoRepository.findByNome(nome);
-    return instituicao !== null;
-  }
+    async findInstituicaoByName(nome: string): Promise<Instituicao | null> {
+        return this.instituicaoRepository.findByName(nome);
+    }
 }

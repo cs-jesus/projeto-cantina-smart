@@ -10,7 +10,6 @@ import { FindEstadoByUfUseCase } from 'src/application/use-cases/estado/find-est
 import { CreateEstadoDto } from '../dto/create-estado.dto';
 import { UpdateEstadoDto } from '../dto/update-estado.dto';
 
-
 @Controller('estado')
 export class EstadoController {
     constructor(

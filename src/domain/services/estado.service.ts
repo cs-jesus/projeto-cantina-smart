@@ -1,6 +1,7 @@
+import { Injectable, Inject } from "@nestjs/common";
+
 import { EstadoRepository } from "../repositories/estado.repository";
 import { Estado } from "../entities/estado.entity";
-import { Injectable, Inject } from "@nestjs/common";
 
 @Injectable()
 export class EstadoService {

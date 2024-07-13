@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import { LogradouroService } from "src/domain/services/logradouro.service";
+import { CidadeService } from "src/domain/services/cidade.service";
 
 @Injectable()
-export class DeleteLogradouroUseCase {
-    constructor(private readonly logradouroService: LogradouroService) { }
+export class DeleteCidadeUseCase {
+    constructor(private readonly cidadeService: CidadeService) { }
 
     async execute(id: number): Promise<void> {
-        return this.logradouroService.deleteLogradouro(+id);
+        return this.cidadeService.deleteCidade(+id);
     }
 }

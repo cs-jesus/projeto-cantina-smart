@@ -1,6 +1,7 @@
+import { Injectable, Inject } from "@nestjs/common";
+
 import { BairroRepository } from "../repositories/bairro.repository";
 import { Bairro } from "../entities/bairro.entity";
-import { Injectable, Inject } from "@nestjs/common";
 
 @Injectable()
 export class BairroService {

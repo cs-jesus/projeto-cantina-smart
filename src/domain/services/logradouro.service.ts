@@ -1,6 +1,7 @@
+import { Injectable, Inject } from "@nestjs/common";
+
 import { LogradouroRepository } from "../repositories/logradouro.repository";
 import { Logradouro } from "../entities/logradouro.entity";
-import { Injectable, Inject } from "@nestjs/common";
 
 @Injectable()
 export class LogradouroService {
@@ -34,6 +35,4 @@ export class LogradouroService {
     async findLogradouroByName(nome: string): Promise<Logradouro | null> {
         return this.logradouroRepository.findByName(nome);
     }
-
-
 }

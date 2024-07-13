@@ -1,10 +1,10 @@
-import { TipoInstituicaoRepository } from '../repositories/tipo-instituicao.repository';
-import { TipoInstituicao } from '../entities/tipo-instituicao.entity';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from "@nestjs/common";
+
+import { TipoInstituicaoRepository } from "../repositories/tipo-instituicao.repository";
+import { TipoInstituicao } from "../entities/tipo-instituicao.entity";
 
 @Injectable()
 export class TipoInstituicaoService {
-
 	constructor(
 		@Inject('TipoInstituicaoRepository')
 		private readonly tipoInstituicaoRepository: TipoInstituicaoRepository

@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { EstadoService } from 'src/domain/services/estado.service';
+import { Injectable } from "@nestjs/common";
+import { EstadoService } from "src/domain/services/estado.service";
 
 @Injectable()
 export class DeleteEstadoUseCase {

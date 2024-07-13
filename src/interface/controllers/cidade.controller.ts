@@ -1,54 +1,53 @@
 import { Controller, Body, Param, Post, Patch, Delete, Get } from "@nestjs/common";
 
-import { CreateLogradouroUseCase } from "src/application/use-cases/logradouro/create-logradouro.use-case";
-import { UpdateLogradouroUseCase } from "src/application/use-cases/logradouro/update-logradouro.use-case";
-import { DeleteLogradouroUseCase } from "src/application/use-cases/logradouro/delete-logradouro.use-case";
-import { FindAllLogradouros } from "src/application/use-cases/logradouro/find-all-logradouros.use-case";
-import { FindLogradouroByIdUseCase } from "src/application/use-cases/logradouro/find-logradouro-by-id.use-case";
-import { FindLogradouroByNameUseCase } from "src/application/use-cases/logradouro/find-logradouro-by-name.use-case";
+import { CreateCidadeUseCase } from "src/application/use-cases/cidade/create-cidade.use-case";
+import { UpdateCidadeUseCase } from "src/application/use-cases/cidade/update-cidade.use-case";
+import { DeleteCidadeUseCase } from "src/application/use-cases/cidade/delete-cidade.use-case";
+import { FindAllCidades } from "src/application/use-cases/cidade/find-all-cidades.use-case";
+import { FindCidadeByIdUseCase } from "src/application/use-cases/cidade/find-cidade-by-id.use-case";
+import { FindCidadeByNameUseCase } from "src/application/use-cases/cidade/find-cidade-by-name.use-case";
 
-import { CreateLogradouroDto } from "../dto/create-logradouro.dto";
-import { UpdateLogradouroDto } from "../dto/update-logradouro.dto";
+import { CreateCidadeDto } from "../dto/create-cidade.dto";
+import { UpdateCidadeDto } from "../dto/update-cidade.dto";
 
-@Controller('logradouro')
-export class LogradouroController {
+@Controller('cidade')
+export class CidadeController {
     constructor(
-        private readonly createLogradouroUseCase: CreateLogradouroUseCase,
-        private readonly updateLogradouroUseCase: UpdateLogradouroUseCase,
-        private readonly deleteLogradouroUseCase: DeleteLogradouroUseCase,
-        private readonly findAllLogradourosUseCase: FindAllLogradouros,
-        private readonly findLogradouroByIdUseCase: FindLogradouroByIdUseCase,
-        private readonly findLogradouroByNameUseCase: FindLogradouroByNameUseCase,
-
+        private readonly createCidadeUseCase: CreateCidadeUseCase,
+        private readonly updateCidadeUseCase: UpdateCidadeUseCase,
+        private readonly deleteCidadeUseCase: DeleteCidadeUseCase,
+        private readonly findAllCidadesUseCase: FindAllCidades,
+        private readonly findCidadeByIdUseCase: FindCidadeByIdUseCase,
+        private readonly findCidadeByNameUseCase: FindCidadeByNameUseCase,
     ) { }
 
     @Post()
-    async create(@Body() createLogradouroDto: CreateLogradouroDto) {
-        return this.createLogradouroUseCase.execute(createLogradouroDto.nome);
+    async create(@Body() createCidadeDto: CreateCidadeDto) {
+        return this.createCidadeUseCase.execute(createCidadeDto.nome);
     }
 
     @Patch(':id')
-    async update(@Param('id') id: number, @Body() updateLogradouroDto: UpdateLogradouroDto) {
-        return this.updateLogradouroUseCase.execute(+id, updateLogradouroDto.nome);
+    async update(@Param('id') id: number, @Body() updateCidadeDto: UpdateCidadeDto) {
+        return this.updateCidadeUseCase.execute(+id, updateCidadeDto.nome);
     }
 
     @Delete(':id')
     async delete(@Param('id') id: number) {
-        return this.deleteLogradouroUseCase.execute(+id);
+        return this.deleteCidadeUseCase.execute(+id);
     }
 
     @Get()
     async findAll() {
-        return this.findAllLogradourosUseCase.execute();
+        return this.findAllCidadesUseCase.execute();
     }
 
     @Get(':id')
     async findById(@Param('id') id: number) {
-        return this.findLogradouroByIdUseCase.execute(+id);
+        return this.findCidadeByIdUseCase.execute(+id);
     }
 
-    @Get('name/:name')
-    async findByName(@Param('name') name: string) {
-        return this.findLogradouroByNameUseCase.execute(name);
+    @Get("name/:name")
+    async findByName(@Param("name") name: string) {
+        return this.findCidadeByNameUseCase.execute(name);
     }
 }

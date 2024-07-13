@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+
 import { TipoInstituicao } from "src/domain/entities/tipo-instituicao.entity";
 import { TipoInstituicaoRepository } from "src/domain/repositories/tipo-instituicao.repository";
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
 
 @Injectable()
 export class PrismaTipoInstituicaoRepository implements TipoInstituicaoRepository {

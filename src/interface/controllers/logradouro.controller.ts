@@ -19,7 +19,6 @@ export class LogradouroController {
         private readonly findAllLogradourosUseCase: FindAllLogradouros,
         private readonly findLogradouroByIdUseCase: FindLogradouroByIdUseCase,
         private readonly findLogradouroByNameUseCase: FindLogradouroByNameUseCase,
-
     ) { }
 
     @Post()

@@ -1,4 +1,3 @@
-// src/infrastructure/controllers/bairro.controller.ts
 import { Controller, Body, Param, Post, Patch, Delete, Get } from "@nestjs/common";
 
 import { CreateBairroUseCase } from "src/application/use-cases/bairro/create-bairro.use-case";

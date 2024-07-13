@@ -1,6 +1,7 @@
+import { Injectable, Inject } from "@nestjs/common";
+
 import { CidadeRepository } from "../repositories/cidade.repository";
 import { Cidade } from "../entities/cidade.entity";
-import { Injectable, Inject } from "@nestjs/common";
 
 @Injectable()
 export class CidadeService {

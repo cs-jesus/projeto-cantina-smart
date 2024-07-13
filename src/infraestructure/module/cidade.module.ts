@@ -28,7 +28,7 @@ import { UpdateCidadeUseCase } from "src/application/use-cases/cidade/update-cid
         FindCidadeByNameUseCase,
 
         {
-            provide: 'BCidadeRepository',
+            provide: 'CidadeRepository',
             useClass: PrismaCidadeRepository
         },
     ],

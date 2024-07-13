@@ -1,6 +1,6 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdateLogradouroDto {
+export class UpdateEstadoDto {
     @IsString()
     @IsNotEmpty()
     nome: string;

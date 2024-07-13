@@ -1,50 +1,49 @@
-// src/infrastructure/repositories/prisma-bairro.repository.ts
-import { Injectable } from "@nestjs/common";
-import { Bairro } from "src/domain/entities/bairro.entity";
-import { BairroRepository } from "src/domain/repositories/bairro.repository";
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+import { Injectable } from '@nestjs/common';
+import { Estado } from 'src/domain/entities/estado.entity';
+import { EstadoRepository } from 'src/domain/repositories/estado.repository';
+import { PrismaService } from 'src/infraestructure/prisma/prisma.service';
 
 @Injectable()
-export class PrismaBairroRepository implements BairroRepository {
+export class PrismaEstadoRepository implements EstadoRepository {
     constructor(private readonly prisma: PrismaService) { }
 
-    async create(bairro: Bairro): Promise<Bairro> {
-        const created = await this.prisma.bairro.create({
+    async create(estado: Estado): Promise<Estado> {
+        const created = await this.prisma.estado.create({
             data: {
-                nome: bairro.nome,
+                uf: estado.uf,
             },
         });
-        return new Bairro(created.nome, created.id);
+        return new Estado(created.uf, created.id);
     }
 
-    async update(id: number, bairro: Bairro): Promise<Bairro> {
-        const updated = await this.prisma.bairro.update({
+    async update(id: number, estado: Estado): Promise<Estado> {
+        const updated = await this.prisma.estado.update({
             where: { id },
             data: {
-                nome: bairro.nome
+                uf: estado.uf
             },
         });
-        return new Bairro(updated.nome, updated.id);
+        return new Estado(updated.uf, updated.id);
     }
 
     async delete(id: number): Promise<void> {
-        await this.prisma.bairro.delete({ where: { id } });
+        await this.prisma.estado.delete({ where: { id } });
     }
 
-    async findAll(): Promise<Bairro[]> {
-        const bairros = await this.prisma.bairro.findMany();
-        return bairros.map(bairro => new Bairro(bairro.nome, bairro.id))
+    async findAll(): Promise<Estado[]> {
+        const estados = await this.prisma.estado.findMany();
+        return estados.map(estado => new Estado(estado.uf, estado.id));
     }
 
-    async findById(id: number): Promise<Bairro | null> {
-        const bairro = await this.prisma.bairro.findUnique({ where: { id } });
-        if (!bairro) return null;
-        return new Bairro(bairro.nome, bairro.id);
+    async findById(id: number): Promise<Estado | null> {
+        const estado = await this.prisma.estado.findUnique({ where: { id } });
+        if (!estado) return null;
+        return new Estado(estado.uf, estado.id);
     }
 
-    async findByName(name: string): Promise<Bairro | null> {
-        const bairro = await this.prisma.bairro.findUnique({ where: { nome: name } });
-        if (!bairro) return null;
-        return new Bairro(bairro.nome, bairro.id);
+    async findByUf(name: string): Promise<Estado | null> {
+        const estado = await this.prisma.estado.findUnique({ where: { uf: name } });
+        if (!estado) return null;
+        return new Estado(estado.uf, estado.id);
     }
 }

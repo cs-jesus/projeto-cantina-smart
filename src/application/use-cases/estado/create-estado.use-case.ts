@@ -6,7 +6,7 @@ import { EstadoService } from 'src/domain/services/estado.service';
 export class CreateEstadoUseCase {
     constructor(private readonly estadoService: EstadoService) { }
 
-    async execute(nome: string): Promise<Estado> {
-        return this.estadoService.createEstado(nome);
+    async execute(uf: string): Promise<Estado> {
+        return this.estadoService.createEstado(uf);
     }
 }

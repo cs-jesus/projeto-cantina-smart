@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { PrismaModule } from "../prisma/prisma.module";
 
-import { EstadoService } from "src/domain/service/estado.service";
+import { EstadoService } from "src/domain/services/estado.service";
 import { EstadoController } from "src/interface/controllers/estado.controller";
 import { PrismaEstadoRepository } from "../repositories/prisma/prisma-estado.repository";
 
@@ -13,7 +13,7 @@ import { PrismaEstadoRepository } from "../repositories/prisma/prisma-estado.rep
     providers: [
         EstadoService,
 
-        
+
 
         {
             provide: 'EstadoRepository',

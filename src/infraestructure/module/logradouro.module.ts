@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { PrismaModule } from "../prisma/prisma.module";
 
-import { LogradouroService } from "src/domain/service/logradouro.service";
+import { LogradouroService } from "src/domain/services/logradouro.service";
 import { LogradouroController } from "src/interface/controllers/logradouro.controller";
 import { PrismaLogradouroRepository } from "../repositories/prisma/prisma-logradouro.repository";
 

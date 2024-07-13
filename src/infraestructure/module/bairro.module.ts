@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { PrismaModule } from "../prisma/prisma.module";
 
-import { BairroService } from "src/domain/service/bairro.service";
+import { BairroService } from "src/domain/services/bairro.service";
 import { BairroController } from "src/interface/controllers/bairro.controller";
 import { PrismaBairroRepository } from "../repositories/prisma/prisma-bairro.repository";
 
@@ -13,7 +13,7 @@ import { PrismaBairroRepository } from "../repositories/prisma/prisma-bairro.rep
     providers: [
         BairroService,
 
-        
+
 
         {
             provide: 'BairroRepository',

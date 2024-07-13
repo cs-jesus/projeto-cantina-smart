@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Logradouro } from "src/domain/entities/logradouro.entity";
-import { LogradouroService } from "src/domain/service/logradouro.service";
+import { LogradouroService } from "src/domain/services/logradouro.service";
 
 @Injectable()
 export class FindLogradouroByIdUseCase {

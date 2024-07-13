@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { PrismaModule } from "../prisma/prisma.module";
 
-import { TipoInstituicaoService } from "src/domain/service/tipo-instituicao.service";
+import { TipoInstituicaoService } from "src/domain/services/tipo-instituicao.service";
 import { TipoInstituicaoController } from "src/interface/controllers/tipo-instituicao.controller";
 import { PrismaTipoInstituicaoRepository } from "../repositories/prisma/prisma-tipo-instituicao.repository";
 
@@ -32,4 +32,4 @@ import { FindTipoInstituicaoByDescricaoUseCase } from "src/application/use-cases
             useClass: PrismaTipoInstituicaoRepository
         },
     ],
-}) export class TipoInstituicaoModule{}
+}) export class TipoInstituicaoModule { }

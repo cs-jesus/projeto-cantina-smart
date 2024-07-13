@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { BairroService } from "src/domain/service/bairro.service";
+import { BairroService } from "src/domain/services/bairro.service";
 
 @Injectable()
 export class DeleteBairroUseCase {

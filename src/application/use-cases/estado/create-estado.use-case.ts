@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
-import { Logradouro } from "src/domain/entities/logradouro.entity";
-import { LogradouroService } from "src/domain/service/logradouro.service";
+import { Injectable } from '@nestjs/common';
+import { Estado } from 'src/domain/entities/estado.entity';
+import { EstadoService } from 'src/domain/services/estado.service';
 
 @Injectable()
-export class CreateLogradouroUseCase {
-    constructor(private readonly logradouroService: LogradouroService) {}
+export class CreateEstadoUseCase {
+    constructor(private readonly estadoService: EstadoService) { }
 
-    async execute(nome: string): Promise<Logradouro> {
-        return this.logradouroService.createLogradouro(nome);
+    async execute(nome: string): Promise<Estado> {
+        return this.estadoService.createEstado(nome);
     }
 }

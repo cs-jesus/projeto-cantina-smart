@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { LogradouroService } from "src/domain/service/logradouro.service";
+import { LogradouroService } from "src/domain/services/logradouro.service";
 
 @Injectable()
 export class DeleteLogradouroUseCase {

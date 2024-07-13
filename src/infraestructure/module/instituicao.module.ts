@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { PrismaModule } from "../prisma/prisma.module";
 
-import { InstituicaoService } from "src/domain/service/instituicao.service";
+import { InstituicaoService } from "src/domain/services/instituicao.service";
 import { InstituicaoController } from "src/interface/controllers/instituicao.controller";
 import { PrismaInstituicaoRepository } from "../repositories/prisma/prisma-instituicao.repository";
 
@@ -13,7 +13,7 @@ import { PrismaInstituicaoRepository } from "../repositories/prisma/prisma-insti
     providers: [
         InstituicaoService,
 
-        
+
 
         {
             provide: 'InstituicaoRepository',

@@ -4,12 +4,10 @@ import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TipoInstituicaoService {
-    findTipoInstituicaoByDescricao(descricao: string): TipoInstituicao | PromiseLike<TipoInstituicao> {
-        throw new Error("Method not implemented.");
-    }
-  	constructor(
+
+	constructor(
 		@Inject('TipoInstituicaoRepository')
-    	private readonly tipoInstituicaoRepository: TipoInstituicaoRepository
+		private readonly tipoInstituicaoRepository: TipoInstituicaoRepository
 	) { }
 
 	async createTipoInstituicao(descricao: string): Promise<TipoInstituicao> {
@@ -35,6 +33,6 @@ export class TipoInstituicaoService {
 	}
 
 	async findTipoInstituicaoByName(descricao: string): Promise<TipoInstituicao | null> {
-        return this.tipoInstituicaoRepository.findByDescricao(descricao);
-    }
+		return this.tipoInstituicaoRepository.findByDescricao(descricao);
+	}
 }

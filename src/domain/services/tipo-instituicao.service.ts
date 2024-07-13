@@ -32,7 +32,7 @@ export class TipoInstituicaoService {
 		return this.tipoInstituicaoRepository.findById(+id);
 	}
 
-	async findTipoInstituicaoByName(descricao: string): Promise<TipoInstituicao | null> {
+	async findTipoInstituicaoByDescricao(descricao: string): Promise<TipoInstituicao | null> {
 		return this.tipoInstituicaoRepository.findByDescricao(descricao);
 	}
 }

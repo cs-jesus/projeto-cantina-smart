@@ -1,0 +1,32 @@
+# Testar cadastro
+POST http://localhost:3000/tipo-instituicao
+Content-Type: application/json
+
+{
+  "descricao": "Universidade2"
+}
+
+###
+# Testar edição
+PATCH http://localhost:3000/tipo-instituicao/1
+Content-Type: application/json
+
+{
+  "descricao": "Universidade Atualizada"
+}
+
+###
+# Testar exclusão
+DELETE http://localhost:3000/tipo-instituicao/1
+
+###
+# Testar listagem
+GET http://localhost:3000/tipo-instituicao
+
+###
+# Testar busca por ID
+GET http://localhost:3000/tipo-instituicao/7
+
+###
+# Testar busca por Descrição
+GET http://localhost:3000/tipo-instituicao/descricao/Universidade

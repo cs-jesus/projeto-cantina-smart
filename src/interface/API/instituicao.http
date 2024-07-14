@@ -1,0 +1,36 @@
+# Testar cadastro
+POST http://localhost:3000/instituicao
+Content-Type: application/json
+
+{
+  "nome": "hdfghdhASDASg",
+  "sigla": "asdad",
+  "tipoInstituicaoId": 2
+}
+
+###
+# Testar edição
+PATCH http://localhost:3000/instituicao/15
+Content-Type: application/json
+
+{
+  "nome": "hdfghdhASDASg",
+  "sigla": "asdad",
+  "tipoInstituicaoId": 2
+}
+
+###
+# Testar exclusão
+DELETE http://localhost:3000/instituicao/9
+
+###
+# Testar listagem
+GET http://localhost:3000/instituicao
+
+###
+# Testar busca por ID
+GET http://localhost:3000/instituicao/3
+
+###
+# Testar busca por Nome
+GET http://localhost:3000/instituicao/nome/aaaa

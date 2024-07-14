@@ -1,0 +1,35 @@
+### Requisição de cadastro
+POST http://localhost:3000/fisica
+Content-Type: application/json
+
+{
+  "cpf": "",
+  "nome": "",
+  "email": "",
+  "senha": "",
+}
+
+
+### Requisição de listagem
+GET http://localhost:3000/fisica
+
+
+### Requisição de consulta por ID
+GET http://localhost:3000/fisica/
+
+
+### Requisição de edição
+PATCH http://localhost:3000/fisica/
+Content-Type: application/json
+
+{
+  "cpf": "",
+  "nome": "",
+  "email": "",
+  "senha": "",
+}
+
+
+### Requisição de exclusão
+DELETE http://localhost:3000/fisica/
+

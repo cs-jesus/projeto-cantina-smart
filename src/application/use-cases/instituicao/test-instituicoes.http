@@ -1,0 +1,37 @@
+###
+# Teste de Criar Instituição
+POST http://localhost:3000/instituicao
+Content-Type: application/json
+
+{
+  "nome": "Instituição de Teste",
+  "sigla": "IDT",
+  "tipoInstituicaoId": 1
+}
+
+###
+# Teste de Listar Todas as Instituições
+GET http://localhost:3000/instituicao
+
+###
+# Teste de Buscar Instituição por ID
+GET http://localhost:3000/instituicao/1
+
+###
+# Teste de Atualizar Instituição
+PATCH http://localhost:3000/instituicao/1
+Content-Type: application/json
+
+{
+  "nome": "Instituição de Teste Atualizada",
+  "sigla": "IDTA",
+  "tipoInstituicaoId": 1
+}
+
+###
+# Teste de Excluir Instituição
+DELETE http://localhost:3000/instituicao/1
+
+###
+# Teste de Validar Nome de Instituição
+GET http://localhost:3000/instituicao/validate/Instituicao de Teste

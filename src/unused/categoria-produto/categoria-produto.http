@@ -1,0 +1,28 @@
+### Requisição de cadastro
+POST http://localhost:3000/categoria-produto
+Content-Type: application/json
+
+{
+  "descricao": "",
+}
+
+
+### Requisição de listagem
+GET http://localhost:3000/categoria-produto
+
+
+### Requisição de consulta por ID
+GET http://localhost:3000/categoria-produto/
+
+
+### Requisição de edição
+PATCH http://localhost:3000/categoria-produto/
+Content-Type: application/json
+
+{
+  "descricao": "",
+}
+
+
+### Requisição de exclusão
+DELETE http://localhost:3000/categoria-produto/

@@ -1,0 +1,37 @@
+# Testar cadastro
+POST http://localhost:3000/instituicao
+Content-Type: application/json
+
+{
+  "nome": "Nome da Instituição",
+  "sigla": "SIGLA",
+  "tipoInstituicaoId": 2
+}
+
+###
+# Testar edição
+PATCH http://localhost:3000/instituicao/4
+Content-Type: application/json
+
+{
+  "tipoInstituicaoId": 7,
+  "nome": "aaaaaa",
+  "sigla": "uscs"
+}
+
+###
+# Testar exclusão
+DELETE http://localhost:3000/instituicao/1
+
+###
+# Testar listagem
+GET http://localhost:3000/instituicao
+
+###
+# Testar busca por ID
+GET http://localhost:3000/instituicao/3
+
+
+
+
+

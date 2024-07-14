@@ -7,5 +7,4 @@ export interface InstituicaoRepository {
     findAll(): Promise<Instituicao[]>;
     findById(id: number): Promise<Instituicao | null>;
     findByName(name: string): Promise<Instituicao | null>;
-    //findByTipo()
 }

@@ -1,21 +1,13 @@
-# Teste de Criar Tipo de Instituição
+# Testar cadastro
 POST http://localhost:3000/tipo-instituicao
 Content-Type: application/json
 
 {
-  "descricao": "Universidade"
+  "descricao": "Universidade2"
 }
 
 ###
-# Teste de Listar Todos os Tipos de Instituição
-GET http://localhost:3000/tipo-instituicao
-
-###
-# Teste de Buscar Tipo de Instituição por ID
-GET http://localhost:3000/tipo-instituicao/1
-
-###
-# Teste de Atualizar Tipo de Instituição
+# Testar edição
 PATCH http://localhost:3000/tipo-instituicao/1
 Content-Type: application/json
 
@@ -24,9 +16,17 @@ Content-Type: application/json
 }
 
 ###
-# Teste de Excluir Tipo de Instituição
+# Testar exclusão
 DELETE http://localhost:3000/tipo-instituicao/1
 
 ###
-# Teste de Validar Descrição de Tipo de Instituição
-GET http://localhost:3000/tipo-instituicao/validate/Universidade
+# Testar listagem
+GET http://localhost:3000/tipo-instituicao
+
+###
+# Testar busca por ID
+GET http://localhost:3000/tipo-instituicao/7
+
+###
+# Testar busca por Descrição
+GET http://localhost:3000/tipo-instituicao/descricao/Universidade

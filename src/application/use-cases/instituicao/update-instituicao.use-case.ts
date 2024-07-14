@@ -4,9 +4,9 @@ import { InstituicaoService } from "src/domain/services/instituicao.service";
 
 @Injectable()
 export class UpdateInstituicaoUseCase {
-  constructor(private readonly instituicaoService: InstituicaoService) { }
+    constructor(private readonly instituicaoService: InstituicaoService) { }
 
-  async execute(id: number, tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
-    return this.instituicaoService.updateInstituicao(+id, nome, sigla, +tipoInstituicaoId);
-  }
+    async execute(id: number, tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
+        return this.instituicaoService.updateInstituicao(+id, tipoInstituicaoId, nome, sigla);
+    }
 }

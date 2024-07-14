@@ -1,14 +1,19 @@
-import { IsNotEmpty, IsString, IsNumber } from "class-validator";
+import { IsNotEmpty, IsString, IsNumber, Validate, IsOptional } from "class-validator";
+import { DataTypeTipoInstituicaoIdValidator } from "src/application/validators/instituicao/data-type-tipo-Instituicao-id.validator";
+import { ExistsTipoInstituicaoValidator } from "src/application/validators/instituicao/exists-tipo-instituicao.validator";
 
 export class CreateInstituicaoDto {
+
     @IsNotEmpty()
     @IsString()
     nome: string;
-  
+
+    @IsOptional()
     @IsString()
     sigla?: string;
-  
-    @IsNotEmpty()
-    @IsNumber()
-    tipoInstituicaoId: number; // Certifique-se de que este campo esteja corretamente nomeado
-  }
+
+    @IsNotEmpty({ message: 'O tipo deve ser fornecido.' })
+    //@Validate(ExistsTipoInstituicaoValidator)
+    //@Validate(DataTypeTipoInstituicaoIdValidator)
+    tipoInstituicaoId: number;
+}

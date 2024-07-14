@@ -11,13 +11,13 @@ export class InstituicaoService {
     ) { }
 
     async createInstituicao(tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
-        const instituicao = new Instituicao(+tipoInstituicaoId, nome, sigla);
+        const instituicao = new Instituicao(tipoInstituicaoId, nome, sigla);
         return this.instituicaoRepository.create(instituicao);
     }
 
-    async updateInstituicao(tipoInstituicaoId: number, nome: string, sigla: string, id: number): Promise<Instituicao> {
+    async updateInstituicao(id: number, tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
         const instituicao = new Instituicao(tipoInstituicaoId, nome, sigla);
-        return this.instituicaoRepository.update(+id, instituicao);
+        return this.instituicaoRepository.update(id, instituicao);
     }
 
     async deleteInstituicao(id: number): Promise<void> {

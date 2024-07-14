@@ -11,9 +11,9 @@ export class PrismaInstituicaoRepository implements InstituicaoRepository {
     async create(instituicao: Instituicao): Promise<Instituicao> {
         const created = await this.prisma.instituicao.create({
             data: {
-                fk_tipo: instituicao.fk_tipo,
                 nome: instituicao.nome,
                 sigla: instituicao.sigla,
+                fk_tipo: instituicao.fk_tipo,
 
             },
             include: { tipoInstituicao: true },
@@ -23,6 +23,7 @@ export class PrismaInstituicaoRepository implements InstituicaoRepository {
             created.nome,
             created.sigla,
             created.id,
+            created.tipoInstituicao,
         );
     }
 
@@ -30,9 +31,9 @@ export class PrismaInstituicaoRepository implements InstituicaoRepository {
         const updated = await this.prisma.instituicao.update({
             where: { id },
             data: {
-                fk_tipo: instituicao.fk_tipo,
                 nome: instituicao.nome,
                 sigla: instituicao.sigla,
+                fk_tipo: instituicao.fk_tipo,
             },
             include: { tipoInstituicao: true },
         });
@@ -41,6 +42,7 @@ export class PrismaInstituicaoRepository implements InstituicaoRepository {
             updated.nome,
             updated.sigla,
             updated.id,
+            updated.tipoInstituicao,
         );
     }
 

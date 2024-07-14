@@ -12,6 +12,9 @@ import { FindInstituicaoByIdUseCase } from "src/application/use-cases/instituica
 import { UpdateInstituicaoUseCase } from "src/application/use-cases/instituicao/update-instituicao.use-case";
 import { FindInstituicaoByNameUseCase } from "src/application/use-cases/instituicao/find-instituicao-by-name-use-case";
 
+import { DataTypeTipoInstituicaoIdValidator } from "src/application/validators/instituicao/data-type-tipo-Instituicao-id.validator";
+import { ExistsTipoInstituicaoValidator } from "src/application/validators/instituicao/exists-tipo-instituicao.validator";
+
 @Module({
     imports: [PrismaModule],
     exports: [InstituicaoService],
@@ -26,6 +29,9 @@ import { FindInstituicaoByNameUseCase } from "src/application/use-cases/institui
         FindAllInstituicoesUseCase,
         FindInstituicaoByIdUseCase,
         FindInstituicaoByNameUseCase,
+
+        DataTypeTipoInstituicaoIdValidator,
+        ExistsTipoInstituicaoValidator,
 
         {
             provide: 'InstituicaoRepository',

@@ -94,4 +94,9 @@ export class PrismaInstituicaoRepository implements InstituicaoRepository {
             instituicao.tipoInstituicao,
         );
     }
+
+    async isNomeUnique(nome: string): Promise<boolean> {
+        const instituicao = await this.findByName(nome);
+        return !instituicao;
+    }
 }

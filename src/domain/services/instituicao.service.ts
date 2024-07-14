@@ -11,11 +11,21 @@ export class InstituicaoService {
     ) { }
 
     async createInstituicao(tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
+        const nomeIsUnique = await this.instituicaoRepository.isNomeUnique(nome);
+        if (!nomeIsUnique) {
+            throw new Error(`O nome "${nome}" já está sendo utilizado por outra instituição.`);
+        }
+
         const instituicao = new Instituicao(tipoInstituicaoId, nome, sigla);
         return this.instituicaoRepository.create(instituicao);
     }
 
     async updateInstituicao(id: number, tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
+        const nomeIsUnique = await this.instituicaoRepository.isNomeUnique(nome);
+        if (!nomeIsUnique) {
+            throw new Error(`O nome "${nome}" já está sendo utilizado por outra instituição.`);
+        }
+
         const instituicao = new Instituicao(tipoInstituicaoId, nome, sigla);
         return this.instituicaoRepository.update(id, instituicao);
     }

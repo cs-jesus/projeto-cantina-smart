@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Param, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Post, Get, Param, Body, Patch, Delete, HttpException, HttpStatus } from '@nestjs/common';
 
 import { CreateInstituicaoUseCase } from 'src/application/use-cases/instituicao/create-instituicao.use-case';
 import { DeleteInstituicaoUseCase } from 'src/application/use-cases/instituicao/delete-instituicao.use-case';
@@ -24,21 +24,38 @@ export class InstituicaoController {
 
     @Post()
     async create(@Body() createInstituicaoDto: CreateInstituicaoDto) {
-        return this.createInstituicaoUseCase.execute(
-            createInstituicaoDto.tipoInstituicaoId,
-            createInstituicaoDto.nome,
-            createInstituicaoDto.sigla,
-        );
+        try {
+            return await this.createInstituicaoUseCase.execute(
+                createInstituicaoDto.tipoInstituicaoId,
+                createInstituicaoDto.nome,
+                createInstituicaoDto.sigla,
+            );
+        } catch (error) {
+            if (error.message.includes('já está sendo utilizado por outra instituição')) {
+                const errorMessage = `O nome "${createInstituicaoDto.nome}" já está sendo utilizado por outra instituição.`;
+                throw new HttpException(errorMessage, HttpStatus.CONFLICT);
+            }
+            throw new HttpException('Erro inesperado ao criar instituição', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @Patch(':id')
     async update(@Param('id') id: number, @Body() updateInstituicaoDto: UpdateInstituicaoDto) {
-        return this.updateInstituicaoUseCase.execute(
-            +id,
-            updateInstituicaoDto.tipoInstituicaoId,
-            updateInstituicaoDto.nome,
-            updateInstituicaoDto.sigla,
-        );
+        try {
+            return await this.updateInstituicaoUseCase.execute(
+                +id,
+                updateInstituicaoDto.tipoInstituicaoId,
+                updateInstituicaoDto.nome,
+                updateInstituicaoDto.sigla,
+            );
+        } catch (error) {
+            if (error.message.includes('já está sendo utilizado por outra instituição')) {
+                const errorMessage = `O nome "${updateInstituicaoDto.nome}" já está sendo utilizado por outra instituição.`;
+                throw new HttpException(errorMessage, HttpStatus.CONFLICT);
+            }
+            throw new HttpException('Erro ao atualizar instituição', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Delete(':id')

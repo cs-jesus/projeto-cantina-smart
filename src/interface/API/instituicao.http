@@ -3,25 +3,25 @@ POST http://localhost:3000/instituicao
 Content-Type: application/json
 
 {
-  "nome": "Nome da Instituição",
-  "sigla": "SIGLA",
+  "nome": "hdfghdhASDASg",
+  "sigla": "asdad",
   "tipoInstituicaoId": 2
 }
 
 ###
 # Testar edição
-PATCH http://localhost:3000/instituicao/4
+PATCH http://localhost:3000/instituicao/15
 Content-Type: application/json
 
 {
-  "tipoInstituicaoId": 7,
-  "nome": "aaaaaa",
-  "sigla": "uscs"
+  "nome": "hdfghdhASDASg",
+  "sigla": "asdad",
+  "tipoInstituicaoId": 2
 }
 
 ###
 # Testar exclusão
-DELETE http://localhost:3000/instituicao/1
+DELETE http://localhost:3000/instituicao/9
 
 ###
 # Testar listagem
@@ -31,7 +31,6 @@ GET http://localhost:3000/instituicao
 # Testar busca por ID
 GET http://localhost:3000/instituicao/3
 
-
-
-
-
+###
+# Testar busca por Nome
+GET http://localhost:3000/instituicao/nome/aaaa

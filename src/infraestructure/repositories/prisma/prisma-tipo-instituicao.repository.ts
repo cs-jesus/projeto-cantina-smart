@@ -47,4 +47,9 @@ export class PrismaTipoInstituicaoRepository implements TipoInstituicaoRepositor
         if (!tipoInstituicoes) return null;
         return new TipoInstituicao(tipoInstituicoes.descricao, tipoInstituicoes.id);
     }
+
+    async isDescricaoUnique(descricao: string): Promise<boolean> {
+        const tipoInstituicao = await this.findByDescricao(descricao);
+        return !tipoInstituicao;
+    }
 }

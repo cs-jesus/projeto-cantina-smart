@@ -47,4 +47,8 @@ export class PrismaEstadoRepository implements EstadoRepository {
         if (!estado) return null;
         return new Estado(estado.uf, estado.id);
     }
+
+    isUfUnique(uf: string): Promise<boolean> {
+        throw new Error("Method not implemented.");
+    }
 }

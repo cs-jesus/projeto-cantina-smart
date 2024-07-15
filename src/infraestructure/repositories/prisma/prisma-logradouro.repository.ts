@@ -6,7 +6,7 @@ import { PrismaService } from "src/infraestructure/prisma/prisma.service";
 @Injectable()
 export class PrismaLogradouroRepository implements LogradouroRepository {
     constructor(private readonly prisma: PrismaService) { }
-
+ 
     async create(logradouro: Logradouro): Promise<Logradouro> {
         const created = await this.prisma.logradouro.create({
             data: {
@@ -46,4 +46,8 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
         if (!logradouro) return null;
         return new Logradouro(logradouro.nome, logradouro.id);
     }
+
+    isNomeUnique(nome: string): Promise<boolean> {
+        throw new Error("Method not implemented.");
+    }    
 }

@@ -47,4 +47,8 @@ export class PrismaCidadeRepository implements CidadeRepository {
         if (!cidade) return null;
         return new Cidade(cidade.nome, cidade.id);
     }
+
+    isNomeUnique(nome: string): Promise<boolean> {
+        throw new Error("Method not implemented.");
+    }
 }

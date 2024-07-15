@@ -1,15 +1,17 @@
-import { Prisma } from "@prisma/client";
+import { Instituicao } from './instituicao.entity';
+import { Endereco } from './endereco.entity';
 
-export class Polo implements Prisma.PoloCreateInput {
-
-    //Definição de atributo básico
-    complemento?: string;
-    nome: string;
-
-    //Definição de chave estrangeira
-    instituicao: Prisma.InstituicaoCreateNestedOneWithoutPolosInput;
-    endereco: Prisma.EnderecoCreateNestedOneWithoutPolosInput;
-
-    //Declara que a entidade será refereciada como chave estrangeira    
-    filiais?: Prisma.FilialCreateNestedManyWithoutPoloInput;
+export class Endereco {
+    constructor(
+        public readonly fk_instituicao: number,
+        public readonly fk_endereco: number,
+        public readonly cep: string,
+        public readonly numero: string,
+        public readonly nome: string,
+        public readonly complemento?: string,
+        public readonly id?: number,
+        public readonly instituicao?: Instituicao,
+        public readonly endereco?: Endereco,
+        
+    ) { }
 }

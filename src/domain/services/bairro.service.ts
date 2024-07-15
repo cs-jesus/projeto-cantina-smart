@@ -10,12 +10,22 @@ export class BairroService {
         private readonly bairroRepository: BairroRepository
     ) { }
 
-    async createBairro(nome: string): Promise<Bairro> {
-        const bairro = new Bairro(nome);
-        return this.bairroRepository.create(bairro);
+    async validateOrCreateBairro(nome: string): Promise<Bairro> {
+        let validBairro = await this.bairroRepository.findByName(nome);
+        if(!validBairro) {
+            validBairro = await this.bairroRepository.create({nome});
+            
+        }
+        const bairro = validBairro;
+        return bairro;
     }
 
     async updateBairro(id: number, nome: string): Promise<Bairro> {
+        const nomeIsUnique = await this.bairroRepository.isNomeUnique(nome);
+        if (!nomeIsUnique) {
+            throw new Error(`O bairro "${nome}" já está cadastado.`);
+        }
+        
         const bairro = new Bairro(nome);
         return this.bairroRepository.update(+id, bairro);
     }

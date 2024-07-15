@@ -10,12 +10,22 @@ export class EstadoService {
         private readonly estadoRepository: EstadoRepository
     ) { }
 
-    async createEstado(uf: string): Promise<Estado> {
-        const estado = new Estado(uf);
-        return this.estadoRepository.create(estado);
+    async validateOrCreateEstado(uf: string): Promise<Estado> {
+        let validEstado = await this.estadoRepository.findByUf(uf);
+        if(!validEstado) {
+            validEstado = await this.estadoRepository.create({uf});
+            
+        }
+        const estado = validEstado;
+        return estado;
     }
 
     async updateEstado(id: number, uf: string): Promise<Estado> {
+        const ufIsUnique = await this.estadoRepository.isUfUnique(uf);
+        if (!ufIsUnique) {
+            throw new Error(`O estado "${uf}" já está cadastado.`);
+        }
+        
         const estado = new Estado(uf);
         return this.estadoRepository.update(+id, estado);
     }

@@ -10,12 +10,22 @@ export class CidadeService {
         private readonly cidadeRepository: CidadeRepository
     ) { }
 
-    async createCidade(nome: string): Promise<Cidade> {
-        const cidade = new Cidade(nome);
-        return this.cidadeRepository.create(cidade);
+    async validateOrCreateCidade(nome: string): Promise<Cidade> {
+        let validCidade = await this.cidadeRepository.findByName(nome);
+        if(!validCidade) {
+            validCidade = await this.cidadeRepository.create({nome});
+            
+        }
+        const cidade = validCidade;
+        return cidade;
     }
 
     async updateCidade(id: number, nome: string): Promise<Cidade> {
+        const nomeIsUnique = await this.cidadeRepository.isNomeUnique(nome);
+        if (!nomeIsUnique) {
+            throw new Error(`A cidade "${nome}" já está cadastada.`);
+        }
+
         const cidade = new Cidade(nome);
         return this.cidadeRepository.update(+id, cidade);
     }

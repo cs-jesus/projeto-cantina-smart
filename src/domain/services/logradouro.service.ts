@@ -10,12 +10,22 @@ export class LogradouroService {
         private readonly logradouroRepository: LogradouroRepository
     ) { }
 
-    async createLogradouro(nome: string): Promise<Logradouro> {
-        const logradouro = new Logradouro(nome);
-        return this.logradouroRepository.create(logradouro);
+    async validateOrCreateLogradouro(nome: string): Promise<Logradouro> {
+        let validLogradouro = await this.logradouroRepository.findByName(nome);
+        if(!validLogradouro) {
+            validLogradouro = await this.logradouroRepository.create({nome});
+            
+        }
+        const logradouro = validLogradouro;
+        return logradouro;
     }
 
     async updateLogradouro(id: number, nome: string): Promise<Logradouro> {
+        const nomeIsUnique = await this.logradouroRepository.isNomeUnique(nome);
+        if (!nomeIsUnique) {
+            throw new Error(`O logradouro "${nome}" já está cadastado.`);
+        }
+        
         const logradouro = new Logradouro(nome);
         return this.logradouroRepository.update(+id, logradouro);
     }

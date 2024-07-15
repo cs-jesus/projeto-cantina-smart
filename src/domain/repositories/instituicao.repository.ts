@@ -7,6 +7,6 @@ export interface InstituicaoRepository {
     findAll(): Promise<Instituicao[]>;
     findById(id: number): Promise<Instituicao | null>;
     findByName(name: string): Promise<Instituicao | null>;
-    isNomeUnique(nome: string): Promise<boolean>; // Novo método para verificar se o nome é único
+    isNomeUnique(nome: string): Promise<boolean>;
 
 }

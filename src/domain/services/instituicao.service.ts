@@ -13,7 +13,7 @@ export class InstituicaoService {
     async createInstituicao(tipoInstituicaoId: number, nome: string, sigla: string): Promise<Instituicao> {
         const nomeIsUnique = await this.instituicaoRepository.isNomeUnique(nome);
         if (!nomeIsUnique) {
-            throw new Error(`O nome "${nome}" já está sendo utilizado por outra instituição.`);
+            throw new Error(`O nome "${nome}" já está cadastrado.`);
         }
 
         const instituicao = new Instituicao(tipoInstituicaoId, nome, sigla);

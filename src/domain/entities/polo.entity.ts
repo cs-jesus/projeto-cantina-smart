@@ -1,7 +1,7 @@
 import { Instituicao } from './instituicao.entity';
 import { Endereco } from './endereco.entity';
 
-export class Endereco {
+export class Polo {
     constructor(
         public readonly fk_instituicao: number,
         public readonly fk_endereco: number,

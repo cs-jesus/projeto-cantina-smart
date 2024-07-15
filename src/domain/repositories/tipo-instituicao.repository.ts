@@ -7,4 +7,6 @@ export interface TipoInstituicaoRepository {
     findAll(): Promise<TipoInstituicao[]>;
     findById(id: number): Promise<TipoInstituicao | null>;
     findByDescricao(descricao: string): Promise<TipoInstituicao | null>;
+    isDescricaoUnique(descricao: string): Promise<boolean>;
+
 }

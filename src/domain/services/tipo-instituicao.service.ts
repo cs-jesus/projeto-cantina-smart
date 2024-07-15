@@ -11,11 +11,21 @@ export class TipoInstituicaoService {
 	) { }
 
 	async createTipoInstituicao(descricao: string): Promise<TipoInstituicao> {
+		const descricaoIsUnique = await this.tipoInstituicaoRepository.isDescricaoUnique(descricao);
+		if (!descricaoIsUnique) {
+			throw new Error(`A descrição "${descricao}" já está cadastrada.`);
+		}
+
 		const tipoInstituicao = new TipoInstituicao(descricao);
 		return this.tipoInstituicaoRepository.create(tipoInstituicao);
 	}
 
 	async updateTipoInstituicao(id: number, descricao: string): Promise<TipoInstituicao> {
+		const descricaoIsUnique = await this.tipoInstituicaoRepository.isDescricaoUnique(descricao);
+		if(!descricaoIsUnique) {
+			throw new Error(`A descrição "${descricao}" já está sendo utilizada por outro Tipo de Instituição.`);
+		}
+
 		const tipoInstituicao = new TipoInstituicao(descricao);
 		return this.tipoInstituicaoRepository.update(+id, tipoInstituicao);
 	}

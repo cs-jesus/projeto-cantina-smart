@@ -7,4 +7,6 @@ export interface BairroRepository {
     findAll(): Promise<Bairro[]>;
     findById(id: number): Promise<Bairro | null>;
     findByName(name: string): Promise<Bairro | null>;
+    isNomeUnique(nome: string): Promise<boolean>;
+    
 }

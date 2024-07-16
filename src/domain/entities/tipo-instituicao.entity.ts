@@ -3,5 +3,4 @@ export class TipoInstituicao {
         public readonly descricao: string,
         public readonly id?: number,
     ) { }
-  }
-  
+}

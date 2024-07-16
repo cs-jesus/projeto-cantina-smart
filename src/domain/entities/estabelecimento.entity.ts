@@ -1,4 +1,4 @@
-export class Estabelecimento  {
+export class Estabelecimento {
 
-    
+
 }

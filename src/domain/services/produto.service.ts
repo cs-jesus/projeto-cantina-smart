@@ -3,11 +3,11 @@ import { ProdutoRepository } from "../repositories/produto.repository";
 import { Produto } from "../entities/produto.entity";
 
 @Injectable()
-export class ProdutoService{
+export class ProdutoService {
     constructor(
         @Inject('ProdutoRepository')
-        private readonly produtoRepository:ProdutoRepository
-    ){}
+        private readonly produtoRepository: ProdutoRepository
+    ) { }
     async createProduto(nome: string): Promise<Produto> {
         const produto = new Produto(nome);
         return this.produtoRepository.create(produto);
@@ -16,7 +16,7 @@ export class ProdutoService{
         const produto = new Produto(nome);
         return this.produtoRepository.update(id, produto);
     }
-    async deleteProduto (id: number): Promise<void> {
+    async deleteProduto(id: number): Promise<void> {
         return this.produtoRepository.delete(id)
     }
     async findAllProduto(): Promise<Produto[]> {

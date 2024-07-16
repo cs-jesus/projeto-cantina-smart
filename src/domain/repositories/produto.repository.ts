@@ -1,7 +1,7 @@
 import { Produto } from "../entities/produto.entity";
 
-export interface ProdutoRepository{
-    create(produto:Produto): Promise<Produto>;
+export interface ProdutoRepository {
+    create(produto: Produto): Promise<Produto>;
     update(id: number, produto: Produto): Promise<Produto>;
     delete(id: number): Promise<void>;
     findAll(): Promise<Produto[]>;

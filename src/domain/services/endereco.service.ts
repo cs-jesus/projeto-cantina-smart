@@ -18,58 +18,58 @@ export class EnderecoService {
     private readonly bairroService: BairroService,
     private readonly cidadeService: CidadeService,
     private readonly estadoService: EstadoService,
-  ) {}
+  ) { }
 
-    async createEndereco(
-        cep: string,
-        numero: string,
-        logradouroNome: string,
-        bairroNome: string,
-        cidadeNome: string,
-        estadoUf: string,
+  async createEndereco(
+    cep: string,
+    numero: string,
+    logradouroNome: string,
+    bairroNome: string,
+    cidadeNome: string,
+    estadoUf: string,
 
-    ):  
+  ):
     Promise<Endereco> {
-        const logradouroNovo = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);
-        const bairroNovo = await this.bairroService.validateOrCreateBairro(bairroNome);
-        const cidadeNovo = await this.cidadeService.validateOrCreateCidade(cidadeNome);
-        const estadoNovo = await this.estadoService.validateOrCreateEstado(estadoUf);
+    const logradouroNovo = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);
+    const bairroNovo = await this.bairroService.validateOrCreateBairro(bairroNome);
+    const cidadeNovo = await this.cidadeService.validateOrCreateCidade(cidadeNome);
+    const estadoNovo = await this.estadoService.validateOrCreateEstado(estadoUf);
 
-        const endereco = new Endereco(
-          logradouroNovo,
-          bairroNovo,
-          cidadeNovo,
-          estadoNovo,
-          cep,
-          numero,
-        )
-        return this.enderecoRepository.create({endereco});
-    }
+    const endereco = new Endereco(
+      logradouroNovo,
+      bairroNovo,
+      cidadeNovo,
+      estadoNovo,
+      cep,
+      numero,
+    )
+    return this.enderecoRepository.create({ endereco });
+  }
 
-    async updateEndereco(
-        id: number,
-        cep: string,
-        numero: string,
-        logradouroNome: string,
-        bairroNome: string,
-        cidadeNome: string,
-        estadoUf: string,
-    ): 
+  async updateEndereco(
+    id: number,
+    cep: string,
+    numero: string,
+    logradouroNome: string,
+    bairroNome: string,
+    cidadeNome: string,
+    estadoUf: string,
+  ):
     Promise<Endereco> {
-        const logradouroAtualizado = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);
-        const bairroAtualizado = await this.bairroService.validateOrCreateBairro(bairroNome);
-        const cidadeAtualizado = await this.cidadeService.validateOrCreateCidade(cidadeNome);
-        const estadoAtualizado = await this.estadoService.validateOrCreateEstado(estadoUf);
+    const logradouroAtualizado = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);
+    const bairroAtualizado = await this.bairroService.validateOrCreateBairro(bairroNome);
+    const cidadeAtualizado = await this.cidadeService.validateOrCreateCidade(cidadeNome);
+    const estadoAtualizado = await this.estadoService.validateOrCreateEstado(estadoUf);
 
-        return this.enderecoRepository.update(id, {
-            cep,
-            numero,
-            logradouroId: logradouroAtualizado.id,
-            bairroId: bairroAtualizado.id,
-            cidadeId: cidadeAtualizado.id,
-            estadoId: estadoAtualizado.id,
-        });
-    }
+    return this.enderecoRepository.update(id, {
+      cep,
+      numero,
+      logradouroId: logradouroAtualizado.id,
+      bairroId: bairroAtualizado.id,
+      cidadeId: cidadeAtualizado.id,
+      estadoId: estadoAtualizado.id,
+    });
+  }
 
   async deleteEndereco(id: number): Promise<void> {
     return this.enderecoRepository.delete(id);

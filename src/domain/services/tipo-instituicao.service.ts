@@ -22,7 +22,7 @@ export class TipoInstituicaoService {
 
 	async updateTipoInstituicao(id: number, descricao: string): Promise<TipoInstituicao> {
 		const descricaoIsUnique = await this.tipoInstituicaoRepository.isDescricaoUnique(descricao);
-		if(!descricaoIsUnique) {
+		if (!descricaoIsUnique) {
 			throw new Error(`A descrição "${descricao}" já está sendo utilizada por outro Tipo de Instituição.`);
 		}
 

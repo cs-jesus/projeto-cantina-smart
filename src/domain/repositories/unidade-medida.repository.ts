@@ -6,6 +6,6 @@ export interface UnidadeMedidaRepository {
     delete(id: number): Promise<void>;
     findAll(): Promise<UnidadeMedida[]>;
     findById(id: number): Promise<UnidadeMedida | null>;
-    findByName(name: string,sigla:string): Promise<UnidadeMedida | null>;
+    findByName(name: string, sigla: string): Promise<UnidadeMedida | null>;
 
 }

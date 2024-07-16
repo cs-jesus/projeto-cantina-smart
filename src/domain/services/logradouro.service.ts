@@ -12,9 +12,9 @@ export class LogradouroService {
 
     async validateOrCreateLogradouro(nome: string): Promise<number> {
         let checkLogradouro = await this.logradouroRepository.findByName(nome);
-        if(!checkLogradouro) {
-            checkLogradouro = await this.logradouroRepository.create({nome});
-            
+        if (!checkLogradouro) {
+            checkLogradouro = await this.logradouroRepository.create({ nome });
+
         }
         const logradouro = checkLogradouro.id;
         return logradouro;
@@ -25,7 +25,7 @@ export class LogradouroService {
         if (!nomeIsUnique) {
             throw new Error(`O logradouro "${nome}" já está cadastado.`);
         }
-        
+
         const logradouro = new Logradouro(nome);
         return this.logradouroRepository.update(+id, logradouro);
     }

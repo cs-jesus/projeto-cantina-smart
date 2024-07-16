@@ -12,6 +12,6 @@ export class Polo {
         public readonly id?: number,
         public readonly instituicao?: Instituicao,
         public readonly endereco?: Endereco,
-        
+
     ) { }
 }

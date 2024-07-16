@@ -12,9 +12,9 @@ export class EstadoService {
 
     async validateOrCreateEstado(uf: string): Promise<number> {
         let checkEstado = await this.estadoRepository.findByUf(uf);
-        if(!checkEstado) {
-            checkEstado = await this.estadoRepository.create({uf});
-            
+        if (!checkEstado) {
+            checkEstado = await this.estadoRepository.create({ uf });
+
         }
         const estado = checkEstado.id;
         return estado;
@@ -25,7 +25,7 @@ export class EstadoService {
         if (!ufIsUnique) {
             throw new Error(`O estado "${uf}" já está cadastado.`);
         }
-        
+
         const estado = new Estado(uf);
         return this.estadoRepository.update(+id, estado);
     }

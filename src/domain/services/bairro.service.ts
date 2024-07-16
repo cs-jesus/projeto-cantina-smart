@@ -12,9 +12,9 @@ export class BairroService {
 
     async validateOrCreateBairro(nome: string): Promise<number> {
         let checkBairro = await this.bairroRepository.findByName(nome);
-        if(!checkBairro) {
-            checkBairro = await this.bairroRepository.create({nome});
-            
+        if (!checkBairro) {
+            checkBairro = await this.bairroRepository.create({ nome });
+
         }
         const bairro = checkBairro.id;
         return bairro;
@@ -25,7 +25,7 @@ export class BairroService {
         if (!nomeIsUnique) {
             throw new Error(`O bairro "${nome}" já está cadastado.`);
         }
-        
+
         const bairro = new Bairro(nome);
         return this.bairroRepository.update(+id, bairro);
     }

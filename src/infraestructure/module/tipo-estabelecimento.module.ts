@@ -9,6 +9,7 @@ import { DeleteEstabelecimentoUseCase } from "src/application/use-cases/estabele
 
 import { FindEstabelecimentoByIdUseCase } from "src/application/use-cases/estabelecimento/find-estabelecimento-by-id.use-case";
 import { FindEstabelecimentoByCNPJUseCase } from "src/application/use-cases/estabelecimento/find-estabelecimento-by-name.use-case";
+import { PrismaTipoEstabelecimentoRepository } from "../repositories/prisma/prisma-tipo-estabelecimento.repository";
 
 @Module({
     imports: [PrismaModule],
@@ -25,10 +26,10 @@ import { FindEstabelecimentoByCNPJUseCase } from "src/application/use-cases/esta
         FindEstabelecimentoByIdUseCase,
         FindEstabelecimentoByCNPJUseCase,
 
-        // {
-        //     provide: 'EstabelecimentoRepository',
-        //     useClass: PrismaEstabelecimentoRepository
-        // },
+        {
+            provide: 'EstabelecimentoRepository',
+            useClass: PrismaTipoEstabelecimentoRepository
+        },
     ],
 
 }) export class EstabelecimentoModule { }

@@ -1,8 +1,8 @@
-import { Fisica } from "../entities/Fisica.entity";
+import { Fisica } from "../entities/fisica.entity";
 
 export interface FisicaRepository {
-    create(Estabelecimento: Fisica): Promise<Fisica>;
-    update(id: number, Filial : Fisica): Promise<Fisica>;
+    create(filial: Fisica): Promise<Fisica>;
+    update(id: number, filial : Fisica): Promise<Fisica>;
     delete(id: number): Promise<void>;
     findAll(): Promise<Fisica[]>;
     findById(id: number): Promise<Fisica | null>;

@@ -10,13 +10,13 @@ export class BairroService {
         private readonly bairroRepository: BairroRepository
     ) { }
 
-    async validateOrCreateBairro(nome: string): Promise<Bairro> {
-        let validBairro = await this.bairroRepository.findByName(nome);
-        if(!validBairro) {
-            validBairro = await this.bairroRepository.create({nome});
+    async validateOrCreateBairro(nome: string): Promise<number> {
+        let checkBairro = await this.bairroRepository.findByName(nome);
+        if(!checkBairro) {
+            checkBairro = await this.bairroRepository.create({nome});
             
         }
-        const bairro = validBairro;
+        const bairro = checkBairro.id;
         return bairro;
     }
 

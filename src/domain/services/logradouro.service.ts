@@ -10,13 +10,13 @@ export class LogradouroService {
         private readonly logradouroRepository: LogradouroRepository
     ) { }
 
-    async validateOrCreateLogradouro(nome: string): Promise<Logradouro> {
-        let validLogradouro = await this.logradouroRepository.findByName(nome);
-        if(!validLogradouro) {
-            validLogradouro = await this.logradouroRepository.create({nome});
+    async validateOrCreateLogradouro(nome: string): Promise<number> {
+        let checkLogradouro = await this.logradouroRepository.findByName(nome);
+        if(!checkLogradouro) {
+            checkLogradouro = await this.logradouroRepository.create({nome});
             
         }
-        const logradouro = validLogradouro;
+        const logradouro = checkLogradouro.id;
         return logradouro;
     }
 

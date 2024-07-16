@@ -10,13 +10,13 @@ export class EstadoService {
         private readonly estadoRepository: EstadoRepository
     ) { }
 
-    async validateOrCreateEstado(uf: string): Promise<Estado> {
-        let validEstado = await this.estadoRepository.findByUf(uf);
-        if(!validEstado) {
-            validEstado = await this.estadoRepository.create({uf});
+    async validateOrCreateEstado(uf: string): Promise<number> {
+        let checkEstado = await this.estadoRepository.findByUf(uf);
+        if(!checkEstado) {
+            checkEstado = await this.estadoRepository.create({uf});
             
         }
-        const estado = validEstado;
+        const estado = checkEstado.id;
         return estado;
     }
 

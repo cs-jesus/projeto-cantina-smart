@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { InstituicaoRepository } from '../repositories/instituicao.repository';
 import { Instituicao } from '../entities/instituicao.entity';
+import { InstituicaoRepository } from '../repositories/instituicao.repository';
 
 @Injectable()
 export class InstituicaoService {

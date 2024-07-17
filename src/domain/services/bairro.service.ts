@@ -19,8 +19,6 @@ export class BairroService {
             const newBairro = await this.bairroRepository.create({ nome });
             return newBairro.id;
         }
-
-
     }
 
     async updateBairro(id: number, nome: string): Promise<Bairro> {

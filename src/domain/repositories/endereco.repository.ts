@@ -6,5 +6,6 @@ export interface EnderecoRepository {
     delete(id: number): Promise<void>;
     findAll(): Promise<Endereco[]>;
     findById(id: number): Promise<Endereco | null>;
+    findByCepAndNumero(cep: string, numero: string): Promise<Endereco | null>;
 
 }

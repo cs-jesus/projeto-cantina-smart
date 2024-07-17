@@ -17,7 +17,8 @@ export class LogradouroService {
 
         } else {
             const newLogradouro = await this.logradouroRepository.create({ nome });
-            return newLogradouro;
+            return newLogradouro.id;
+            
         }
     }
 

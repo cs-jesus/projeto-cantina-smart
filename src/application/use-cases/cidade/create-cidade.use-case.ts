@@ -7,6 +7,6 @@ export class CreateCidadeUseCase {
     constructor(private readonly cidadeService: CidadeService) { }
 
     async execute(nome: string): Promise<Cidade> {
-        return this.cidadeService.createCidade(nome);
+        return this.cidadeService.validateOrCreateCidade(nome);
     }
 }

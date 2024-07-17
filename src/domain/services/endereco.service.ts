@@ -30,24 +30,23 @@ export class EnderecoService {
 
     ):
         Promise<Endereco> {
-        let checkEndereco = await this.enderecoRepository.findByCepAndNumero(cep, numero);
+        const checkEndereco = await this.enderecoRepository.findByCepAndNumero(cep, numero);
         if (checkEndereco) {
             return checkEndereco;
 
         } else {
-
             const logradouroId = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);
             const bairroId = await this.bairroService.validateOrCreateBairro(bairroNome);
             const cidadeId = await this.cidadeService.validateOrCreateCidade(cidadeNome);
             const estadoId = await this.estadoService.validateOrCreateEstado(estadoUf);
 
-            const endereco = new Endereco(
+            const newEndereco = await this.enderecoRepository.create({
                 logradouroId, bairroId, cidadeId, estadoId,
-                cep, numero,
-
-            );
-
-            return this.enderecoRepository.create(endereco);
+                cep, numero
+                    
+            });
+            return this.enderecoRepository.create(newEndereco);
+        
         }
     }
 

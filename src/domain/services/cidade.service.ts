@@ -11,13 +11,15 @@ export class CidadeService {
     ) { }
 
     async validateOrCreateCidade(nome: string): Promise<number> {
-        let checkCidade = await this.cidadeRepository.findByName(nome);
-        if (!checkCidade) {
-            checkCidade = await this.cidadeRepository.create({ nome });
+        const checkCidade = await this.cidadeRepository.findByName(nome);
+        if (checkCidade) {
+            return checkCidade.id;
 
+        } else {
+            const newCidade = await this.cidadeRepository.create({ nome });
+            return newCidade.id;
+            
         }
-        const cidade = checkCidade.id;
-        return cidade;
     }
 
     async updateCidade(id: number, nome: string): Promise<Cidade> {

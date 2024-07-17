@@ -11,13 +11,15 @@ export class EstadoService {
     ) { }
 
     async validateOrCreateEstado(uf: string): Promise<number> {
-        let checkEstado = await this.estadoRepository.findByUf(uf);
-        if (!checkEstado) {
-            checkEstado = await this.estadoRepository.create({ uf });
+        const checkEstado = await this.estadoRepository.findByUf(uf);
+        if (checkEstado) {
+            return checkEstado.id;
 
+        } else {
+            const newEstado = await this.estadoRepository.create ({ uf });
+            return newEstado.id;
+            
         }
-        const estado = checkEstado.id;
-        return estado;
     }
 
     async updateEstado(id: number, uf: string): Promise<Estado> {

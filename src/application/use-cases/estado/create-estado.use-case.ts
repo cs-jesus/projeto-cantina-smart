@@ -7,6 +7,6 @@ export class CreateEstadoUseCase {
     constructor(private readonly estadoService: EstadoService) { }
 
     async execute(uf: string): Promise<Estado> {
-        return this.estadoService.createEstado(uf);
+        return this.estadoService.validateOrCreateEstado(uf);
     }
 }

@@ -18,6 +18,7 @@ export class BairroService {
         } else {
             const newBairro = await this.bairroRepository.create({ nome });
             return newBairro.id;
+            
         }
     }
 

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { CategoriaProduto } from "src/domain/entities/categoria-produto.entity";
-import { CategoriaProdutoService } from "src/domain/service/categoria-produto.service";
+import { CategoriaProdutoService } from "src/domain/services/categoria-produto.service";
 
 
 @Injectable()

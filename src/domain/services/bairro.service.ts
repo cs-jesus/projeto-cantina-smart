@@ -16,22 +16,21 @@ export class BairroService {
             return checkBairro.id;
 
         } else {
-            const newBairro = await this.bairroRepository.create({ nome });
+            const newBairro = await this.bairroRepository.create(new Bairro (nome));
             return newBairro.id;
             
         }
     }
 
-    async updateBairro(id: number, nome: string): Promise<Bairro> {
-        let checkBairro = await this.bairroRepository.findByName(nome);
-        if (!checkBairro) {
-            checkBairro = await this.bairroRepository.create({ nome });
-
-        }
-
+    async createBairro(nome: string): Promise<Bairro> {
         const bairro = new Bairro(nome);
-        return this.bairroRepository.update(+id, bairro);
+        return this.bairroRepository.create(bairro)
     }
+
+    async updateBairro(id: number, nome: string): Promise<Bairro> {
+        const bairro = new Bairro(nome, id);
+        return this.bairroRepository.update(id, bairro);
+      }
 
     async deleteBairro(id: number): Promise<void> {
         return this.bairroRepository.delete(+id)

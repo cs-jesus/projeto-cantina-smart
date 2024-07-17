@@ -7,6 +7,6 @@ export class CreateBairroUseCase {
     constructor(private readonly bairroService: BairroService) { }
 
     async execute(nome: string): Promise<Bairro> {
-        return this.bairroService.validateOrCreateBairro(nome);
+        return this.bairroService.createBairro(nome);
     }
 }

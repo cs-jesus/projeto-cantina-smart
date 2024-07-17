@@ -47,8 +47,4 @@ export class PrismaBairroRepository implements BairroRepository {
         if (!bairro) return null;
         return new Bairro(bairro.nome, bairro.id);
     }
-
-    isNomeUnique(nome: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
 }

@@ -31,9 +31,9 @@ export class EnderecoService {
     ):
         Promise<Endereco> {
         let checkEndereco = await this.enderecoRepository.findByCepAndNumero(cep, numero);
-
         if (checkEndereco) {
             return checkEndereco;
+
         } else {
 
             const logradouroId = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);

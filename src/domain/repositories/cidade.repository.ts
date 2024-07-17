@@ -7,6 +7,5 @@ export interface CidadeRepository {
     findAll(): Promise<Cidade[]>;
     findById(id: number): Promise<Cidade | null>;
     findByName(name: string): Promise<Cidade | null>;
-    isNomeUnique(nome: string): Promise<boolean>;
 
 }

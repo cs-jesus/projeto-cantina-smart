@@ -7,6 +7,5 @@ export interface EstadoRepository {
     findAll(): Promise<Estado[]>;
     findById(id: number): Promise<Estado | null>;
     findByUf(uf: string): Promise<Estado | null>;
-    isUfUnique(uf: string): Promise<boolean>;
 
 }

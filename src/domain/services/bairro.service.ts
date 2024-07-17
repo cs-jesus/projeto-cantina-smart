@@ -1,7 +1,7 @@
 import { Injectable, Inject } from "@nestjs/common";
 
-import { BairroRepository } from "../repositories/bairro.repository";
 import { Bairro } from "../entities/bairro.entity";
+import { BairroRepository } from "../repositories/bairro.repository";
 
 @Injectable()
 export class BairroService {
@@ -11,19 +11,23 @@ export class BairroService {
     ) { }
 
     async validateOrCreateBairro(nome: string): Promise<number> {
+        const checkBairro = await this.bairroRepository.findByName(nome);
+        if (checkBairro) {
+            return checkBairro.id;
+
+        } else {
+            const newBairro = await this.bairroRepository.create({ nome });
+            return newBairro.id;
+        }
+
+
+    }
+
+    async updateBairro(id: number, nome: string): Promise<Bairro> {
         let checkBairro = await this.bairroRepository.findByName(nome);
         if (!checkBairro) {
             checkBairro = await this.bairroRepository.create({ nome });
 
-        }
-        const bairro = checkBairro.id;
-        return bairro;
-    }
-
-    async updateBairro(id: number, nome: string): Promise<Bairro> {
-        const nomeIsUnique = await this.bairroRepository.isNomeUnique(nome);
-        if (!nomeIsUnique) {
-            throw new Error(`O bairro "${nome}" já está cadastado.`);
         }
 
         const bairro = new Bairro(nome);

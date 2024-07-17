@@ -7,6 +7,5 @@ export interface LogradouroRepository {
     findAll(): Promise<Logradouro[]>;
     findById(id: number): Promise<Logradouro | null>;
     findByName(name: string): Promise<Logradouro | null>;
-    isNomeUnique(nome: string): Promise<boolean>;
 
 }

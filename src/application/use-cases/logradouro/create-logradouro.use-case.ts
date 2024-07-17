@@ -7,6 +7,7 @@ export class CreateLogradouroUseCase {
     constructor(private readonly logradouroService: LogradouroService) { }
 
     async execute(nome: string): Promise<Logradouro> {
-        return this.logradouroService.createLogradouro(nome);
+        return this.logradouroService.validateOrCreateLogradouro(nome);
+        
     }
 }

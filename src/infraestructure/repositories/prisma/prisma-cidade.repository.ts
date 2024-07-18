@@ -10,21 +10,17 @@ export class PrismaCidadeRepository implements CidadeRepository {
 
     async create(cidade: Cidade): Promise<Cidade> {
         const created = await this.prisma.cidade.create({
-            data: {
-                nome: cidade.nome,
-            },
+            data: { nome: cidade.nome, },
         });
-        return new Cidade(created.nome, created.id);
+        return new Cidade(created.id, created.nome);
     }
 
     async update(id: number, cidade: Cidade): Promise<Cidade> {
         const updated = await this.prisma.cidade.update({
             where: { id },
-            data: {
-                nome: cidade.nome
-            },
+            data: { nome: cidade.nome },
         });
-        return new Cidade(updated.nome, updated.id);
+        return new Cidade(updated.id, updated.nome);
     }
 
     async delete(id: number): Promise<void> {
@@ -39,16 +35,12 @@ export class PrismaCidadeRepository implements CidadeRepository {
     async findById(id: number): Promise<Cidade | null> {
         const cidade = await this.prisma.cidade.findUnique({ where: { id } });
         if (!cidade) return null;
-        return new Cidade(cidade.nome, cidade.id);
+        return new Cidade(cidade.id, cidade.nome);
     }
 
     async findByName(name: string): Promise<Cidade | null> {
         const cidade = await this.prisma.cidade.findUnique({ where: { nome: name } });
         if (!cidade) return null;
-        return new Cidade(cidade.nome, cidade.id);
-    }
-
-    isNomeUnique(nome: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        return new Cidade(cidade.id, cidade.nome);
     }
 }

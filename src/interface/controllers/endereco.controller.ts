@@ -24,28 +24,12 @@ export class EnderecoController {
 
     @Post()
     async create(@Body() createEnderecoDto: CreateEnderecoDto) {
-        return this.createEnderecoUseCase.execute(
-            createEnderecoDto.logradouroNome,
-            createEnderecoDto.bairroNome,
-            createEnderecoDto.cidadeNome,
-            createEnderecoDto.estadoUf,
-            createEnderecoDto.cep,
-            createEnderecoDto.numero,
-
-        );
+        return this.createEnderecoUseCase.execute(createEnderecoDto);
     }
 
     @Patch(':id')
     async update(@Param('id') id: number, @Body() updateEnderecoDto: UpdateEnderecoDto) {
-        return this.updateEnderecoUseCase.execute(
-            id,
-            updateEnderecoDto.logradouroNome,
-            updateEnderecoDto.bairroNome,
-            updateEnderecoDto.cidadeNome,
-            updateEnderecoDto.estadoUf,
-            updateEnderecoDto.cep,
-            updateEnderecoDto.numero,
-        );
+        return this.updateEnderecoUseCase.execute(id, updateEnderecoDto);
     }
 
     @Delete(':id')

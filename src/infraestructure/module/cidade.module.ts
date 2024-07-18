@@ -7,7 +7,7 @@ import { PrismaCidadeRepository } from "../repositories/prisma/prisma-cidade.rep
 
 import { CreateCidadeUseCase } from "src/application/use-cases/cidade/create-cidade.use-case";
 import { DeleteCidadeUseCase } from "src/application/use-cases/cidade/delete-cidade.use-case";
-import { FindAllCidades } from "src/application/use-cases/cidade/find-all-cidades.use-case";
+import { FindAllCidadesUseCase } from "src/application/use-cases/cidade/find-all-cidades.use-case";
 import { FindCidadeByIdUseCase } from "src/application/use-cases/cidade/find-cidade-by-id.use-case";
 import { FindCidadeByNameUseCase } from "src/application/use-cases/cidade/find-cidade-by-name.use-case";
 import { UpdateCidadeUseCase } from "src/application/use-cases/cidade/update-cidade.use-case";
@@ -19,11 +19,12 @@ import { UpdateCidadeUseCase } from "src/application/use-cases/cidade/update-cid
 
     providers: [
         CidadeService,
+        PrismaCidadeRepository,
 
         CreateCidadeUseCase,
         UpdateCidadeUseCase,
         DeleteCidadeUseCase,
-        FindAllCidades,
+        FindAllCidadesUseCase,
         FindCidadeByIdUseCase,
         FindCidadeByNameUseCase,
 

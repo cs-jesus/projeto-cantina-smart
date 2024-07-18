@@ -29,7 +29,7 @@ export class PrismaCidadeRepository implements CidadeRepository {
 
     async findAll(): Promise<Cidade[]> {
         const cidades = await this.prisma.cidade.findMany();
-        return cidades.map(cidade => new Cidade(cidade.nome, cidade.id));
+        return cidades.map(cidade => new Cidade(cidade.id, cidade.nome));
     }
 
     async findById(id: number): Promise<Cidade | null> {

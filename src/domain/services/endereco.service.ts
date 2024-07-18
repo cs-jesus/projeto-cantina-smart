@@ -40,7 +40,7 @@ export class EnderecoService {
             const cidadeId = await this.cidadeService.validateOrCreateCidade(cidadeNome);
             const estadoId = await this.estadoService.validateOrCreateEstado(estadoUf);
 
-            const endereco = new Endereco(
+            const newEndereco = new Endereco(
                 logradouroId, bairroId, cidadeId, estadoId,
                 cep, numero
             )
@@ -54,7 +54,15 @@ export class EnderecoService {
         return this.enderecoRepository.create(endereco);
     }
 
-    async updateEndereco(id: number, endereco: Endereco): Promise<Endereco> {
+    async updateEndereco(
+        logradouroNome: string,
+        bairroNome: string,
+        cidadeNome: string,
+        estadoUf: string,
+        cep: string,
+        numero: string,
+        id: number,
+    ): Promise<Endereco> {
 
         const findEndereco = await this.enderecoRepository.findById(id);
         if (!findEndereco) {
@@ -66,13 +74,13 @@ export class EnderecoService {
         const cidadeId = await this.cidadeService.validateOrCreateCidade(cidadeNome);
         const estadoId = await this.estadoService.validateOrCreateEstado(estadoUf);
 
-        const endereco = new Endereco(
+        const newEndereco = new Endereco(
             logradouroId, bairroId, cidadeId, estadoId,
             cep, numero,
 
         );
 
-        return this.enderecoRepository.update(id, endereco);
+        return this.enderecoRepository.update(id, newEndereco);
     }
 
     async deleteEndereco(id: number): Promise<void> {

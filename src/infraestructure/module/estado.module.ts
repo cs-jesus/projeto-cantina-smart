@@ -19,6 +19,7 @@ import { FindEstadoByUfUseCase } from "src/application/use-cases/estado/find-est
 
     providers: [
         EstadoService,
+        PrismaEstadoRepository,
 
         CreateEstadoUseCase,
         UpdateEstadoUseCase,

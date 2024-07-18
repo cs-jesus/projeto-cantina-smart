@@ -28,7 +28,7 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
 
     async findAll(): Promise<Logradouro[]> {
         const logradouros = await this.prisma.logradouro.findMany();
-        return logradouros.map(logradouro => new Logradouro(logradouro.nome, logradouro.id))
+        return logradouros.map(logradouro => new Logradouro(logradouro.id, logradouro.nome))
     }
 
     async findById(id: number): Promise<Logradouro | null> {
@@ -42,8 +42,4 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
         if (!logradouro) return null;
         return new Logradouro(logradouro.id, logradouro.nome);
     }
-
-    isNomeUnique(nome: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }    
 }

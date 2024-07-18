@@ -22,13 +22,13 @@ export class CidadeService {
         }
     }
 
-    async updateCidade(id: number, nome: string): Promise<Cidade> {
-        const nomeIsUnique = await this.cidadeRepository.isNomeUnique(nome);
-        if (!nomeIsUnique) {
-            throw new Error(`A cidade "${nome}" já está cadastada.`);
-        }
+    async createCidade(nome: string): Promise<Cidade> {
+        const cidade = new Cidade(0, nome);
+        return this.cidadeRepository.create(cidade)
+    }
 
-        const cidade = new Cidade(nome);
+    async updateCidade(id: number, nome: string): Promise<Cidade> {
+        const cidade = new Cidade(id, nome);
         return this.cidadeRepository.update(+id, cidade);
     }
 

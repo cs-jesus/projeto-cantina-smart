@@ -23,14 +23,14 @@ export class BairroService {
     }
 
     async createBairro(nome: string): Promise<Bairro> {
-        const bairro = new Bairro(nome);
+        const bairro = new Bairro(0, nome);
         return this.bairroRepository.create(bairro)
     }
 
     async updateBairro(id: number, nome: string): Promise<Bairro> {
-        const bairro = new Bairro(nome, id);
-        return this.bairroRepository.update(id, bairro);
-      }
+        const bairro = new Bairro(id, nome);
+        return this.bairroRepository.update(+id, bairro);
+    }
 
     async deleteBairro(id: number): Promise<void> {
         return this.bairroRepository.delete(+id)

@@ -22,13 +22,13 @@ export class LogradouroService {
         }
     }
 
-    async updateLogradouro(id: number, nome: string): Promise<Logradouro> {
-        const nomeIsUnique = await this.logradouroRepository.isNomeUnique(nome);
-        if (!nomeIsUnique) {
-            throw new Error(`O logradouro "${nome}" já está cadastado.`);
-        }
+    async createLogradouro(nome: string): Promise<Logradouro> {
+        const logradouro = new Logradouro(0, nome);
+        return this.logradouroRepository.create(logradouro)
+    }
 
-        const logradouro = new Logradouro(nome);
+    async updateBLogradouro(id: number, nome: string): Promise<Logradouro> {
+        const logradouro = new Logradouro(id, nome);
         return this.logradouroRepository.update(+id, logradouro);
     }
 

@@ -19,6 +19,7 @@ import { FindTipoInstituicaoByDescricaoUseCase } from "src/application/use-cases
 
     providers: [
         TipoInstituicaoService,
+        PrismaTipoInstituicaoRepository,
 
         CreateTipoInstituicaoUseCase,
         UpdateTipoInstituicaoUseCase,

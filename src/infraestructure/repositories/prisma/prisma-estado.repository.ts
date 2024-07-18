@@ -29,7 +29,7 @@ export class PrismaEstadoRepository implements EstadoRepository {
 
     async findAll(): Promise<Estado[]> {
         const estados = await this.prisma.estado.findMany();
-        return estados.map(estado => new Estado(estado.uf, estado.id));
+        return estados.map(estado => new Estado(estado.id, estado.uf));
     }
 
     async findById(id: number): Promise<Estado | null> {

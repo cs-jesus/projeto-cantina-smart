@@ -22,13 +22,13 @@ export class EstadoService {
         }
     }
 
-    async updateEstado(id: number, uf: string): Promise<Estado> {
-        const ufIsUnique = await this.estadoRepository.isUfUnique(uf);
-        if (!ufIsUnique) {
-            throw new Error(`O estado "${uf}" já está cadastado.`);
-        }
+    async createEstado(uf: string): Promise<Estado> {
+        const estado = new Estado(0, uf);
+        return this.estadoRepository.create(estado)
+    }
 
-        const estado = new Estado(uf);
+    async updateEstado(id: number, uf: string): Promise<Estado> {
+        const estado = new Estado(id, uf);
         return this.estadoRepository.update(+id, estado);
     }
 

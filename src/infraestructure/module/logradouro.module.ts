@@ -19,6 +19,7 @@ import { FindLogradouroByNameUseCase } from "src/application/use-cases/logradour
 
     providers: [
         LogradouroService,
+        PrismaLogradouroRepository,
 
         CreateLogradouroUseCase,
         UpdateLogradouroUseCase,

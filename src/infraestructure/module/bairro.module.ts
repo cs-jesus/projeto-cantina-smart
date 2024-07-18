@@ -19,6 +19,7 @@ import { UpdateBairroUseCase } from "src/application/use-cases/bairro/update-bai
 
     providers: [
         BairroService,
+        PrismaBairroRepository,
 
         CreateBairroUseCase,
         UpdateBairroUseCase,

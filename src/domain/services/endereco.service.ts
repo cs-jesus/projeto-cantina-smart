@@ -49,19 +49,18 @@ export class EnderecoService {
             };
         
         }
+
+    async createEndereco(endereco: Endereco): Promise<Endereco> {
+        return this.enderecoRepository.create(endereco);
     }
 
-    async updateEndereco(
-        id: number,
-        logradouroNome: string,
-        bairroNome: string,
-        cidadeNome: string,
-        estadoUf: string,
-        cep: string,
-        numero: string,
+    async updateEndereco(id: number, endereco: Endereco): Promise<Endereco> {
 
-    ):
-        Promise<Endereco> {
+        const findEndereco = await this.enderecoRepository.findById(id);
+        if (!findEndereco) {
+            throw new Error(`Endereco com ID: ${id} não localizado.`);
+        }
+        
         const logradouroId = await this.logradouroService.validateOrCreateLogradouro(logradouroNome);
         const bairroId = await this.bairroService.validateOrCreateBairro(bairroNome);
         const cidadeId = await this.cidadeService.validateOrCreateCidade(cidadeNome);

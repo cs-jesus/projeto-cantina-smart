@@ -10,21 +10,17 @@ export class PrismaBairroRepository implements BairroRepository {
 
     async create(bairro: Bairro): Promise<Bairro> {
         const created = await this.prisma.bairro.create({
-            data: {
-                nome: bairro.nome,
-            },
+            data: { nome: bairro.nome, },
         });
-        return new Bairro(created.nome, created.id);
+        return new Bairro(created.id, created.nome);
     }
 
     async update(id: number, bairro: Bairro): Promise<Bairro> {
         const updated = await this.prisma.bairro.update({
             where: { id },
-            data: {
-                nome: bairro.nome,
-            },
+            data: { nome: bairro.nome },
         });
-        return new Bairro(updated.nome, updated.id);
+        return new Bairro(updated.id, updated.nome);
     }
 
     async delete(id: number): Promise<void> {
@@ -33,18 +29,18 @@ export class PrismaBairroRepository implements BairroRepository {
 
     async findAll(): Promise<Bairro[]> {
         const bairros = await this.prisma.bairro.findMany();
-        return bairros.map(bairro => new Bairro(bairro.nome, bairro.id));
+        return bairros.map(bairro => new Bairro(bairro.id, bairro.nome));
     }
 
     async findById(id: number): Promise<Bairro | null> {
         const bairro = await this.prisma.bairro.findUnique({ where: { id } });
         if (!bairro) return null;
-        return new Bairro(bairro.nome, bairro.id);
+        return new Bairro(bairro.id, bairro.nome);
     }
 
     async findByName(name: string): Promise<Bairro | null> {
         const bairro = await this.prisma.bairro.findUnique({ where: { nome: name } });
         if (!bairro) return null;
-        return new Bairro(bairro.nome, bairro.id);
+        return new Bairro(bairro.id, bairro.nome);
     }
 }

@@ -16,7 +16,7 @@ export class BairroService {
             return checkBairro.id;
 
         } else {
-            const newBairro = await this.bairroRepository.create(new Bairro (nome));
+            const newBairro = await this.bairroRepository.create(new Bairro (0, nome));
             return newBairro.id;
             
         }

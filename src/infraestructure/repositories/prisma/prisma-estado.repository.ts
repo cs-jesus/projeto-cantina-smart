@@ -10,21 +10,17 @@ export class PrismaEstadoRepository implements EstadoRepository {
 
     async create(estado: Estado): Promise<Estado> {
         const created = await this.prisma.estado.create({
-            data: {
-                uf: estado.uf,
-            },
+            data: { uf: estado.uf, },
         });
-        return new Estado(created.uf, created.id);
+        return new Estado(created.id, created.uf);
     }
 
     async update(id: number, estado: Estado): Promise<Estado> {
         const updated = await this.prisma.estado.update({
             where: { id },
-            data: {
-                uf: estado.uf
-            },
+            data: { uf: estado.uf },
         });
-        return new Estado(updated.uf, updated.id);
+        return new Estado(updated.id, updated.uf);
     }
 
     async delete(id: number): Promise<void> {
@@ -39,16 +35,12 @@ export class PrismaEstadoRepository implements EstadoRepository {
     async findById(id: number): Promise<Estado | null> {
         const estado = await this.prisma.estado.findUnique({ where: { id } });
         if (!estado) return null;
-        return new Estado(estado.uf, estado.id);
+        return new Estado(estado.id, estado.uf);
     }
 
     async findByUf(name: string): Promise<Estado | null> {
         const estado = await this.prisma.estado.findUnique({ where: { uf: name } });
         if (!estado) return null;
-        return new Estado(estado.uf, estado.id);
-    }
-
-    isUfUnique(uf: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        return new Estado(estado.id, estado.uf);
     }
 }

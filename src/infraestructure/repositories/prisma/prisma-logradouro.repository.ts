@@ -9,21 +9,17 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
  
     async create(logradouro: Logradouro): Promise<Logradouro> {
         const created = await this.prisma.logradouro.create({
-            data: {
-                nome: logradouro.nome,
-            },
+            data: { nome: logradouro.nome },
         });
-        return new Logradouro(created.nome, created.id);
+        return new Logradouro(created.id, created.nome);
     }
 
     async update(id: number, logradouro: Logradouro): Promise<Logradouro> {
         const updated = await this.prisma.logradouro.update({
             where: { id },
-            data: { 
-                nome: logradouro.nome 
-            },
+            data: { nome: logradouro.nome },
         });
-        return new Logradouro(updated.nome, updated.id);
+        return new Logradouro(updated.id, updated.nome);
     }
 
     async delete(id: number): Promise<void> {
@@ -38,13 +34,13 @@ export class PrismaLogradouroRepository implements LogradouroRepository {
     async findById(id: number): Promise<Logradouro | null> {
         const logradouro = await this.prisma.logradouro.findUnique({ where: { id } });
         if (!logradouro) return null;
-        return new Logradouro(logradouro.nome, logradouro.id);
+        return new Logradouro(logradouro.id, logradouro.nome);
     }
 
     async findByName(name: string): Promise<Logradouro | null> {
         const logradouro = await this.prisma.logradouro.findUnique({ where: { nome: name } });
         if (!logradouro) return null;
-        return new Logradouro(logradouro.nome, logradouro.id);
+        return new Logradouro(logradouro.id, logradouro.nome);
     }
 
     isNomeUnique(nome: string): Promise<boolean> {

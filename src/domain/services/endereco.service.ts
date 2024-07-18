@@ -40,12 +40,13 @@ export class EnderecoService {
             const cidadeId = await this.cidadeService.validateOrCreateCidade(cidadeNome);
             const estadoId = await this.estadoService.validateOrCreateEstado(estadoUf);
 
-            const newEndereco = await this.enderecoRepository.create({
+            const endereco = new Endereco(
                 logradouroId, bairroId, cidadeId, estadoId,
                 cep, numero
-                    
-            });
+            )
             return this.enderecoRepository.create(newEndereco);
+
+            };
         
         }
     }

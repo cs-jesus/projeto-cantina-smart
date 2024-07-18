@@ -8,6 +8,7 @@ import { LogradouroModule } from './infraestructure/module/logradouro.module';
 import { BairroModule } from './infraestructure/module/bairro.module';
 import { CidadeModule } from './infraestructure/module/cidade.module';
 import { EstadoModule } from './infraestructure/module/estado.module';
+import { EnderecoModule } from './infraestructure/module/endereco.module';
 
 @Module({
     imports: [
@@ -15,7 +16,7 @@ import { EstadoModule } from './infraestructure/module/estado.module';
 
         TipoInstituicaoModule, InstituicaoModule,
 
-        LogradouroModule, BairroModule, CidadeModule, EstadoModule,
+        LogradouroModule, BairroModule, CidadeModule, EstadoModule, EnderecoModule,
     ],
 
     controllers: [],

@@ -16,7 +16,7 @@ export class EstadoService {
             return checkEstado.id;
 
         } else {
-            const newEstado = await this.estadoRepository.create ({ uf });
+            const newEstado = await this.estadoRepository.create(new Estado (0, uf));
             return newEstado.id;
             
         }

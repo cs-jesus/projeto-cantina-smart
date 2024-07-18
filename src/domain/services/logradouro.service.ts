@@ -16,7 +16,7 @@ export class LogradouroService {
             return checkLogradouro.id;
 
         } else {
-            const newLogradouro = await this.logradouroRepository.create({ nome });
+            const newLogradouro = await this.logradouroRepository.create(new Logradouro (0, nome));
             return newLogradouro.id;
             
         }

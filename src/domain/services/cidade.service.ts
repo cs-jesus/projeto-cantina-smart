@@ -16,7 +16,7 @@ export class CidadeService {
             return checkCidade.id;
 
         } else {
-            const newCidade = await this.cidadeRepository.create({ nome });
+            const newCidade = await this.cidadeRepository.create(new Cidade (0, nome));
             return newCidade.id;
             
         }
